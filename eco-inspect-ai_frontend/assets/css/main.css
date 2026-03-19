@@ -1,0 +1,314 @@
+/* ==========================================================================
+   Google Fonts Configuration
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
+   Global CSS Variables
+   ========================================================================== */
+:root {
+  /* Brand Colors */
+  --primary: #2DFF7F;
+  --secondary: #00E5CC;
+  --brand-green: #22C55E;
+  --brand-dark: #0A0F0D;
+  --brand-mutedRed: #E57373;
+
+  /* Backgrounds & Surfaces */
+  --background-light: #f5f8f6;
+  --background-dark: #0A0F0D;
+  --surface-dark: #111A14;
+  --eco-dark: #111A14; /* Used in some files as #1a2e1f or #111A14 */
+  --eco-surface: #243b2a;
+  --eco-accent: #3d5a45;
+
+  /* Semantic UI Colors */
+  --warning: #FFB830;
+  --danger: #FF4D6D;
+  --eco-red: #EF4444;
+  --info: #4DA6FF;
+
+  /* Glow Effects */
+  --eco-red-glow: rgba(239, 68, 68, 0.4);
+  --brand-glow: rgba(34, 197, 94, 0.2);
+}
+
+/* ==========================================================================
+   Global Reset & Body Styles
+   ========================================================================== */
+body {
+  background-color: var(--background-dark);
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-syne {
+  font-family: 'Syne', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.font-display {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ==========================================================================
+   Shared Component Styles
+   ========================================================================== */
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary);
+  color: black;
+  font-family: 'Syne', sans-serif;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(45, 255, 127, 0.2);
+  transition: all 200ms ease;
+}
+
+.btn-primary:hover {
+  background-color: rgba(45, 255, 127, 0.9);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-danger {
+  background-color: var(--eco-red);
+  color: white;
+  font-family: 'Syne', sans-serif;
+  font-weight: bold;
+  transition: colors 200ms ease;
+}
+
+.btn-danger:hover {
+  background-color: #DC2626; /* hover:bg-red-600 */
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  transition: all 200ms ease;
+}
+
+.btn-outline:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Badges (Urgency Levels) */
+.badge-critical {
+  background-color: rgba(255, 77, 109, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(255, 77, 109, 0.2);
+}
+
+.badge-high {
+  background-color: rgba(255, 184, 48, 0.1);
+  color: var(--warning);
+  border: 1px solid rgba(255, 184, 48, 0.2);
+}
+
+.badge-medium {
+  background-color: rgba(77, 166, 255, 0.1);
+  color: var(--info);
+  border: 1px solid rgba(77, 166, 255, 0.2);
+}
+
+.badge-low {
+  background-color: rgba(45, 255, 127, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(45, 255, 127, 0.2);
+}
+
+/* Badges (Statuses) */
+.badge-received {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.badge-processing {
+  background-color: rgba(77, 166, 255, 0.1);
+  color: var(--info);
+}
+
+.badge-pending {
+  background-color: rgba(255, 184, 48, 0.1);
+  color: var(--warning);
+}
+
+.badge-assigned {
+  background-color: rgba(0, 229, 204, 0.1);
+  color: var(--secondary);
+}
+
+.badge-in-progress {
+  background-color: rgba(0, 229, 204, 0.1);
+  color: var(--secondary);
+}
+
+.badge-resolved {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: var(--brand-green);
+}
+
+.badge-rejected {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--eco-red);
+}
+
+/* Card Styles */
+.card {
+  background-color: var(--surface-dark);
+  border-radius: 12px;
+  border: 1px solid rgba(30, 41, 59, 0.5); /* border-slate-800/50 */
+}
+
+/* Sidebar & Navbar */
+.sidebar {
+  background-color: var(--eco-dark);
+  border-right: 1px solid var(--eco-accent);
+}
+
+.topbar {
+  background-color: var(--eco-dark);
+  border-bottom: 1px solid var(--eco-accent);
+}
+
+/* Form Inputs */
+.form-input {
+  background-color: var(--background-dark);
+  border: 2px solid #1e293b; /* border-slate-800 */
+  border-radius: 8px;
+  color: white;
+  transition: colors 200ms ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.form-input::placeholder {
+  color: #475569; /* text-slate-600 */
+}
+
+/* Tables */
+.table-container {
+  background-color: var(--eco-surface);
+  border-radius: 12px; /* rounded-xl */
+  border: 1px solid var(--eco-accent);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* shadow-2xl */
+  overflow: hidden;
+}
+
+.table-header {
+  background-color: rgba(61, 90, 69, 0.3); /* bg-eco-accent/30 */
+  border-bottom: 1px solid var(--eco-accent);
+}
+
+.table-row {
+  border-bottom: 1px solid rgba(61, 90, 69, 0.5); /* divide-y divide-eco-accent/50 */
+}
+
+/* Empty States */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem; /* p-12 */
+}
+
+/* ==========================================================================
+   Extracted Specific Styles & Animations
+   ========================================================================== */
+
+/* 5. Skeleton Loader Animation */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.skeleton-box {
+  background: linear-gradient(90deg, #2a4431 25%, #35533d 50%, #2a4431 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 4px;
+}
+
+.skeleton-circle {
+  background: linear-gradient(90deg, #2a4431 25%, #35533d 50%, #2a4431 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+  border-radius: 50%;
+}
+
+/* 6. Success Toast Animation */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(34, 197, 94, 0.4); }
+}
+
+@keyframes checkIn {
+  0% { transform: scale(0) rotate(-45deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-slow-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-check-in {
+  animation: checkIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.checkmark-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: dash 0.8s ease-in-out 0.3s forwards;
+}
+
+.glow-leaf {
+  filter: drop-shadow(0 0 15px rgba(45, 255, 127, 0.4));
+}
+
+/* 7. Delete Confirmation Modal Style */
+.red-glow-border {
+  border: 1px solid var(--eco-red);
+  box-shadow: 0 0 15px var(--eco-red-glow);
+}
+
+.overlay-blur {
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* 8. Error State Styles */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

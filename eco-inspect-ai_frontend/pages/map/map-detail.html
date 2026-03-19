@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Environmental Dashboard</title>
+<!-- Fonts: Syne for headers, JetBrains Mono for technical data, Inter for body -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#0A0F0D',
+              green: '#2DFF7F',
+              darkGreen: '#1A2E24',
+              gray: '#1E2421',
+              critical: '#FF4D4D',
+              high: '#FFA500',
+              medium: '#FFD700',
+              low: '#2DFF7F'
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            'custom': '12px'
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="layout-styles">
+    body {
+      background-color: #0A0F0D;
+      color: #FFFFFF;
+      overflow: hidden; /* Prevent body scroll, layout uses flex-grow */
+    }
+    
+    /* Map Grid Background Emulation */
+    .map-container {
+      background-image: 
+        linear-gradient(to right, rgba(45, 255, 127, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(45, 255, 127, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      position: relative;
+    }
+
+    /* Glow Effects for Critical Pins */
+    .glow-red {
+      box-shadow: 0 0 15px rgba(255, 77, 77, 0.6);
+    }
+    .glow-green {
+      box-shadow: 0 0 15px rgba(45, 255, 127, 0.4);
+    }
+  </style>
+</head>
+<body class="h-screen flex flex-col font-sans">
+<!-- BEGIN: Navigation Bar -->
+<header class="h-16 border-b border-brand-darkGreen bg-brand-black px-6 flex items-center justify-between z-50">
+<div class="flex items-center gap-8">
+<!-- Logo Section -->
+<div class="flex items-center gap-2" data-purpose="logo">
+<div class="w-8 h-8 bg-brand-green rounded-lg flex items-center justify-center">
+<svg class="w-5 h-5 text-brand-black" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<span class="font-syne text-xl font-extrabold tracking-tight">Eco-Inspect <span class="text-brand-green">AI</span></span>
+</div>
+<!-- Search Bar -->
+<div class="relative w-96" data-purpose="search-container">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<input class="block w-full pl-10 pr-3 py-2 border-none rounded-custom bg-brand-gray text-sm text-white focus:ring-1 focus:ring-brand-green" placeholder="Search area or report ID..." type="text"/>
+</div>
+</div>
+<!-- User Profile & Settings -->
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-400 hover:text-brand-green transition-colors">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="h-8 w-px bg-brand-darkGreen mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-medium">Officer Rodriguez</p>
+<p class="text-xs text-brand-green font-mono">ID: 082-ALPHA</p>
+</div>
+<img alt="Profile" class="w-10 h-10 rounded-full border border-brand-green/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDA1HReQFLodeGI1M5Z_3OAz-bzT-D3PQvm6ce_g7efpiGgHC7DUceLHBqR8Mxfjv3TsqY5XKblOyAICSvn6kauX1xGAiB_o_5w64mACs3cCDf41wS29MMqAbsDgSUMXhaoMLM2l4TYxorGBWz01A6lUU1SEtI5_JPivnfi5MU88yIMzJWbYP6Hy2wedWxDNZMcGxZvYmJW-3UiQKNsDcdZfxP6bsnUp5ew3EdBDkNOpp1ihwXRlEuQh_hacnrHIaT03M1pLdHIsoL"/>
+</div>
+</div>
+</header>
+<!-- END: Navigation Bar -->
+<main class="flex-grow flex overflow-hidden">
+<!-- BEGIN: Map View Area -->
+<section class="flex-grow relative bg-brand-black map-container" data-purpose="interactive-map">
+<!-- Map Filters Overlay -->
+<div class="absolute top-6 left-6 flex gap-3 z-10" data-purpose="urgency-filters">
+<button class="px-4 py-2 rounded-full border border-brand-critical/50 bg-brand-critical/10 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-critical">
+<span class="w-2 h-2 rounded-full bg-brand-critical"></span> Critical
+        </button>
+<button class="px-4 py-2 rounded-full border border-brand-high/50 bg-brand-black flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-high">
+<span class="w-2 h-2 rounded-full bg-brand-high"></span> High
+        </button>
+<button class="px-4 py-2 rounded-full border border-brand-medium/50 bg-brand-black flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-medium">
+<span class="w-2 h-2 rounded-full bg-brand-medium"></span> Medium
+        </button>
+<button class="px-4 py-2 rounded-full border border-brand-low/50 bg-brand-black flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-low">
+<span class="w-2 h-2 rounded-full bg-brand-low"></span> Low
+        </button>
+</div>
+<!-- Simulated Map Pins -->
+<!-- Critical Pin -->
+<div class="absolute top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group">
+<div class="w-12 h-12 bg-brand-critical rounded-full flex items-center justify-center border-4 border-white/20 glow-red animate-pulse">
+<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</div>
+</div>
+<!-- Amber/High Pin -->
+<div class="absolute top-1/3 left-1/2 cursor-pointer">
+<div class="w-10 h-10 bg-brand-high rounded-full flex items-center justify-center border-2 border-white/20">
+<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</div>
+</div>
+<!-- Medium Pin -->
+<div class="absolute bottom-1/4 left-2/3 cursor-pointer">
+<div class="w-8 h-8 bg-brand-medium rounded-full border-2 border-white/20"></div>
+</div>
+<!-- Clustered Pin -->
+<div class="absolute bottom-20 left-1/4 cursor-pointer">
+<div class="px-4 py-2 bg-brand-darkGreen text-brand-green font-mono border border-brand-green/30 rounded-full glow-green flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
+</span>
+          14 Clusters
+        </div>
+</div>
+<!-- Floating Map Controls -->
+<div class="absolute top-1/2 right-6 transform -translate-y-1/2 flex flex-col gap-3" data-purpose="map-controls">
+<button class="w-12 h-12 bg-brand-gray/80 backdrop-blur rounded-custom border border-brand-green/20 flex items-center justify-center hover:bg-brand-gray transition-colors">
+<svg class="w-6 h-6 text-brand-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button class="w-12 h-12 bg-brand-gray/80 backdrop-blur rounded-custom border border-brand-green/20 flex items-center justify-center hover:bg-brand-gray transition-colors">
+<svg class="w-6 h-6 text-brand-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="flex flex-col border border-brand-green/20 rounded-custom overflow-hidden">
+<button class="w-12 h-12 bg-brand-gray/80 backdrop-blur flex items-center justify-center hover:bg-brand-gray text-white">+</button>
+<div class="h-px bg-brand-green/20"></div>
+<button class="w-12 h-12 bg-brand-gray/80 backdrop-blur flex items-center justify-center hover:bg-brand-gray text-white">-</button>
+</div>
+</div>
+</section>
+<!-- END: Map View Area -->
+<!-- BEGIN: Report Details Panel -->
+<aside class="w-[400px] bg-brand-black border-l border-brand-darkGreen p-6 flex flex-col gap-6 overflow-y-auto" data-purpose="report-sidebar">
+<!-- Panel Header -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<p class="text-brand-green font-mono text-sm tracking-wider" id="report-id">ECO-2026-00142</p>
+<span class="bg-brand-critical/20 text-brand-critical px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest border border-brand-critical/30">Critical</span>
+</div>
+<h2 class="font-syne text-2xl font-extrabold leading-tight">Illegal Waste Disposal</h2>
+<div class="flex items-center gap-4 mt-3 text-gray-400 text-sm">
+<span class="flex items-center gap-1"><svg class="w-4 h-4 text-brand-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg> North Sector, Zone 4</span>
+<span class="flex items-center gap-1"><svg class="w-4 h-4 text-brand-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg> 2h ago</span>
+</div>
+</div>
+<!-- AI Analysis Summary Section -->
+<div class="bg-brand-darkGreen/40 rounded-custom p-4 border border-brand-green/10" data-purpose="ai-analysis">
+<div class="flex items-center gap-2 mb-3">
+<div class="p-1.5 bg-brand-green/10 rounded-md">
+<svg class="w-4 h-4 text-brand-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9.663 17h4.674a1 1 0 00.922-.617l2.108-4.742A1 1 0 0016.445 10H13V3L4 14h7v7l1.41-1.41" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<span class="font-syne text-xs font-bold uppercase tracking-widest text-brand-green">AI Analysis Summary</span>
+</div>
+<p class="text-sm text-gray-300 leading-relaxed mb-4">
+          Visual sensors detected high concentrations of medical waste canisters (estimated 450kg) abandoned near protected wetlands. Probable origin identified as "Apex Med-Labs" via serial number pattern matching.
+        </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-brand-black/50 border border-brand-green/20 rounded text-[10px] text-brand-green font-mono">BIOHAZARD</span>
+<span class="px-2 py-1 bg-brand-black/50 border border-brand-green/20 rounded text-[10px] text-brand-green font-mono">WATER_THREAT</span>
+<span class="px-2 py-1 bg-brand-black/50 border border-brand-green/20 rounded text-[10px] text-brand-green font-mono">HIGH_CERTAINTY</span>
+</div>
+</div>
+<!-- Evidence Snapshot -->
+<div>
+<h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Evidence Snapshot</h4>
+<div class="grid grid-cols-2 gap-2">
+<img alt="Waste photo 1" class="rounded-custom w-full h-24 object-cover border border-white/5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpNeK-ey55cm9cKV36ZRCg3aKzIAyA2pluWCYoQshaJU1anXJA8uu6wOfuPyrJlMfRs-mchp1lzAW1Mt7U1TvAlvvd8ydcvI2y9_eO_UWn1dQG05gUI_HsUu33AvC-yr1dERnBuY3K6Gqd7VBxsicYGFXAH0DMK9c66bgI-GJM-sGoyo-BYGnIc5sKrxj13KpKoSc0h8rjDyTdx6C1b4WB_sELapn1mr25TT7TJSVXImb8Y8qXsrlCAJSNRznI-RIgZnu44l6c9u6Y"/>
+<img alt="Waste photo 2" class="rounded-custom w-full h-24 object-cover border border-white/5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkJKHc5OUw9exchsR8OVnrbDo7QAAhjCAz3DwztGzLgOvxnxYg8kwZ9EQ7YGn0eKEcbkpzG5oakHlLU27CnwWlDtQhzDEL7txLgCxR9LO7n0jdfV5yZw02dpXhcG5_l9c8_I0zKiHj9rnSDLEu4r6pWha19TVwYgQRpmZ11ucmqBXWFLHX-vFJz4TctUd9hhYMbqAjeN_SMAuA2vlFzB0CrEzKN6ZKKtc3vac5CK_JJPu601118mUnBShLSlWvWr0-YRN2XPkqHLEg"/>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-auto flex flex-col gap-3">
+<button class="w-full bg-brand-green py-4 rounded-custom font-syne font-extrabold text-brand-black flex items-center justify-center gap-2 hover:opacity-90 transition-all">
+          Assign Case <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</button>
+<button class="w-full bg-brand-gray border border-brand-green/30 py-4 rounded-custom font-syne font-extrabold text-white flex items-center justify-center gap-2 hover:bg-brand-darkGreen transition-all">
+          View Full Report
+        </button>
+</div>
+</aside>
+<!-- END: Report Details Panel -->
+</main>
+<!-- BEGIN: Bottom Footer Status -->
+<footer class="h-10 bg-brand-darkGreen border-t border-brand-green/10 px-6 flex items-center justify-between text-[10px] text-gray-400 font-mono">
+<div class="flex gap-4">
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse"></span> SYSTEM ONLINE</span>
+<span>LAT: 34.0522° N, LON: 118.2437° W</span>
+</div>
+<div>v2.4.1-DISTRICT-ADMIN</div>
+</footer>
+<!-- END: Bottom Footer Status -->
+</body></html>

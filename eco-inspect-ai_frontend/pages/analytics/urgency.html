@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Urgency Distribution - Eco-Inspect AI</title>
+<!-- Google Fonts: Syne for headings, JetBrains Mono for data -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#0A0F0D',
+            surface: '#111A14',
+            border: '#1E2A22',
+            accent: '#00FF9D', // Eco-green accent
+            urgent: '#FF4D4D',
+            high: '#FFAA00',
+            medium: '#3399FF',
+            low: '#888888',
+          },
+          fontFamily: {
+            sans: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+<style data-purpose="custom-scrollbar">
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E2A22;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00FF9D;
+    }
+  </style>
+</head>
+<body class="bg-background text-white font-sans selection:bg-accent selection:text-background">
+<!-- BEGIN: MainLayout -->
+<div class="flex h-screen overflow-hidden">
+<!-- BEGIN: Sidebar -->
+<aside class="w-64 border-r border-border bg-surface flex flex-col hidden md:flex">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-accent rounded-sm flex items-center justify-center text-background font-bold">EI</div>
+<span class="text-lg font-extrabold tracking-tight">ECO-INSPECT</span>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 p-3 rounded-md text-gray-400 hover:bg-white/5 transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Dashboard
+        </a>
+<a class="flex items-center gap-3 p-3 rounded-md bg-accent/10 text-accent font-semibold" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Urgency Distribution
+        </a>
+<a class="flex items-center gap-3 p-3 rounded-md text-gray-400 hover:bg-white/5 transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          AI Insights
+        </a>
+</nav>
+<div class="p-6 border-t border-border mt-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-border"></div>
+<div>
+<p class="text-sm font-bold">Admin Panel</p>
+<p class="text-xs text-gray-500 font-mono">v2.4.0-stable</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 overflow-y-auto p-6 lg:p-10 space-y-8">
+<!-- BEGIN: HeaderSection -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tighter uppercase italic">Urgency Distribution</h1>
+<p class="text-gray-500 mt-2 font-mono text-sm uppercase tracking-widest">Real-time inspection priority metrics</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface border border-border rounded text-sm hover:border-accent transition-colors font-mono">EXPORT_PDF</button>
+<button class="px-4 py-2 bg-accent text-background font-bold rounded text-sm hover:opacity-90 transition-opacity">RECALCULATE</button>
+</div>
+</header>
+<!-- END: HeaderSection -->
+<!-- BEGIN: SegmentedUrgencyBar -->
+<section class="space-y-3" data-purpose="top-urgency-bar">
+<div class="flex justify-between items-end font-mono text-xs uppercase tracking-tighter text-gray-400">
+<span>Global Severity Weight</span>
+<span class="text-accent font-bold">84.2% Peak</span>
+</div>
+<div class="h-12 w-full flex rounded-sm overflow-hidden border border-border p-1 bg-surface">
+<!-- Segmented bar with fixed percentages for visualization -->
+<div class="h-full bg-urgent transition-all hover:brightness-125 cursor-help" style="width: 15%" title="Critical: 15%"></div>
+<div class="h-full bg-high ml-1 transition-all hover:brightness-125 cursor-help" style="width: 25%" title="High: 25%"></div>
+<div class="h-full bg-medium ml-1 transition-all hover:brightness-125 cursor-help" style="width: 40%" title="Medium: 40%"></div>
+<div class="h-full bg-low ml-1 transition-all hover:brightness-125 cursor-help" style="width: 20%" title="Low: 20%"></div>
+</div>
+<div class="flex gap-6 mt-2 font-mono text-[10px] uppercase">
+<div class="flex items-center gap-2"><span class="w-2 h-2 bg-urgent"></span> Critical</div>
+<div class="flex items-center gap-2"><span class="w-2 h-2 bg-high"></span> High</div>
+<div class="flex items-center gap-2"><span class="w-2 h-2 bg-medium"></span> Medium</div>
+<div class="flex items-center gap-2"><span class="w-2 h-2 bg-low"></span> Low</div>
+</div>
+</section>
+<!-- END: SegmentedUrgencyBar -->
+<!-- BEGIN: StatCardsGrid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Critical Card -->
+<div class="bg-surface p-5 border-l-4 border-urgent border-y border-r border-border">
+<p class="text-gray-500 font-mono text-xs uppercase tracking-widest">Immediate Response</p>
+<h3 class="text-3xl font-mono font-bold mt-2">12</h3>
+<p class="text-urgent text-xs font-mono mt-1">+2 from 24h ago</p>
+</div>
+<!-- High Card -->
+<div class="bg-surface p-5 border-l-4 border-high border-y border-r border-border">
+<p class="text-gray-500 font-mono text-xs uppercase tracking-widest">Priority Assets</p>
+<h3 class="text-3xl font-mono font-bold mt-2">42</h3>
+<p class="text-high text-xs font-mono mt-1">-5 resolved</p>
+</div>
+<!-- Average Resolution -->
+<div class="bg-surface p-5 border border-border">
+<p class="text-gray-500 font-mono text-xs uppercase tracking-widest">Avg. Response Time</p>
+<h3 class="text-3xl font-mono font-bold mt-2">1.4<span class="text-sm font-sans font-normal ml-1">hrs</span></h3>
+<p class="text-accent text-xs font-mono mt-1">Optimized</p>
+</div>
+<!-- Efficiency -->
+<div class="bg-surface p-5 border border-border">
+<p class="text-gray-500 font-mono text-xs uppercase tracking-widest">AI Accuracy Rate</p>
+<h3 class="text-3xl font-mono font-bold mt-2">99.1%</h3>
+<p class="text-gray-500 text-xs font-mono mt-1">Model v4.2</p>
+</div>
+</section>
+<!-- END: StatCardsGrid -->
+<!-- BEGIN: MainChartSection -->
+<section class="bg-surface border border-border p-6 rounded-sm">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-xl font-bold tracking-tight uppercase italic">7-Day Trend Analysis</h2>
+<div class="flex gap-4 font-mono text-xs text-gray-400">
+<span class="flex items-center gap-1"><span class="w-3 h-3 bg-urgent"></span> Critical</span>
+<span class="flex items-center gap-1"><span class="w-3 h-3 bg-high"></span> High</span>
+<span class="flex items-center gap-1"><span class="w-3 h-3 bg-medium"></span> Medium</span>
+</div>
+</div>
+<!-- Stacked Bar Chart Simulation -->
+<div class="relative h-64 w-full flex items-end justify-between gap-4 px-4 border-b border-border">
+<!-- Background Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full border-t border-white/5"></div>
+<div class="w-full border-t border-white/5"></div>
+<div class="w-full border-t border-white/5"></div>
+<div class="w-full border-t border-white/5"></div>
+<div class="w-full h-px"></div>
+</div>
+<!-- Chart Bar Mon -->
+<div class="flex-1 flex flex-col justify-end gap-1 h-full z-10 group relative">
+<div class="bg-urgent w-full" style="height: 10%"></div>
+<div class="bg-high w-full" style="height: 20%"></div>
+<div class="bg-medium w-full" style="height: 30%"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] text-gray-500">MON</span>
+</div>
+<!-- Chart Bar Tue -->
+<div class="flex-1 flex flex-col justify-end gap-1 h-full z-10 group relative">
+<div class="bg-urgent w-full" style="height: 15%"></div>
+<div class="bg-high w-full" style="height: 25%"></div>
+<div class="bg-medium w-full" style="height: 20%"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] text-gray-500">TUE</span>
+</div>
+<!-- Chart Bar Wed -->
+<div class="flex-1 flex flex-col justify-end gap-1 h-full z-10 group relative">
+<div class="bg-urgent w-full" style="height: 5%"></div>
+<div class="bg-high w-full" style="height: 15%"></div>
+<div class="bg-medium w-full" style="height: 50%"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] text-gray-500 text-accent">WED</span>
+</div>
+<!-- Chart Bar Thu -->
+<div class="flex-1 flex flex-col justify-end gap-1 h-full z-10 group relative">
+<div class="bg-urgent w-full" style="height: 20%"></div>
+<div class="bg-high w-full" style="height: 30%"></div>
+<div class="bg-medium w-full" style="height: 25%"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] text-gray-500">THU</span>
+</div>
+<!-- Chart Bar Fri -->
+<div class="flex-1 flex flex-col justify-end gap-1 h-full z-10 group relative">
+<div class="bg-urgent w-full" style="height: 25%"></div>
+<div class="bg-high w-full" style="height: 15%"></div>
+<div class="bg-medium w-full" style="height: 15%"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] text-gray-500">FRI</span>
+</div>
+<!-- Chart Bar Sat -->
+<div class="flex-1 flex flex-col justify-end gap-1 h-full z-10 group relative">
+<div class="bg-urgent w-full" style="height: 10%"></div>
+<div class="bg-high w-full" style="height: 10%"></div>
+<div class="bg-medium w-full" style="height: 40%"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] text-gray-500">SAT</span>
+</div>
+<!-- Chart Bar Sun -->
+<div class="flex-1 flex flex-col justify-end gap-1 h-full z-10 group relative">
+<div class="bg-urgent w-full" style="height: 12%"></div>
+<div class="bg-high w-full" style="height: 18%"></div>
+<div class="bg-medium w-full" style="height: 35%"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-mono text-[10px] text-gray-500">SUN</span>
+</div>
+</div>
+<div class="mt-12 flex justify-between items-center font-mono text-xs text-gray-600 italic">
+<p>Historical load comparison: Active</p>
+<p>Sync timestamp: 14:02:55 UTC</p>
+</div>
+</section>
+<!-- END: MainChartSection -->
+<!-- BEGIN: DetailedLogTable -->
+<section class="space-y-4">
+<h3 class="font-bold uppercase tracking-tight text-gray-400 text-sm">Active High-Priority Logs</h3>
+<div class="overflow-x-auto border border-border">
+<table class="w-full text-left font-mono text-sm">
+<thead class="bg-surface border-b border-border uppercase text-[10px] tracking-widest text-gray-500">
+<tr>
+<th class="px-4 py-3 font-normal">Incident_ID</th>
+<th class="px-4 py-3 font-normal">Asset_Location</th>
+<th class="px-4 py-3 font-normal">Severity</th>
+<th class="px-4 py-3 font-normal">AI_Score</th>
+<th class="px-4 py-3 font-normal">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-4 py-3">#882-C</td>
+<td class="px-4 py-3 font-sans text-xs">Sector 7 - Thermal Pipeline</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-urgent/20 text-urgent border border-urgent/30 text-[10px] uppercase font-bold">Critical</span></td>
+<td class="px-4 py-3">0.98</td>
+<td class="px-4 py-3 text-gray-400">Deploying</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-4 py-3">#881-A</td>
+<td class="px-4 py-3 font-sans text-xs">Main Grid - Transformer 04</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-high/20 text-high border border-high/30 text-[10px] uppercase font-bold">High</span></td>
+<td class="px-4 py-3">0.84</td>
+<td class="px-4 py-3 text-gray-400">Scheduled</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-4 py-3">#879-X</td>
+<td class="px-4 py-3 font-sans text-xs">East Vent - Filter Array</td>
+<td class="px-4 py-3"><span class="px-2 py-0.5 bg-high/20 text-high border border-high/30 text-[10px] uppercase font-bold">High</span></td>
+<td class="px-4 py-3">0.79</td>
+<td class="px-4 py-3 text-gray-400">Reviewing</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- END: DetailedLogTable -->
+</main>
+<!-- END: MainContent -->
+</div>
+<!-- END: MainLayout -->
+</body></html>

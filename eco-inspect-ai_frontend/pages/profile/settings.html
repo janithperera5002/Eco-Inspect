@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Syne:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2eff7e",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#0a0f0d",
+                    },
+                    fontFamily: {
+                        "display": ["Syne", "Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Syne', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-72 border-r border-slate-200 dark:border-slate-800 flex flex-col bg-background-light dark:bg-background-dark">
+<div class="p-6 flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined font-bold">star_rate</span>
+</div>
+<h1 class="text-xl font-display font-bold tracking-tight">EcoDash</h1>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<p class="px-4 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">General</p>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary border border-primary/20" href="#">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-medium">Appearance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-medium">Map Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-medium">Account</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="font-medium">About</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<button class="flex w-full items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-500/10 transition-colors">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-medium">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="h-20 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 bg-background-light dark:bg-background-dark/50 backdrop-blur-md">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary text-sm" placeholder="Search settings..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="size-10 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border-2 border-primary/20">
+<img class="w-full h-full object-cover" data-alt="User profile avatar showing a smiling person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsRGufEMc4_OUxo6qnflIqM8oGIEq89CqH_fd-LS49Pq7g-0ayJDL7vDoorG02qXbhBHfl0EIJdsl4OdUfOjSv4KlyICL-4-gLJZ3j-o9oFytIKqnMtkYRaka_7KxrEWTfb63O4eK1AJZpmk2c_Ief9IhkgpA7qj9tD3TkgoU8Ev4fKefTT7Lt_HGnQvJGA2gkq7G1ZZdf7XtVCAlTtjND4U29NRI7EZbU9ttO0dKnntaRiMeQkTazpcTv7zr-Zd6jQjUQvGqMShjA"/>
+</div>
+</div>
+</header>
+<!-- Settings Content -->
+<div class="flex-1 overflow-y-auto p-8 lg:p-12">
+<div class="max-w-3xl mx-auto">
+<div class="mb-10">
+<h2 class="text-4xl font-display font-bold mb-2">Appearance</h2>
+<p class="text-slate-500 dark:text-slate-400">Customize your workspace visual preferences and interface behavior.</p>
+</div>
+<!-- Theme Section -->
+<section class="space-y-6">
+<div class="flex items-center justify-between p-1 bg-slate-100 dark:bg-slate-800 rounded-xl mb-8 max-w-xs">
+<button class="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-slate-500">
+<span class="material-symbols-outlined text-sm">light_mode</span>
+<span class="text-xs font-semibold">Light</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg bg-background-dark text-primary shadow-sm">
+<span class="material-symbols-outlined text-sm">dark_mode</span>
+<span class="text-xs font-semibold">Dark</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-slate-500">
+<span class="material-symbols-outlined text-sm">desktop_windows</span>
+<span class="text-xs font-semibold">System</span>
+</button>
+</div>
+<div class="space-y-4">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Visual Controls</h3>
+<!-- Setting Row: Dark Mode Toggle -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<div class="size-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<div>
+<p class="font-medium">Enable Dark Mode</p>
+<p class="text-sm text-slate-500">Switch between light and dark themes</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Setting Row: Accent Color -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<div class="size-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">colorize</span>
+</div>
+<div>
+<p class="font-medium">Accent Color</p>
+<p class="text-sm text-slate-500">Choose the primary color for buttons and links</p>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="size-6 rounded-full bg-primary ring-2 ring-primary ring-offset-2 ring-offset-background-dark cursor-pointer"></div>
+<div class="size-6 rounded-full bg-blue-500 cursor-pointer"></div>
+<div class="size-6 rounded-full bg-purple-500 cursor-pointer"></div>
+<div class="size-6 rounded-full bg-orange-500 cursor-pointer"></div>
+</div>
+</div>
+<!-- Setting Row: Font Size -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<div class="size-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">text_fields</span>
+</div>
+<div>
+<p class="font-medium">Font Size</p>
+<p class="text-sm text-slate-500">Adjust the interface text scale</p>
+</div>
+</div>
+<select class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm px-4 py-2 focus:ring-1 focus:ring-primary min-w-[120px]">
+<option>Small</option>
+<option selected="">Medium</option>
+<option>Large</option>
+<option>Extra Large</option>
+</select>
+</div>
+<!-- Setting Row: Reduced Motion -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<div class="size-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">motion_sensor_active</span>
+</div>
+<div>
+<p class="font-medium">Reduced Motion</p>
+<p class="text-sm text-slate-500">Minimize animations and transitions</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Setting Row: Language (Chevron example) -->
+<button class="w-full flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-left group">
+<div class="flex items-center gap-4">
+<div class="size-10 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined">translate</span>
+</div>
+<div>
+<p class="font-medium">Language</p>
+<p class="text-sm text-slate-500">English (United States)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</section>
+<div class="mt-12 flex justify-end gap-4">
+<button class="px-6 py-2 rounded-xl text-slate-400 font-semibold hover:text-slate-100 transition-colors">Discard Changes</button>
+<button class="px-8 py-2 rounded-xl bg-primary text-background-dark font-display font-bold hover:scale-105 active:scale-95 transition-all">Save Changes</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

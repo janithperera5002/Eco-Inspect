@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Detailed Analysis</title>
+<!-- Google Fonts: Syne and JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Syne:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0D',
+            'eco-card': '#111A14',
+            'eco-green': '#2DFF7F',
+            'eco-teal': '#00E5CC',
+            'eco-amber': '#FFB830',
+            'eco-red': '#FF4D6D',
+          },
+          fontFamily: {
+            'syne': ['Syne', 'sans-serif'],
+            'mono': ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: {
+            'xl': '12px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-layout">
+    body {
+      background-color: #0A0F0D;
+      color: #E2E8F0;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Syne', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #111A14;
+      border-radius: 10px;
+    }
+    .circular-progress {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: conic-gradient(#2DFF7F 94%, #111A14 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .circular-progress::before {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background-color: #111A14;
+      border-radius: 50%;
+    }
+    .glass-effect {
+      background: rgba(17, 26, 20, 0.8);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+<!-- BEGIN: Left Sidebar Navigation -->
+<aside class="w-20 lg:w-64 bg-eco-card border-r border-eco-green/10 flex flex-col h-full transition-all duration-300">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-eco-green rounded-lg flex items-center justify-center text-eco-dark font-bold text-xl">E</div>
+<span class="hidden lg:block font-syne font-bold text-xl tracking-tight">Eco-Inspect</span>
+</div>
+<nav class="flex-1 px-4 py-6 space-y-4">
+<a class="flex items-center gap-4 p-3 rounded-xl text-eco-green bg-eco-green/10 transition-colors" href="#">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1.5 1.5 0 001.5 1.5h3a1.5 1.5 0 001.5-1.5v-4a1.5 1.5 0 011.5-1.5h3a1.5 1.5 0 011.5 1.5v4a1.5 1.5 0 001.5 1.5h3a1.5 1.5 0 001.5-1.5V10l2 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="hidden lg:block">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl text-slate-400 hover:text-eco-teal hover:bg-eco-teal/5 transition-colors" href="#">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="hidden lg:block">Reports</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl text-slate-400 hover:text-eco-teal hover:bg-eco-teal/5 transition-colors" href="#">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="hidden lg:block">Analytics</span>
+</a>
+<a class="flex items-center gap-4 p-3 rounded-xl text-slate-400 hover:text-eco-teal hover:bg-eco-teal/5 transition-colors" href="#">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="hidden lg:block">Users</span>
+</a>
+</nav>
+<div class="p-4 border-t border-eco-green/10">
+<a class="flex items-center gap-4 p-3 rounded-xl text-slate-400 hover:text-white transition-colors" href="#">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="hidden lg:block">Settings</span>
+</a>
+</div>
+</aside>
+<!-- END: Left Sidebar Navigation -->
+<!-- BEGIN: Main Dashboard Content -->
+<main class="flex-1 flex flex-col min-w-0">
+<!-- BEGIN: Top Bar -->
+<header class="h-16 border-b border-eco-green/10 flex items-center justify-between px-8 bg-eco-dark/50 backdrop-blur-md z-10">
+<div class="flex items-center gap-4">
+<h1 class="text-xl font-bold tracking-tight text-white">AI Detailed Analysis <span class="text-slate-500 font-mono text-sm ml-2">— Report #ECO-2026-00142</span></h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<input class="bg-eco-card border-none rounded-full px-5 py-2 w-64 text-sm focus:ring-1 focus:ring-eco-green text-slate-300" placeholder="Search reports..." type="text"/>
+<svg class="h-4 w-4 absolute right-4 top-2.5 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex items-center gap-3 pl-6 border-l border-eco-green/10">
+<div class="text-right">
+<p class="text-sm font-bold text-white leading-none">A. Sterling</p>
+<p class="text-[10px] text-eco-green font-mono uppercase tracking-widest mt-1">Lead Analyst</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-gradient-to-tr from-eco-green to-eco-teal p-[2px]">
+<img alt="User Profile" class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3nPbQdTqvnGC8jvj1EeBAoRBV01YUnD2uWGI6rVThar99QqfK45canovVEqwdQNdcaHHxg7Iq7UJRPg3OWJS0xV18MtwmFMAoq4JppfYL-M65-JHEq6hUc6rlqmpeNctw7_Hzi8oP1L1sTCQ7wkHXPWJQe02tQn0mT6DfU-jzetFaBZkCXuC8nYWaLCBY9VxRl-aKtBARhjuDVyVK8mBhgzTaG9lCnghcEJ4hN_QtziJKM8zcb8WFIXdY4VAugeEFI8rOmP9w1fPt"/>
+</div>
+</div>
+</div>
+</header>
+<!-- END: Top Bar -->
+<!-- BEGIN: Dashboard Grid -->
+<div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+<div class="grid grid-cols-12 gap-8 max-w-7xl mx-auto">
+<!-- BEGIN: Left Column (Confidence & Summary) -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<!-- Confidence Hero Card -->
+<div class="bg-eco-card rounded-xl p-8 border border-white/5 flex flex-col md:flex-row items-center gap-10" data-purpose="confidence-hero-card">
+<div class="circular-progress">
+<div class="z-10 text-center">
+<span class="text-4xl font-bold text-white block">94%</span>
+<span class="text-[10px] text-eco-green uppercase font-mono">Confidence</span>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h2 class="text-3xl font-extrabold text-white mb-2 italic">Neural Integrity High</h2>
+<p class="text-slate-400 text-sm max-w-md">Our multi-modal engine has verified spectral anomalies consistent with chemical leakage at the site with a 94.2% precision rate.</p>
+<div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
+<div class="px-4 py-2 bg-eco-green/5 border border-eco-green/20 rounded-lg">
+<p class="text-[10px] text-eco-green uppercase mb-1">Inference Time</p>
+<p class="text-white font-mono font-bold">142ms</p>
+</div>
+<div class="px-4 py-2 bg-eco-teal/5 border border-eco-teal/20 rounded-lg">
+<p class="text-[10px] text-eco-teal uppercase mb-1">Model Version</p>
+<p class="text-white font-mono font-bold">v4.2.1-PRO</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Card -->
+<div class="bg-eco-card rounded-xl p-8 border border-white/5" data-purpose="summary-card">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-2 h-6 bg-eco-teal rounded-full"></div>
+<h3 class="text-xl font-bold text-white">Analysis Summary</h3>
+</div>
+<p class="text-slate-300 leading-relaxed font-mono text-sm bg-eco-dark/30 p-6 rounded-xl border border-white/5">
+              The AI identified a cluster of industrial barrels (Type-B hazardous) partially submerged in the riverbed. Visual sensors detected a distinct "oil-slick" sheen extending 15 meters downstream. Geometric analysis suggests the waste was dumped recently, as local vegetation has not yet begun to reclaim the area. Spectral data confirms high concentrations of nitrogen and sulfur compounds in the immediate vicinity of the primary object. Recommendation: Immediate field verification and biohazard containment.
+            </p>
+</div>
+</div>
+<!-- END: Left Column -->
+<!-- BEGIN: Right Column (Metadata & Classification) -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Classification Card -->
+<div class="bg-eco-card rounded-xl p-8 border border-white/5" data-purpose="classification-card">
+<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-tight">Classification</h3>
+<div class="space-y-6">
+<div>
+<p class="text-[10px] text-slate-500 uppercase font-mono mb-2">Primary Category</p>
+<div class="bg-eco-green/10 text-eco-green border border-eco-green/30 px-4 py-2 rounded-xl text-center font-bold">
+                  Illegal Waste Disposal
+                </div>
+</div>
+<div class="flex gap-4">
+<div class="flex-1">
+<p class="text-[10px] text-slate-500 uppercase font-mono mb-2">Urgency Level</p>
+<div class="bg-eco-red/10 text-eco-red border border-eco-red/30 px-3 py-2 rounded-xl text-center text-xs font-bold">
+                    CRITICAL
+                  </div>
+</div>
+<div class="flex-1">
+<p class="text-[10px] text-slate-500 uppercase font-mono mb-2">AI Sentiment</p>
+<div class="bg-eco-amber/10 text-eco-amber border border-eco-amber/30 px-3 py-2 rounded-xl text-center text-xs font-bold">
+                    ALARMED
+                  </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Keywords Card -->
+<div class="bg-eco-card rounded-xl p-8 border border-white/5" data-purpose="keywords-card">
+<h3 class="text-lg font-bold text-white mb-6 uppercase tracking-tight">Detected Entities</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-eco-dark text-slate-400 border border-white/5 rounded-md text-xs font-mono hover:text-eco-green hover:border-eco-green/30 transition-all cursor-default">#waste</span>
+<span class="px-3 py-1 bg-eco-dark text-slate-400 border border-white/5 rounded-md text-xs font-mono hover:text-eco-green hover:border-eco-green/30 transition-all cursor-default">#river</span>
+<span class="px-3 py-1 bg-eco-dark text-slate-400 border border-white/5 rounded-md text-xs font-mono hover:text-eco-green hover:border-eco-green/30 transition-all cursor-default">#illegal</span>
+<span class="px-3 py-1 bg-eco-dark text-slate-400 border border-white/5 rounded-md text-xs font-mono hover:text-eco-green hover:border-eco-green/30 transition-all cursor-default">#dumping</span>
+<span class="px-3 py-1 bg-eco-dark text-slate-400 border border-white/5 rounded-md text-xs font-mono hover:text-eco-green hover:border-eco-green/30 transition-all cursor-default">#chemical</span>
+<span class="px-3 py-1 bg-eco-dark text-slate-400 border border-white/5 rounded-md text-xs font-mono hover:text-eco-green hover:border-eco-green/30 transition-all cursor-default">#water-safety</span>
+<span class="px-3 py-1 bg-eco-dark text-slate-400 border border-white/5 rounded-md text-xs font-mono hover:text-eco-green hover:border-eco-green/30 transition-all cursor-default">#industrial</span>
+</div>
+</div>
+</div>
+<!-- END: Right Column -->
+<!-- BEGIN: Media Insight Section -->
+<div class="col-span-12">
+<div class="bg-eco-card rounded-xl overflow-hidden border border-white/5" data-purpose="media-analysis-card">
+<div class="p-6 border-b border-white/5 flex items-center justify-between">
+<h3 class="text-xl font-bold text-white">Media Evidence Analysis</h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-eco-dark border border-white/10 rounded-lg text-xs font-bold text-slate-300 hover:bg-white/5 transition-all">Download RAW</button>
+<button class="px-4 py-2 bg-eco-green text-eco-dark rounded-lg text-xs font-bold hover:opacity-90 transition-all">Export Report</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2">
+<div class="relative group h-[400px]">
+<img alt="Evidence Photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNhATvisnACN6ys9zPTUFHlAuZxDDCB8L9gGm6HuY1YOU5wJaSSES844c374572uMypDAOl8o60OqvlkeF5WGHjJ5XKew2Xq0OQB7UfyrHhgeM-C5yUMLio_4T9vQBQy2UAVqlenbvPu2qed_G0NqVbnJHni-DflDSdu4Uey3JeA2M8weOecnjaBTkOsudPrPwT4gg6jHIH1oIh_G0XhUM3q8kvSBFEUZVV0QC5qqVxQSgQPCM2F_TUScdgdAyetFXCG0sH2UbKfj3"/>
+<div class="absolute inset-0 bg-eco-green/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center justify-center">
+<div class="p-4 bg-eco-dark/80 backdrop-blur-sm border border-eco-green/50 rounded-lg text-eco-green font-mono text-xs">
+                     SCANNING FRAME...
+                   </div>
+</div>
+<!-- Bounding Box Overlays (Decorative) -->
+<div class="absolute top-1/4 left-1/3 w-32 h-32 border-2 border-eco-red/60 rounded-sm">
+<span class="absolute -top-6 left-0 bg-eco-red text-[10px] text-white px-1">ID: BARREL-01</span>
+</div>
+</div>
+<div class="p-8 space-y-6 bg-eco-dark/40 custom-scrollbar overflow-y-auto max-h-[400px]">
+<div>
+<h4 class="text-eco-teal font-bold mb-4 flex items-center gap-2">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                    Object Recognition Breakdown
+                  </h4>
+<ul class="space-y-4 font-mono text-sm">
+<li class="flex justify-between items-center p-3 bg-eco-card rounded-lg">
+<span class="text-slate-300">Industrial Drum (Metal)</span>
+<span class="text-eco-green">x3 Detected</span>
+</li>
+<li class="flex justify-between items-center p-3 bg-eco-card rounded-lg">
+<span class="text-slate-300">Polyethylene Containers</span>
+<span class="text-eco-green">x7 Detected</span>
+</li>
+<li class="flex justify-between items-center p-3 bg-eco-card rounded-lg">
+<span class="text-slate-300">Bio-Hazard Labeling</span>
+<span class="text-eco-amber">Inconclusive</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-eco-teal font-bold mb-4 flex items-center gap-2">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                    Spectral Findings
+                  </h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-eco-card rounded-lg border-l-2 border-eco-red">
+<p class="text-[10px] text-slate-500 uppercase mb-1">Toxicity Level</p>
+<p class="text-white font-bold">High (0.89)</p>
+</div>
+<div class="p-4 bg-eco-card rounded-lg border-l-2 border-eco-green">
+<p class="text-[10px] text-slate-500 uppercase mb-1">pH Estimate</p>
+<p class="text-white font-bold">4.2 (Acidic)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- END: Media Insight Section -->
+</div>
+</div>
+<!-- END: Dashboard Grid -->
+</main>
+<!-- END: Main Dashboard Content -->
+</body></html>

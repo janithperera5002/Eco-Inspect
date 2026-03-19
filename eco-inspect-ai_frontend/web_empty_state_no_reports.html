@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Empty State</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Syne for headings, Inter for body -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Syne:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration for Theme Colors and Fonts -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0A0F0D',
+              teal: '#2DD4BF', // Tailwind Teal 400
+              tealHover: '#14B8A6', // Tailwind Teal 500
+              mutedGreen: '#3D5248',
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-animations">
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-white font-inter min-h-screen flex items-center justify-center p-6">
+<!-- BEGIN: EmptyStateContainer -->
+<main class="max-w-md w-full text-center" data-purpose="empty-state-wrapper">
+<!-- BEGIN: IllustrationSection -->
+<div class="mb-8 flex justify-center" data-purpose="illustration-container">
+<!-- Muted green line-art leaf illustration -->
+<div class="animate-float">
+<svg aria-hidden="true" class="text-brand-mutedGreen" fill="none" height="160" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" width="160">
+<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8a13 13 0 0 1-5 10"></path>
+<path d="M9 21c0-4.5 4-9 11-9"></path>
+<path d="M22 22s-2-1-3-3"></path>
+<path d="M11 20a7 7 0 0 1-7-7c0-4.5 4.5-7 4.5-7"></path>
+<path d="M11 11 4 4"></path>
+</svg>
+</div>
+</div>
+<!-- END: IllustrationSection -->
+<!-- BEGIN: ContentSection -->
+<section data-purpose="empty-state-content">
+<h1 class="font-syne text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+        No Reports Found
+      </h1>
+<p class="text-gray-400 text-lg mb-10 leading-relaxed">
+        We couldn't find any eco-inspections matching your current search criteria. Try adjusting your filters to see more results.
+      </p>
+<!-- Clear Filters Action -->
+<div class="flex justify-center">
+<button class="inline-flex items-center px-8 py-3 bg-brand-teal hover:bg-brand-tealHover text-brand-dark font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:ring-offset-2 focus:ring-offset-brand-dark" data-purpose="primary-action-button" id="clear-filters-btn" type="button">
+<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+          Clear Filters
+        </button>
+</div>
+</section>
+<!-- END: ContentSection -->
+</main>
+<!-- END: EmptyStateContainer -->
+<!-- Simple interaction feedback -->
+<script data-purpose="event-handlers">
+    document.getElementById('clear-filters-btn').addEventListener('click', () => {
+      console.log('Filters cleared action triggered');
+      // Logic for clearing filters would go here
+    });
+  </script>
+</body></html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Case Updated | Eco-Inspect AI</title>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Syne for headings, Inter for body -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0A0F0D',
+              green: '#22C55E',
+              glow: 'rgba(34, 197, 94, 0.2)',
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'slow-glow': 'glow 3s ease-in-out infinite',
+            'check-in': 'checkIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+          },
+          keyframes: {
+            glow: {
+              '0%, 100%': { boxShadow: '0 0 20px rgba(34, 197, 94, 0.1)' },
+              '50%': { boxShadow: '0 0 40px rgba(34, 197, 94, 0.4)' },
+            },
+            checkIn: {
+              '0%': { transform: 'scale(0) rotate(-45deg)', opacity: '0' },
+              '100%': { transform: 'scale(1) rotate(0)', opacity: '1' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-animations">
+    /* Custom CSS for the checkmark draw animation */
+    .checkmark-path {
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: dash 0.8s ease-in-out 0.3s forwards;
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    body {
+      background-color: #0A0F0D;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+<!-- BEGIN: SuccessContainer -->
+<main class="max-w-2xl w-full text-center flex flex-col items-center" data-purpose="success-view-container">
+<!-- BEGIN: SuccessAnimation -->
+<div class="relative mb-8" data-purpose="checkmark-container">
+<!-- Outer Glowing Ring -->
+<div class="w-32 h-32 rounded-full border-2 border-brand-green/30 animate-slow-glow flex items-center justify-center bg-brand-green/5">
+<!-- SVG Checkmark -->
+<svg class="w-16 h-16 text-brand-green animate-check-in" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24">
+<path class="checkmark-path" d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- END: SuccessAnimation -->
+<!-- BEGIN: TextContent -->
+<section class="mb-10" data-purpose="confirmation-header">
+<h1 class="font-syne text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Case Updated!</h1>
+<p class="text-slate-400 text-lg max-w-md mx-auto">
+        Your changes have been successfully analyzed by Eco-Inspect AI and synchronized with the central database.
+      </p>
+</section>
+<!-- END: TextContent -->
+<!-- BEGIN: SummaryCard -->
+<section class="w-full bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 text-left backdrop-blur-sm" data-purpose="summary-card">
+<h2 class="text-xs font-semibold uppercase tracking-widest text-brand-green mb-4">Case Summary Update</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Data Point 1 -->
+<div class="space-y-1">
+<span class="text-xs text-slate-500 block">Case Reference</span>
+<span class="text-sm font-mono text-slate-200">#EI-2024-8842</span>
+</div>
+<!-- Data Point 2 -->
+<div class="space-y-1">
+<span class="text-xs text-slate-500 block">Status</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-brand-green"></span>
+<span class="text-sm text-slate-200">Processing Complete</span>
+</div>
+</div>
+<!-- Data Point 3 -->
+<div class="space-y-1">
+<span class="text-xs text-slate-500 block">Environmental Score</span>
+<span class="text-sm text-slate-200 font-bold">+12% Improvement</span>
+</div>
+<!-- Data Point 4 -->
+<div class="space-y-1">
+<span class="text-xs text-slate-500 block">Last Sync</span>
+<span class="text-sm text-slate-200">Just now</span>
+</div>
+</div>
+</section>
+<!-- END: SummaryCard -->
+<!-- BEGIN: NavigationActions -->
+<nav class="flex flex-col sm:flex-row gap-4 w-full justify-center" data-purpose="navigation-actions">
+<button class="px-8 py-3.5 bg-brand-green hover:bg-green-500 text-brand-dark font-bold rounded-full transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-lg shadow-brand-green/20" id="btn-back-to-cases">
+        Back to Cases
+      </button>
+<button class="px-8 py-3.5 bg-transparent border border-white/20 hover:border-white/40 text-white font-semibold rounded-full transition-all duration-200" id="btn-view-report">
+        View Full Report
+      </button>
+</nav>
+<!-- END: NavigationActions -->
+</main>
+<!-- END: SuccessContainer -->
+<script data-purpose="ui-interactions">
+    // Subtle interactivity for the buttons
+    document.getElementById('btn-back-to-cases').addEventListener('click', () => {
+      console.log('Navigating back to cases dashboard...');
+      // Navigation logic would go here
+    });
+
+    document.getElementById('btn-view-report').addEventListener('click', () => {
+      console.log('Opening detailed report view...');
+      // Report viewing logic would go here
+    });
+  </script>
+</body></html>

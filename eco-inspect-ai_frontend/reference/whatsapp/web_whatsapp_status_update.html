@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WhatsApp Web - Eco-Inspect AI</title>
+<!-- BEGIN: External Scripts -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'wa-bg-dark': '#0b141a',
+            'wa-sidebar-dark': '#111b21',
+            'wa-header-dark': '#202c33',
+            'wa-message-incoming': '#202c33',
+            'wa-message-outgoing': '#005c4b',
+            'wa-primary': '#2eff7e',
+            'wa-text-primary': '#e9edef',
+            'wa-text-secondary': '#8696a0',
+            'wa-amber': '#FFB830'
+          },
+          fontFamily: {
+            sans: ['Inter', 'Segoe UI', 'Helvetica Neue', 'Helvetica', 'Lucida Grande', 'Arial', 'Ubuntu', 'Cantarell', 'Fira Sans', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '12px',
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: External Scripts -->
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="scrollbar-styling">
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  </style>
+<style data-purpose="chat-background">.chat-bg {
+    background-color: #0b141a;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCKNScU_i5QeCpKQel7CZUODJLBIe8COFSXJVn9NOVS4ZqkP9uoUuVBxIlEC3uMaiG5r2AHLyMRa7ZfzMk1ypnWHcGwiBEc835IthQmViao0bqfcO514RG9pNMHEgVdcKuYqiG7pr7KKj3fGrwJSkchvGRilg6J1o208bXM_ZoyBla4-1-4b5Z45biHaCPg2FlYKuvic8kJuXHxaLlVysOjfoaWo8lAunUiXTBRsUQLoCGeBxHqYfSQFVKHR9KgSJdCPBMqu36_2vZu);
+    background-blend-mode: overlay;
+    opacity: 0.9
+    }</style>
+<!-- END: Custom Styles -->
+</head>
+<body class="bg-wa-bg-dark text-wa-text-primary h-screen flex overflow-hidden font-sans">
+<!-- BEGIN: Sidebar -->
+<aside class="w-1/3 max-w-[400px] border-r border-gray-700 flex flex-col bg-wa-sidebar-dark" data-purpose="main-sidebar">
+<!-- Sidebar Header -->
+<header class="h-16 flex items-center justify-between px-4 bg-wa-header-dark shrink-0" data-purpose="sidebar-header">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-gray-600 flex items-center justify-center overflow-hidden">
+<img alt="Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTHDm8taeZjrxiVSiDIgT9Ls0r_UN1FsnqS8qXEhvsQUVr3F-evBhuD_Mj93QTSo5EEGlw7CYC4T1O9LnCP0VilESCDYdC1nWqydFX2ZKJ1g2yOP98k9fmEMBwDKSpEn8kps6f7aBl8hpEdrv2BJGr6ZTpCd4vDdg0JWZFmcazygp1InCRM7kfFQQIw830bXYmNA0JN91Tilj-VCkoZlwhf9tvd1TJO7c29QEb21-tr8fiuP1IuAAf2W_zhTiq4T-C9cxjUiKPvmVv"/>
+</div>
+</div>
+<div class="flex gap-5 text-wa-text-secondary">
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M12 20.664a9.163 9.163 0 0 1-6.521-2.702.977.977 0 0 1 1.381-1.381 7.269 7.269 0 0 0 10.305 0 .977.977 0 0 1 1.381 1.381 9.163 9.163 0 0 1-6.546 2.702zM12 3a9.25 9.25 0 0 1 9.25 9.25.975.975 0 1 1-1.95 0 7.3 7.3 0 0 0-7.3-7.3.975.975 0 1 1 0-1.95z"></path></svg>
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M19.005 3.175H4.674C3.642 3.175 2.8 4.017 2.8 5.049V19.01c0 1.032.842 1.874 1.874 1.874h14.331c1.032 0 1.874-.842 1.874-1.874V5.049c0-1.032-.842-1.874-1.874-1.874zM15.15 15.606l-4.431 2.753a.512.512 0 0 1-.749-.447V12.42c0-.317.21-.601.512-.705l4.431-1.524a.512.512 0 0 1 .66.49v4.431a.512.512 0 0 1-.423.494z"></path></svg>
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 4.001A2 2 0 0 0 12 13zm0 6a2 2 0 1 0-.001 4.001A2 2 0 0 0 12 19z"></path></svg>
+</div>
+</header>
+<!-- Search Bar -->
+<div class="p-2 border-b border-gray-800" data-purpose="sidebar-search">
+<div class="bg-wa-header-dark flex items-center px-4 py-1.5 rounded-lg">
+<svg class="text-wa-text-secondary mr-4" fill="currentColor" height="20" viewbox="0 0 24 24" width="20"><path d="M15.009 13.805h-.636l-.22-.219a5.184 5.184 0 0 0 1.256-3.386 5.2 5.2 0 1 0-5.199 5.199 5.188 5.188 0 0 0 3.388-1.255l.219.22v.638L17.621 18 19 16.621l-3.991-2.816zm-4.8 0c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path></svg>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-wa-text-primary placeholder-wa-text-secondary" placeholder="Search or start new chat" type="text"/>
+</div>
+</div>
+<!-- Contact List -->
+<div class="flex-1 overflow-y-auto" data-purpose="chat-list">
+<div class="flex items-center px-3 py-3 bg-wa-header-dark border-l-4 border-wa-primary cursor-pointer">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img alt="Eco-Inspect AI" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlG9dhCNU-byu39LyApD-gcgNoMZGO1A4YkB8CYlBU6fpC2HVCrXX7CIJ7TNIxQwyr_Kc6bzH7MXrokO6p0qwdYkIzR2fIHtqqffBJ6MFpB5V01l5OZfO-E4c0sFgufweBehzBRyTLBT_V-1ovgVQGXM87S-of79nUjLv4tsQv6C2l_e_vz6zQ0ZAsn9P-Z9TVTuZ-DVCEyrbiXWS5nGt5eVhr61xamnQL1SvR386RbtVj1hYJOhW6RejSVmDBYJO1ESW4_YuN1aeX"/>
+</div>
+<div class="flex-1 border-b border-gray-800 pb-3">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-medium">Eco-Inspect AI</h3>
+<span class="text-xs text-wa-primary">10:45 AM</span>
+</div>
+<div class="flex items-center text-sm text-wa-text-secondary truncate">
+<svg class="text-wa-primary mr-1" fill="currentColor" height="11" viewbox="0 0 16 11" width="16"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.88a.32.32 0 0 1-.484.032l-.358-.325a.319.319 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l1.32 1.267a.32.32 0 0 0 .484-.034l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L5.066 9.88a.32.32 0 0 1-.484.032L1.882 7.154a.319.319 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l4.139 3.97a.32.32 0 0 0 .484-.034l6.271-8.048a.366.366 0 0 0-.063-.512z"></path></svg>
+            Thank you for the update. Looking forward...
+          </div>
+</div>
+</div>
+<!-- Placeholder items for sidebar context -->
+<div class="flex items-center px-3 py-3 hover:bg-wa-header-dark cursor-pointer transition-colors opacity-60">
+<div class="w-12 h-12 rounded-full bg-gray-600 mr-3 flex items-center justify-center">A</div>
+<div class="flex-1 border-b border-gray-800 pb-3">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-medium">Admin Group</h3>
+<span class="text-xs text-wa-text-secondary">Yesterday</span>
+</div>
+<div class="text-sm text-wa-text-secondary truncate">Report submitted successfully.</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: Chat Window -->
+<main class="flex-1 flex flex-col h-full bg-wa-bg-dark relative" data-purpose="chat-container">
+<!-- Chat Header -->
+<header class="h-16 flex items-center justify-between px-4 bg-wa-header-dark border-l border-gray-700 shrink-0 z-10" data-purpose="chat-header">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img alt="Eco-Inspect AI" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY5_s4B_hr7u2IPh4JY9qgjpawYHa_Wh_AWEuK17pmQH-NtCsJl0D7Wd1uWgPUBzbwIEL8bd4F9YNiiHk0nt8q7en3A7ph7rfqAvHV78jdGy6Kjd4_znVyptXrLh0iu92LrbYAyZrqKWegfERMnXEDcWYwb-Olz36tpR8J4wu9TRN9hxJB9scaGvIiTEmgvodOtWgfa15Z3tpeoWMe0DZ1rRkLMQzzI1pmKNefz73L0WYCJ9qq40qpPJCZVDhvY03hQENCOkvtI0lc"/>
+</div>
+<div>
+<h2 class="font-medium">Eco-Inspect AI</h2>
+<p class="text-xs text-wa-text-secondary">Online</p>
+</div>
+</div>
+<div class="flex gap-5 text-wa-text-secondary">
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M15.009 13.805h-.636l-.22-.219a5.184 5.184 0 0 0 1.256-3.386 5.2 5.2 0 1 0-5.199 5.199 5.188 5.188 0 0 0 3.388-1.255l.219.22v.638L17.621 18 19 16.621l-3.991-2.816zm-4.8 0c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"></path></svg>
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 4.001A2 2 0 0 0 12 13zm0 6a2 2 0 1 0-.001 4.001A2 2 0 0 0 12 19z"></path></svg>
+</div>
+</header>
+<!-- Chat Messages Area -->
+<section class="flex-1 overflow-y-auto chat-bg p-6 flex flex-col gap-2" data-purpose="message-list">
+<!-- Date Badge -->
+<div class="flex justify-center my-4">
+<span class="bg-wa-header-dark px-3 py-1.5 rounded-lg text-xs font-medium uppercase tracking-wide text-wa-text-secondary">Today</span>
+</div>
+<!-- Incoming Message: Bot Notification -->
+<div class="flex justify-start mb-2" data-purpose="incoming-message">
+<div class="bg-wa-message-incoming max-w-[85%] sm:max-w-[65%] p-3 rounded-custom rounded-tl-none shadow-md relative">
+<!-- WhatsApp triangle tail -->
+<div class="absolute top-0 -left-2 w-0 h-0 border-t-[10px] border-t-wa-message-incoming border-l-[10px] border-l-transparent"></div>
+<div class="text-sm leading-relaxed">
+<p class="mb-2">
+              🔔 Update on your Report <span class="text-orange-400 font-bold">ECO-2026-00142</span>. Status changed to:
+            </p>
+<div class="mb-3">
+<span class="bg-wa-amber text-black text-[10px] font-extrabold px-2 py-1 rounded inline-block">IN PROGRESS</span>
+</div>
+<p class="mb-2">
+              Officer <span class="font-bold">John Silva</span> has been assigned to your case. Expected resolution: <span class="underline decoration-wa-text-secondary">48 hours</span>.
+            </p>
+<p>
+              Reply '<span class="text-orange-400 font-bold">STATUS ECO-2026-00142</span>' anytime to check progress.
+            </p>
+</div>
+<div class="flex justify-end mt-1">
+<span class="text-[11px] text-wa-text-secondary">10:42 AM</span>
+</div>
+</div>
+</div>
+<!-- Outgoing Message: User Reply -->
+<div class="flex justify-end mb-2" data-purpose="outgoing-message">
+<div class="bg-wa-message-outgoing max-w-[85%] sm:max-w-[65%] p-3 rounded-custom rounded-tr-none shadow-md relative">
+<!-- WhatsApp triangle tail -->
+<div class="absolute top-0 -right-2 w-0 h-0 border-t-[10px] border-t-wa-message-outgoing border-r-[10px] border-r-transparent"></div>
+<div class="text-sm leading-relaxed pr-8">
+            Thank you for the update. Looking forward to the resolution.
+          </div>
+<div class="flex justify-end items-center gap-1 mt-1">
+<span class="text-[11px] text-gray-300">10:45 AM</span>
+<svg class="text-wa-primary" fill="currentColor" height="11" viewbox="0 0 16 11" width="16"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.88a.32.32 0 0 1-.484.032l-.358-.325a.319.319 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l1.32 1.267a.32.32 0 0 0 .484-.034l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L5.066 9.88a.32.32 0 0 1-.484.032L1.882 7.154a.319.319 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l4.139 3.97a.32.32 0 0 0 .484-.034l6.271-8.048a.366.366 0 0 0-.063-.512z"></path></svg>
+</div>
+</div>
+</div>
+</section>
+<!-- Chat Footer / Input -->
+<footer class="h-16 bg-wa-header-dark flex items-center px-4 gap-4 shrink-0" data-purpose="chat-input-area">
+<div class="flex gap-4 text-wa-text-secondary">
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 4.001A2 2 0 0 0 12 13zm0 6a2 2 0 1 0-.001 4.001A2 2 0 0 0 12 19z"></path></svg>
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M1.816 15.556v.002c0 1.502.584 2.912 1.646 3.972s2.47 1.647 3.972 1.647a5.58 5.58 0 0 0 3.972-1.647l9.582-9.582a4.29 4.29 0 0 0 1.257-3.033c0-1.144-.444-2.219-1.254-3.03a4.28 4.28 0 0 0-3.033-1.257c-1.145 0-2.22.444-3.03 1.254l-9.582 9.582a2.98 2.98 0 0 0-.874 2.1c0 .8.312 1.551.879 2.119.568.567 1.32.879 2.12.879a2.99 2.99 0 0 0 2.12-.879l8.241-8.242a.975.975 0 0 0-1.38-1.38l-8.241 8.242a1.04 1.04 0 0 1-1.48 0 1.04 1.04 0 0 1 0-1.48l9.582-9.582a2.33 2.33 0 0 1 1.652-.685 2.33 2.33 0 0 1 1.65.683c.441.44.685 1.026.685 1.65a2.33 2.33 0 0 1-.685 1.652l-9.582 9.582a3.63 3.63 0 0 1-5.617 0 3.63 3.63 0 0 1 0-5.136l9.582-9.582a.975.975 0 0 0-1.38-1.38l-9.582 9.582a5.58 5.58 0 0 0-1.647 3.972z"></path></svg>
+</div>
+<div class="flex-1">
+<input class="w-full bg-[#2a3942] border-none rounded-lg py-2.5 px-4 text-sm focus:ring-0 text-wa-text-primary" placeholder="Type a message" type="text"/>
+</div>
+<div class="text-wa-text-secondary">
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M11.999 14.942c2.001 0 3.531-1.53 3.531-3.531V4.35c0-2.001-1.53-3.531-3.531-3.531S8.469 2.35 8.469 4.35v7.061c0 2.001 1.53 3.531 3.53 3.531zm6.238-3.53c0 3.531-2.942 6.002-6.237 6.002s-6.237-2.471-6.237-6.002H3.761c0 4.001 3.178 7.297 7.061 7.885v3.885h2.355v-3.885c3.884-.588 7.061-3.884 7.061-7.885h-2.001z"></path></svg>
+</div>
+</footer>
+</main>
+<!-- END: Chat Window -->
+</body></html>

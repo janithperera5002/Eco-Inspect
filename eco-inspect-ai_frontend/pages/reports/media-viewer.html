@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Media Viewer</title>
+<!-- Fonts: Syne and JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0D',
+            'eco-surface': '#111A14',
+            'eco-green': '#2DFF7F',
+            'eco-text-dim': '#A0A0A0',
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for UI Polish -->
+<style data-purpose="custom-layout-styles">
+    body {
+      background-color: #0A0F0D;
+      color: white;
+      overflow: hidden; /* App-like feel */
+    }
+    .green-glow {
+      box-shadow: 0 0 15px rgba(45, 255, 127, 0.15);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 4px;
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #2DFF7F;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="h-screen flex flex-col font-sans">
+<!-- BEGIN: NavigationBar -->
+<header class="h-16 border-b border-white/10 flex items-center justify-between px-6 bg-eco-dark z-10" data-purpose="top-navigation">
+<div class="flex items-center gap-4">
+<button aria-label="Go back" class="p-2 hover:bg-white/5 rounded-full transition-colors">
+<svg class="text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg>
+</button>
+<h1 class="font-syne text-xl tracking-tight">Media Viewer</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-eco-surface border border-white/5 rounded-md">
+<span class="w-2 h-2 rounded-full bg-eco-green animate-pulse"></span>
+<span class="text-xs font-mono text-eco-text-dim">LIVE_NODE_04</span>
+</div>
+<button class="p-2 bg-eco-green/10 hover:bg-eco-green/20 rounded-lg transition-all group" data-purpose="download-action">
+<svg class="group-hover:scale-110 transition-transform" fill="none" height="20" stroke="#2DFF7F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
+</button>
+</div>
+</header>
+<!-- END: NavigationBar -->
+<main class="flex-1 flex overflow-hidden">
+<!-- BEGIN: MediaArea -->
+<section class="flex-1 flex flex-col p-6 overflow-hidden" data-purpose="primary-viewer-section">
+<!-- Main Content Container -->
+<div class="flex-1 relative flex items-center justify-center bg-black/40 rounded-xl border border-white/5 overflow-hidden group">
+<!-- Main Media Placeholder -->
+<img alt="Primary Evidence View" class="max-h-full max-w-full object-contain" data-purpose="main-image-display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCNmPn--sPSfi8xnfNWEKFuXf1GPuhVRH6Z_eSvY53Kge9Ds_D_T2s3kIoBPd-TMYkIhCDb7Nq0kXhqbNtHokIStDlE4vlsl2-bhrWCOzc0VhtzL8UnUIZosY48cGe0g96tLc_ss8fX7m_Ik6xAvfA5qn3MeWBPVBU7SvxtVBrZTOuuRaOtMkiNK7JU1jIFjdhG-tRd8qbRNu3iPeLpkvhx79tK3ArJdi4arRWfKqWuqR3x3C3C1Fh5DvUTOgKyrOqQQEJ-VcMCqNN"/>
+<!-- Overlay HUD Elements -->
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-black/60 backdrop-blur-md px-3 py-1 rounded text-[10px] font-mono border border-white/10 uppercase tracking-widest text-eco-green">High-Res Capture</span>
+</div>
+<!-- Media Controls Overlay -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-6 bg-black/60 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-white hover:text-eco-green"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" x2="5" y1="19" y2="5"></line></svg></button>
+<button class="w-10 h-10 bg-eco-green rounded-full flex items-center justify-center text-eco-dark"><svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+<button class="text-white hover:text-eco-green"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" x2="19" y1="5" y2="19"></line></svg></button>
+</div>
+</div>
+<!-- BEGIN: ThumbnailCarousel -->
+<div class="h-32 mt-6" data-purpose="thumbnail-navigation">
+<h3 class="text-[10px] font-mono text-eco-text-dim uppercase tracking-[0.2em] mb-3">Evidence Collection (12 Files)</h3>
+<div class="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
+<!-- Active Thumbnail -->
+<div class="flex-shrink-0 w-40 aspect-video rounded-lg border-2 border-eco-green overflow-hidden cursor-pointer green-glow">
+<img alt="Thumbnail 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsn-azWc0YY2F7ZE2A-f_E6ALIUbQbxUb_ivi56hEJ7VbEcAxIC-XGmm4N8-3JQVOgLSF44y_ocVyD9F4TU2hRaVsuhf5Qq-t67D90Qh1scZsGolfJATbf_A2VV02-e3A0jov1GXVb7pMtKHzGH4t3DyqnePKE5NAlStM7fqbWEMDrlL_-JwXp_oVK9Vjsw0aJNYxDXYxjfHpWdZexs2a9lHqftdAVt1SL2XR1kcxxitpIjm6YsEY9QItCIcG9WLbDNNoeYTD8fKgA"/>
+</div>
+<!-- Other Thumbnails -->
+<div class="flex-shrink-0 w-40 aspect-video rounded-lg border border-white/10 overflow-hidden cursor-pointer hover:border-white/40 transition-colors grayscale hover:grayscale-0">
+<img alt="Thumbnail 2" class="w-full h-full object-cover text-xs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZOy6dmKA8YdsCwhJYJ-hgAytivuJkg4BayLPERCocYLwtLR58c2n8_zIXxZn2KZuol5b1fYAYhj6VyYw98nrGqA-V1LHrM25FX9pgi2KTWYt_XUptBo7PYOEjB8552f1Gd0j-0kIVzXDgBgi_NhpcuYTUqa0RsW5ZpdNyNjau3LfTYGBYwC7UaS8tUu2NdgJXP9qGAK37XbebAgLjokIuwrykbIF2fg_MbVrEf7anqOvtYY8wkbJk3VyE00KzucGpTXCVOkeqdjUB"/>
+</div>
+<div class="flex-shrink-0 w-40 aspect-video rounded-lg border border-white/10 overflow-hidden cursor-pointer hover:border-white/40 transition-colors grayscale hover:grayscale-0">
+<img alt="Thumbnail 3" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZB4r_4i03sTGkjE6qZj0RkXwtr9gGc63Z56zokL6LvkN0hk8uwGS3H7h5en0hkTy6YRS4hUYQMV7SNzEs5Hkuhv_OqD-dWtkERtUKpNh6hgRYSYi2MKtB8j8KWaXLZGRi5qP7rW-uWCg9yFx5Urq5mp5KXUqF8_y8EnGdd04Qa_7oQ-De7rcBPhbP-PYKwi75GTMmvwSmPX80FloMwzQI6mfGdSIoB8kIAOmQuI7B3i0VW-V4fDWkP1dwi2HwBhMhLkoMhmqKyuMq"/>
+</div>
+<div class="flex-shrink-0 w-40 aspect-video rounded-lg border border-white/10 overflow-hidden cursor-pointer hover:border-white/40 transition-colors grayscale hover:grayscale-0">
+<img alt="Thumbnail 4" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHjKkFBHiMadJT-icSZl-XmZ7r94BSf_9B57yfNfPd8kxxctAHdZJJXGShz1m_yrZxqTuwfoeq_bhQSkXixWZ3AH0Ll0dpNbUcU7y4_N2AmVa9_n3snP-Fsh15Y9k29mzjWKDnNoMVOGUkGUBGbdLMHcyA94ICgMhbFv-nPCsLIV9HH5GJuxvSH9WCo-DH8Y5kpfz7HVPb2I83rkHoX4EevoylEktp8OBxO83PxhAuGOTRegLNxDbYLL_3dyQ9oQ7uI0jBo_AEM-AL"/>
+</div>
+<div class="flex-shrink-0 w-40 aspect-video rounded-lg border border-white/10 overflow-hidden cursor-pointer hover:border-white/40 transition-colors grayscale hover:grayscale-0">
+<img alt="Thumbnail 5" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgkGvfXjpNly8mh2PxQeqvLZJvDohzxwOC_xR8qrbi6grIHc33UKI_i6iF9ulx_DHspsjdMx7RW50XSZLDmLdb-Ac6rmh7xzc-xzcMnrhzkpcnbjwuD-eYYV34dQHt5Pvgl8oGlf0TY4oI8Ab_13bn8rjLdqAaIQ4Uh5jB3f-6z1G4S_upGewGfyfwXij8VzP_KIVlVKzPf-8hG00vjG99K7NKQuqfVuURrC0GSZ4Jod0VGL1R59RPTBdueZpga12ULFPjutcmJD5F"/>
+</div>
+<div class="flex-shrink-0 w-40 aspect-video rounded-lg border border-white/10 overflow-hidden cursor-pointer hover:border-white/40 transition-colors grayscale hover:grayscale-0">
+<img alt="Thumbnail 6" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV2pDzpLV3Hhd0Fk_cEkgqJp2gnP8HRiRaxgCTe512hQ2sOeKAqUX1Bz955c8LoiX-f13-DDwuDszncFMWIIllfJa2XhmGE77WR7sc1YlZqrULa_B7KdUNMgoXR9lLWyMao0YFolx5WsRKtGemX0hxjcKC4GajFEAW4QxWr2n3Tl5jIWpnyoSd_FXQvpYkVbNbyWBCp_qMo65tE7lx_6BU8uSIaMwHLEUAJLbAnkUpugnmQsJ19-AHUSrAm-vWi4Wm5hrSH9OkMmTv"/>
+</div>
+</div>
+</div>
+<!-- END: ThumbnailCarousel -->
+</section>
+<!-- END: MediaArea -->
+<!-- BEGIN: Sidebar -->
+<aside class="w-80 p-6 flex flex-col gap-6" data-purpose="details-sidebar">
+<div class="bg-eco-surface border border-white/5 rounded-[12px] p-6 flex flex-col gap-8 h-full shadow-2xl">
+<div>
+<h2 class="font-syne text-xl text-white font-bold mb-6 tracking-tight">Evidence Details</h2>
+<div class="space-y-6">
+<div data-purpose="detail-item">
+<p class="text-[10px] font-mono text-eco-text-dim uppercase tracking-wider mb-1">File Name</p>
+<p class="font-mono text-sm text-white">EVIDENCE_01.JPG</p>
+</div>
+<div data-purpose="detail-item">
+<p class="text-[10px] font-mono text-eco-text-dim uppercase tracking-wider mb-1">Upload Date</p>
+<p class="text-sm text-white">08 Mar 2026, 10:45 AM</p>
+</div>
+<div data-purpose="detail-item">
+<p class="text-[10px] font-mono text-eco-text-dim uppercase tracking-wider mb-1">File Size</p>
+<p class="text-sm text-white font-mono">4.2 MB</p>
+</div>
+<div data-purpose="detail-item">
+<p class="text-[10px] font-mono text-eco-text-dim uppercase tracking-wider mb-1">Case Reference</p>
+<p class="font-mono text-sm text-eco-green">ECO-2026-00142</p>
+</div>
+</div>
+</div>
+<div class="mt-auto space-y-3 pt-6 border-t border-white/5">
+<button class="w-full py-3 bg-white/5 hover:bg-white/10 rounded-lg text-sm transition-colors flex items-center justify-center gap-2">
+<svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Add Annotation
+          </button>
+<button class="w-full py-3 bg-eco-green/10 hover:bg-eco-green/20 text-eco-green rounded-lg text-sm font-medium transition-colors border border-eco-green/20">
+            Submit for Review
+          </button>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar -->
+</main>
+<!-- BEGIN: FooterStatus -->
+<footer class="h-8 bg-eco-surface border-t border-white/5 px-6 flex items-center justify-between text-[10px] font-mono text-eco-text-dim" data-purpose="system-status">
+<div class="flex gap-4">
+<span>LAT: 45.523062</span>
+<span>LONG: -122.676482</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-eco-green/60">SECURE_ENCRYPTION_ACTIVE</span>
+<div class="w-1.5 h-1.5 rounded-full bg-eco-green"></div>
+</div>
+</footer>
+<!-- END: FooterStatus -->
+</body></html>

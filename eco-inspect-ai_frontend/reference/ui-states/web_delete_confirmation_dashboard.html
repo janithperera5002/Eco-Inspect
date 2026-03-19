@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delete Confirmation - Eco-Inspect AI</title>
+<!-- Google Fonts: Syne -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#111A14',
+            'eco-red': '#EF4444',
+            'eco-red-glow': 'rgba(239, 68, 68, 0.4)',
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-effects">
+    .red-glow-border {
+      border: 1px solid #EF4444;
+      box-shadow: 0 0 15px var(--eco-red-glow);
+    }
+    .overlay-blur {
+      backdrop-filter: blur(4px);
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  </style>
+</head>
+<body class="bg-[#0A0F0C] font-inter text-slate-200 antialiased h-screen overflow-hidden">
+<!-- BEGIN: DashboardBackground -->
+<!-- This represents the dimmed dashboard state behind the modal -->
+<div class="fixed inset-0 z-0 opacity-20 pointer-events-none p-8" data-purpose="mock-dashboard-context">
+<header class="flex justify-between items-center mb-12">
+<div class="h-8 w-40 bg-slate-800 rounded"></div>
+<div class="h-10 w-10 bg-slate-800 rounded-full"></div>
+</header>
+<div class="grid grid-cols-3 gap-6">
+<div class="h-48 bg-slate-800 rounded-xl"></div>
+<div class="h-48 bg-slate-800 rounded-xl"></div>
+<div class="h-48 bg-slate-800 rounded-xl"></div>
+</div>
+<div class="mt-8 h-96 bg-slate-800 rounded-xl"></div>
+</div>
+<!-- END: DashboardBackground -->
+<!-- BEGIN: ModalOverlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center overlay-blur p-4">
+<!-- BEGIN: ConfirmationCard -->
+<div class="bg-eco-dark w-full max-w-md p-8 rounded-2xl red-glow-border flex flex-col items-center text-center" data-purpose="delete-confirmation-modal">
+<!-- Warning Icon -->
+<div class="mb-6 text-eco-red bg-eco-red/10 p-4 rounded-full" data-purpose="warning-icon-container">
+<svg class="h-12 w-12" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Heading -->
+<h2 class="font-syne text-3xl font-bold mb-3 tracking-tight text-white">
+        Are you sure?
+      </h2>
+<!-- Description -->
+<p class="text-slate-400 mb-8 text-sm leading-relaxed">
+        This action will permanently delete the selected report and all associated inspection data. This process cannot be undone.
+      </p>
+<!-- Action Buttons -->
+<div class="flex flex-col w-full gap-3" data-purpose="modal-actions">
+<!-- Delete Button -->
+<button class="bg-eco-red hover:bg-red-600 text-white font-syne font-bold py-4 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-eco-dark" id="confirm-delete-btn">
+          DELETE PERMANENTLY
+        </button>
+<!-- Cancel Button -->
+<button class="bg-transparent hover:bg-white/5 text-slate-400 hover:text-white font-syne font-bold py-3 px-6 rounded-lg transition-all duration-200" id="cancel-delete-btn">
+          Cancel
+        </button>
+</div>
+</div>
+<!-- END: ConfirmationCard -->
+</div>
+<!-- END: ModalOverlay -->
+<script data-purpose="modal-interactivity">
+    // Minimal logic to demonstrate interaction
+    document.getElementById('cancel-delete-btn').addEventListener('click', () => {
+      alert('Deletion cancelled.');
+    });
+
+    document.getElementById('confirm-delete-btn').addEventListener('click', () => {
+      alert('Item has been permanently deleted.');
+    });
+  </script>
+</body></html>

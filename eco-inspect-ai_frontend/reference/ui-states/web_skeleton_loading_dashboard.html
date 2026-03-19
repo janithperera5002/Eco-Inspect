@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI - Reports Loading</title>
+<!-- BEGIN: Scripts -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#1a2e1f',
+            'eco-surface': '#243b2a',
+            'eco-accent': '#3d5a45',
+          },
+          animation: {
+            'shimmer': 'shimmer 2s infinite linear',
+          },
+          keyframes: {
+            shimmer: {
+              '0%': { backgroundPosition: '-1000px 0' },
+              '100%': { backgroundPosition: '1000px 0' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+<!-- END: Scripts -->
+<!-- BEGIN: Styles -->
+<style data-purpose="skeleton-animations">
+    .skeleton-box {
+      background: linear-gradient(90deg, #2a4431 25%, #35533d 50%, #2a4431 75%);
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite linear;
+      border-radius: 4px;
+    }
+    .skeleton-circle {
+      background: linear-gradient(90deg, #2a4431 25%, #35533d 50%, #2a4431 75%);
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite linear;
+      border-radius: 50%;
+    }
+  </style>
+<style data-purpose="layout-styles">
+    body {
+      background-color: #121f15;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+  </style>
+<!-- END: Styles -->
+</head>
+<body class="min-h-screen flex">
+<!-- BEGIN: Sidebar -->
+<aside class="w-64 bg-eco-dark border-r border-eco-accent h-screen flex-shrink-0 flex flex-col" data-purpose="navigation-sidebar">
+<div class="p-6">
+<!-- Logo Placeholder -->
+<div class="h-8 w-32 skeleton-box mb-8"></div>
+<nav class="space-y-4">
+<div class="h-10 w-full skeleton-box opacity-60"></div>
+<div class="h-10 w-full skeleton-box bg-eco-accent"></div> <!-- Active State -->
+<div class="h-10 w-full skeleton-box opacity-60"></div>
+<div class="h-10 w-full skeleton-box opacity-60"></div>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<div class="h-10 w-full skeleton-box opacity-40"></div>
+</div>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 bg-eco-dark">
+<!-- BEGIN: Top Header -->
+<header class="h-16 border-b border-eco-accent flex items-center justify-between px-8 bg-eco-dark" data-purpose="dashboard-header">
+<div class="h-6 w-48 skeleton-box"></div>
+<div class="flex items-center space-x-4">
+<div class="h-8 w-8 skeleton-circle"></div>
+<div class="h-8 w-32 skeleton-box"></div>
+</div>
+</header>
+<!-- END: Top Header -->
+<!-- BEGIN: Table Container -->
+<div class="p-8 overflow-y-auto">
+<!-- BEGIN: Content Header -->
+<div class="flex justify-between items-end mb-8" data-purpose="table-controls">
+<div class="space-y-2">
+<div class="h-8 w-64 skeleton-box"></div>
+<div class="h-4 w-96 skeleton-box opacity-50"></div>
+</div>
+<div class="flex space-x-3">
+<div class="h-10 w-24 skeleton-box"></div>
+<div class="h-10 w-36 skeleton-box"></div>
+</div>
+</div>
+<!-- END: Content Header -->
+<!-- BEGIN: Skeleton Table -->
+<section class="bg-eco-surface rounded-xl border border-eco-accent shadow-2xl overflow-hidden" data-purpose="reports-loading-table">
+<!-- Table Header -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 bg-eco-accent/30 border-b border-eco-accent">
+<div class="col-span-4 h-4 w-24 skeleton-box opacity-40"></div>
+<div class="col-span-2 h-4 w-20 skeleton-box opacity-40"></div>
+<div class="col-span-2 h-4 w-20 skeleton-box opacity-40"></div>
+<div class="col-span-2 h-4 w-20 skeleton-box opacity-40"></div>
+<div class="col-span-2 h-4 w-12 skeleton-box opacity-40 justify-self-end"></div>
+</div>
+<!-- Table Body Rows -->
+<div class="divide-y divide-eco-accent/50">
+<!-- Loading Row 1 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-5 items-center">
+<div class="col-span-4 flex items-center space-x-3">
+<div class="h-10 w-10 skeleton-box flex-shrink-0"></div>
+<div class="space-y-2 flex-1">
+<div class="h-4 w-3/4 skeleton-box"></div>
+<div class="h-3 w-1/2 skeleton-box opacity-40"></div>
+</div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-24 skeleton-box"></div>
+</div>
+<div class="col-span-2">
+<!-- Urgency Indicator Placeholder -->
+<div class="h-6 w-20 skeleton-box rounded-full"></div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-16 skeleton-box"></div>
+</div>
+<div class="col-span-2 flex justify-end">
+<div class="h-8 w-8 skeleton-circle"></div>
+</div>
+</div>
+<!-- Loading Row 2 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-5 items-center">
+<div class="col-span-4 flex items-center space-x-3">
+<div class="h-10 w-10 skeleton-box flex-shrink-0"></div>
+<div class="space-y-2 flex-1">
+<div class="h-4 w-2/3 skeleton-box"></div>
+<div class="h-3 w-1/3 skeleton-box opacity-40"></div>
+</div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-24 skeleton-box"></div>
+</div>
+<div class="col-span-2">
+<div class="h-6 w-20 skeleton-box rounded-full"></div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-16 skeleton-box"></div>
+</div>
+<div class="col-span-2 flex justify-end">
+<div class="h-8 w-8 skeleton-circle"></div>
+</div>
+</div>
+<!-- Loading Row 3 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-5 items-center">
+<div class="col-span-4 flex items-center space-x-3">
+<div class="h-10 w-10 skeleton-box flex-shrink-0"></div>
+<div class="space-y-2 flex-1">
+<div class="h-4 w-4/5 skeleton-box"></div>
+<div class="h-3 w-2/5 skeleton-box opacity-40"></div>
+</div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-24 skeleton-box"></div>
+</div>
+<div class="col-span-2">
+<div class="h-6 w-20 skeleton-box rounded-full"></div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-16 skeleton-box"></div>
+</div>
+<div class="col-span-2 flex justify-end">
+<div class="h-8 w-8 skeleton-circle"></div>
+</div>
+</div>
+<!-- Loading Row 4 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-5 items-center">
+<div class="col-span-4 flex items-center space-x-3">
+<div class="h-10 w-10 skeleton-box flex-shrink-0"></div>
+<div class="space-y-2 flex-1">
+<div class="h-4 w-1/2 skeleton-box"></div>
+<div class="h-3 w-1/4 skeleton-box opacity-40"></div>
+</div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-24 skeleton-box"></div>
+</div>
+<div class="col-span-2">
+<div class="h-6 w-20 skeleton-box rounded-full"></div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-16 skeleton-box"></div>
+</div>
+<div class="col-span-2 flex justify-end">
+<div class="h-8 w-8 skeleton-circle"></div>
+</div>
+</div>
+<!-- Loading Row 5 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-5 items-center">
+<div class="col-span-4 flex items-center space-x-3">
+<div class="h-10 w-10 skeleton-box flex-shrink-0"></div>
+<div class="space-y-2 flex-1">
+<div class="h-4 w-3/4 skeleton-box"></div>
+<div class="h-3 w-1/2 skeleton-box opacity-40"></div>
+</div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-24 skeleton-box"></div>
+</div>
+<div class="col-span-2">
+<div class="h-6 w-20 skeleton-box rounded-full"></div>
+</div>
+<div class="col-span-2">
+<div class="h-4 w-16 skeleton-box"></div>
+</div>
+<div class="col-span-2 flex justify-end">
+<div class="h-8 w-8 skeleton-circle"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Skeleton Table -->
+<!-- BEGIN: Pagination Placeholder -->
+<div class="mt-6 flex justify-between items-center" data-purpose="pagination-loading">
+<div class="h-4 w-40 skeleton-box opacity-40"></div>
+<div class="flex space-x-2">
+<div class="h-8 w-8 skeleton-box"></div>
+<div class="h-8 w-8 skeleton-box"></div>
+<div class="h-8 w-8 skeleton-box"></div>
+</div>
+</div>
+<!-- END: Pagination Placeholder -->
+</div>
+<!-- END: Table Container -->
+</main>
+<!-- END: Main Content Area -->
+</body></html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resolve Case | Dashboard</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts: Syne for headings, JetBrains Mono for labels -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              background: '#0A0F0D',
+              surface: '#111A14',
+              accent: '#2DFF7F',
+              border: '#1E2D23',
+              textMuted: '#8A9A91'
+            }
+          },
+          fontFamily: {
+            heading: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-layout">
+    body {
+      background-color: #0A0F0D;
+      color: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Custom scrollbar for dark theme */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E2D23;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2DFF7F;
+    }
+
+    /* Custom styles for the toggle switch */
+    .toggle-checkbox:checked {
+      right: 0;
+      border-color: #2DFF7F;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #2DFF7F;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6 md:p-12">
+<!-- BEGIN: ResolveCaseContainer -->
+<main class="w-full max-w-2xl bg-brand-surface border border-brand-border rounded-2xl shadow-2xl p-8 md:p-12" data-purpose="resolve-case-form-container">
+<!-- BEGIN: HeaderSection -->
+<header class="mb-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mb-6">
+<!-- Green Checkmark Icon -->
+<svg class="h-8 w-8 text-brand-accent" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h1 class="text-4xl font-heading font-extrabold text-white tracking-tight">Resolve Case</h1>
+<p class="text-brand-textMuted font-mono text-sm mt-2 uppercase tracking-widest">Administrative Action Panel</p>
+</header>
+<!-- END: HeaderSection -->
+<!-- BEGIN: FormBody -->
+<form action="#" class="space-y-8" id="resolveCaseForm" method="POST">
+<!-- Action Taken Dropdown -->
+<div class="space-y-2">
+<label class="block font-mono text-xs font-medium text-brand-textMuted uppercase tracking-wider" for="action_taken">Action Taken</label>
+<select class="w-full bg-brand-background border-brand-border text-white rounded-lg focus:ring-brand-accent focus:border-brand-accent py-3 px-4 transition-colors" id="action_taken" name="action_taken">
+<option disabled="" selected="" value="">Select an action...</option>
+<option value="repaired">Physical Repair Completed</option>
+<option value="refunded">Refund Issued</option>
+<option value="replaced">Item Replaced</option>
+<option value="dismissed">Case Dismissed</option>
+<option value="referred">Referred to Legal</option>
+</select>
+</div>
+<!-- Resolution Date -->
+<div class="space-y-2">
+<label class="block font-mono text-xs font-medium text-brand-textMuted uppercase tracking-wider" for="resolution_date">Resolution Date</label>
+<input class="w-full bg-brand-background border-brand-border text-white rounded-lg focus:ring-brand-accent focus:border-brand-accent py-3 px-4 transition-colors" id="resolution_date" name="resolution_date" type="date"/>
+</div>
+<!-- Resolution Notes -->
+<div class="space-y-2">
+<label class="block font-mono text-xs font-medium text-brand-textMuted uppercase tracking-wider" for="resolution_notes">Resolution Notes</label>
+<textarea class="w-full bg-brand-background border-brand-border text-white rounded-lg focus:ring-brand-accent focus:border-brand-accent py-3 px-4 transition-colors resize-none" id="resolution_notes" name="resolution_notes" placeholder="Provide detailed information on how this case was concluded..." rows="5"></textarea>
+</div>
+<!-- Attach Closing Evidence (Upload Area) -->
+<div class="space-y-2">
+<label class="block font-mono text-xs font-medium text-brand-textMuted uppercase tracking-wider">Attach Closing Evidence</label>
+<div class="border-2 border-dashed border-brand-border bg-brand-background/50 rounded-xl p-8 text-center hover:border-brand-accent/50 transition-all group cursor-pointer" data-purpose="upload-dropzone">
+<input class="hidden" id="evidence_upload" type="file"/>
+<label class="cursor-pointer" for="evidence_upload">
+<svg class="h-10 w-10 text-brand-textMuted mx-auto mb-3 group-hover:text-brand-accent transition-colors" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<p class="text-sm text-brand-textMuted"><span class="text-white font-medium">Click to upload</span> or drag and drop</p>
+<p class="text-xs text-brand-textMuted/60 mt-1">PDF, JPG, PNG up to 10MB</p>
+</label>
+</div>
+</div>
+<!-- Notify Citizen Toggle -->
+<div class="flex items-center justify-between py-4 border-t border-brand-border/50">
+<div class="space-y-0.5">
+<p class="font-mono text-xs font-medium text-brand-textMuted uppercase tracking-wider">Notify Citizen</p>
+<p class="text-sm text-white font-medium">Send automatic WhatsApp alert</p>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-all duration-300 ease-in-out right-6 focus:ring-0 checked:right-0" id="whatsapp_toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-brand-border cursor-pointer transition-colors duration-300" for="whatsapp_toggle"></label>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-6">
+<button class="w-full bg-brand-accent hover:bg-brand-accent/90 text-black font-heading font-bold text-lg py-4 rounded-xl transition-all transform active:scale-[0.98] shadow-lg shadow-brand-accent/20" type="submit">
+          Mark as Resolved
+        </button>
+</div>
+</form>
+<!-- END: FormBody -->
+</main>
+<!-- END: ResolveCaseContainer -->
+<script data-purpose="form-interactions">
+    // Minimal interactivity for the custom file upload UI
+    const dropzone = document.querySelector('[data-purpose="upload-dropzone"]');
+    const fileInput = document.getElementById('evidence_upload');
+
+    dropzone.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        const fileName = e.target.files[0].name;
+        dropzone.querySelector('p').innerHTML = `<span class="text-brand-accent font-medium">File selected:</span> ${fileName}`;
+      }
+    });
+
+    // Form submission simulation
+    document.getElementById('resolveCaseForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.innerText = 'Processing...';
+      btn.disabled = true;
+      btn.classList.add('opacity-70');
+      
+      setTimeout(() => {
+        alert('Case marked as resolved successfully.');
+        btn.innerText = 'Mark as Resolved';
+        btn.disabled = false;
+        btn.classList.remove('opacity-70');
+      }, 1500);
+    });
+  </script>
+</body></html>

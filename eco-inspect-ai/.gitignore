@@ -1,0 +1,10 @@
+target/
+*.jar
+*.war
+.idea/
+*.iml
+*.log
+.DS_Store
+Thumbs.db
+.mvn/wrapper/maven-wrapper.jar
+src/main/resources/application.properties

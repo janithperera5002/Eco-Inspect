@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Analytics Overview</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Syne for headings, JetBrains Mono for numbers -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Syne:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0D',
+            'eco-surface': '#111A14',
+            'eco-accent': '#2DFF7F',
+            'eco-critical': '#FF4D4D',
+            'eco-high': '#FFAA00',
+            'eco-medium': '#2DFF7F',
+            'eco-low': '#4D94FF',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            syne: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="typography">
+    h1, h2, h3, .font-syne { font-family: 'Syne', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+<style data-purpose="layout-tweaks">
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #2DFF7F;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="bg-eco-dark text-white font-sans flex h-screen overflow-hidden">
+<!-- BEGIN: Sidebar -->
+<aside class="w-64 bg-eco-surface border-r border-white/10 flex flex-col" data-purpose="main-navigation">
+<div class="p-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-eco-accent rounded-sm flex items-center justify-center">
+<div class="w-4 h-4 bg-eco-dark rotate-45"></div>
+</div>
+<span class="text-xl font-syne font-bold tracking-tight">Eco-Inspect</span>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-2 overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-3 px-4 py-3 bg-eco-accent/10 text-eco-accent rounded-lg border-l-2 border-eco-accent" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Inspections</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>AI Log</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white/60 hover:text-white hover:bg-white/5 rounded-lg transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-white/10" data-purpose="user-profile-mini">
+<div class="flex items-center gap-3 p-2">
+<div class="w-10 h-10 rounded-full bg-eco-accent/20 flex items-center justify-center border border-eco-accent/30 overflow-hidden">
+<img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1z5IJPkt-zj23jlOMCvvVKIAHYSq8Saa1cOfs5ba6ZY3CzX9I8Ho3vWMrUgBY5Cq8urLODfRjWqNQKq5rdPyJr_P-TahFmih6Omj-wt3w9jKDQ6zc-03cOGgFAfXgQUwA_mqAf6ESKZ5eOFCS5YVUUMbyxFp_5ZFsKTJw2Wk2SOi8i0OHCXSmn7Tx1wyiApcftOqHVLtkGEY2CLz_pIMTyfyqXXvNyx1j4vx_4sS1zT99bm4crfHW08VG9_74vILN_P_GMocV0K6p"/>
+</div>
+<div>
+<p class="text-xs font-bold font-syne uppercase tracking-wider">Admin Unit 01</p>
+<p class="text-[10px] text-white/40 font-mono">ID: 8829-QX</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: Main Content Container -->
+<main class="flex-1 flex flex-col h-full overflow-y-auto custom-scrollbar">
+<!-- BEGIN: Header -->
+<header class="sticky top-0 z-10 bg-eco-dark/80 backdrop-blur-md px-8 py-6 border-b border-white/5 flex justify-between items-center">
+<div>
+<h1 class="text-3xl font-syne font-bold tracking-tight">Analytics Overview</h1>
+<p class="text-white/40 text-sm mt-1">Real-time data visualization for AI environmental audits.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-eco-surface px-4 py-2 rounded border border-white/10 text-sm font-medium hover:bg-white/5 transition-all">Export Report</button>
+<button class="bg-eco-accent text-eco-dark px-4 py-2 rounded font-bold text-sm hover:scale-105 transition-transform">Run New Audit</button>
+</div>
+</header>
+<!-- END: Header -->
+<div class="p-8 space-y-8">
+<!-- BEGIN: Urgency Breakdown -->
+<section data-purpose="urgency-breakdown">
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-lg font-syne font-semibold">Priority Distribution</h2>
+<div class="flex gap-4 text-[10px] uppercase font-bold tracking-widest text-white/50">
+<span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-eco-critical"></div> Critical</span>
+<span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-eco-high"></div> High</span>
+<span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-eco-medium"></div> Medium</span>
+<span class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-eco-low"></div> Low</span>
+</div>
+</div>
+<div class="w-full h-12 flex rounded-lg overflow-hidden border border-white/10">
+<!-- Urgency Segments -->
+<div class="h-full bg-eco-critical" style="width: 15%" title="Critical: 15%"></div>
+<div class="h-full bg-eco-high" style="width: 25%" title="High: 25%"></div>
+<div class="h-full bg-eco-medium" style="width: 40%" title="Medium: 40%"></div>
+<div class="h-full bg-eco-low" style="width: 20%" title="Low: 20%"></div>
+</div>
+<div class="mt-2 grid grid-cols-4 gap-4">
+<div class="text-[10px] text-white/40 font-mono">152 ISSUES</div>
+<div class="text-[10px] text-white/40 font-mono text-center">254 ISSUES</div>
+<div class="text-[10px] text-white/40 font-mono text-center">408 ISSUES</div>
+<div class="text-[10px] text-white/40 font-mono text-right">204 ISSUES</div>
+</div>
+</section>
+<!-- END: Urgency Breakdown -->
+<!-- BEGIN: Metrics Row -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6" data-purpose="metrics-grid">
+<!-- Metric Card 1 -->
+<div class="bg-eco-surface p-6 rounded-xl border border-white/5 hover:border-eco-accent/30 transition-all group">
+<p class="text-xs uppercase font-bold text-white/40 mb-2">Avg Response Time</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-4xl font-mono font-bold text-eco-accent">1.2</h3>
+<span class="text-lg font-syne text-white/60">sec</span>
+</div>
+<div class="mt-4 flex items-center text-xs text-eco-accent">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            12% faster than last week
+          </div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-eco-surface p-6 rounded-xl border border-white/5 hover:border-eco-accent/30 transition-all group">
+<p class="text-xs uppercase font-bold text-white/40 mb-2">AI Confidence</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-4xl font-mono font-bold text-eco-accent">98.4</h3>
+<span class="text-lg font-syne text-white/60">%</span>
+</div>
+<div class="mt-4 w-full bg-white/5 h-1 rounded-full overflow-hidden">
+<div class="bg-eco-accent h-full w-[98.4%]"></div>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-eco-surface p-6 rounded-xl border border-white/5 hover:border-eco-accent/30 transition-all group">
+<p class="text-xs uppercase font-bold text-white/40 mb-2">Reports This Week</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-4xl font-mono font-bold text-eco-accent">1,018</h3>
+</div>
+<div class="mt-4 flex items-center text-xs text-eco-low">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 17h8m0 0v-8m0 8l-8-8-4 4-6-6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            3% decrease in total volume
+          </div>
+</div>
+</section>
+<!-- END: Metrics Row -->
+<!-- BEGIN: Volume Chart -->
+<section class="bg-eco-surface p-8 rounded-xl border border-white/5" data-purpose="volume-chart">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h2 class="text-xl font-syne font-bold">Inspection Volume</h2>
+<p class="text-sm text-white/40">Aggregated daily reports across all sectors.</p>
+</div>
+<div class="flex bg-eco-dark p-1 rounded-lg border border-white/10">
+<button class="px-3 py-1 text-xs font-bold rounded bg-eco-surface border border-white/10">7 Days</button>
+<button class="px-3 py-1 text-xs font-bold rounded text-white/40 hover:text-white">30 Days</button>
+</div>
+</div>
+<!-- Vertical Bar Chart Container -->
+<div class="h-64 flex items-end justify-between gap-4 relative">
+<!-- Y-Axis Labels -->
+<div class="absolute -left-6 top-0 h-full flex flex-col justify-between text-[10px] font-mono text-white/20">
+<span>250</span>
+<span>200</span>
+<span>150</span>
+<span>100</span>
+<span>50</span>
+<span>0</span>
+</div>
+<!-- Vertical Bars -->
+<div class="flex-1 h-full flex items-end justify-between px-4 border-b border-white/10">
+<!-- Day 01 -->
+<div class="group relative flex flex-col items-center flex-1 max-w-[40px]">
+<div class="bg-white/10 group-hover:bg-eco-accent w-full rounded-t-sm transition-all duration-300" style="height: 45%;"></div>
+<span class="mt-4 text-[10px] font-mono text-white/40 uppercase">Mon</span>
+<div class="absolute -top-8 bg-eco-accent text-eco-dark px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">112</div>
+</div>
+<!-- Day 02 -->
+<div class="group relative flex flex-col items-center flex-1 max-w-[40px]">
+<div class="bg-white/10 group-hover:bg-eco-accent w-full rounded-t-sm transition-all duration-300" style="height: 60%;"></div>
+<span class="mt-4 text-[10px] font-mono text-white/40 uppercase">Tue</span>
+<div class="absolute -top-8 bg-eco-accent text-eco-dark px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">150</div>
+</div>
+<!-- Day 03 -->
+<div class="group relative flex flex-col items-center flex-1 max-w-[40px]">
+<div class="bg-white/10 group-hover:bg-eco-accent w-full rounded-t-sm transition-all duration-300" style="height: 85%;"></div>
+<span class="mt-4 text-[10px] font-mono text-white/40 uppercase">Wed</span>
+<div class="absolute -top-8 bg-eco-accent text-eco-dark px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">212</div>
+</div>
+<!-- Day 04 -->
+<div class="group relative flex flex-col items-center flex-1 max-w-[40px]">
+<div class="bg-white/10 group-hover:bg-eco-accent w-full rounded-t-sm transition-all duration-300" style="height: 75%;"></div>
+<span class="mt-4 text-[10px] font-mono text-white/40 uppercase">Thu</span>
+<div class="absolute -top-8 bg-eco-accent text-eco-dark px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">188</div>
+</div>
+<!-- Day 05 -->
+<div class="group relative flex flex-col items-center flex-1 max-w-[40px]">
+<div class="bg-white/10 group-hover:bg-eco-accent w-full rounded-t-sm transition-all duration-300" style="height: 95%;"></div>
+<span class="mt-4 text-[10px] font-mono text-white/40 uppercase">Fri</span>
+<div class="absolute -top-8 bg-eco-accent text-eco-dark px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">238</div>
+</div>
+<!-- Day 06 -->
+<div class="group relative flex flex-col items-center flex-1 max-w-[40px]">
+<div class="bg-white/10 group-hover:bg-eco-accent w-full rounded-t-sm transition-all duration-300" style="height: 40%;"></div>
+<span class="mt-4 text-[10px] font-mono text-white/40 uppercase">Sat</span>
+<div class="absolute -top-8 bg-eco-accent text-eco-dark px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">100</div>
+</div>
+<!-- Day 07 -->
+<div class="group relative flex flex-col items-center flex-1 max-w-[40px]">
+<div class="bg-white/10 group-hover:bg-eco-accent w-full rounded-t-sm transition-all duration-300" style="height: 30%;"></div>
+<span class="mt-4 text-[10px] font-mono text-white/40 uppercase">Sun</span>
+<div class="absolute -top-8 bg-eco-accent text-eco-dark px-2 py-1 rounded text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">75</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Volume Chart -->
+</div>
+<!-- BEGIN: Footer Info -->
+<footer class="mt-auto p-8 border-t border-white/5 bg-eco-surface/20 flex justify-between items-center text-[10px] font-mono text-white/30 uppercase tracking-[2px]">
+<div>System Status: Nominal</div>
+<div>AI Model: ECO-GEN-V4.2</div>
+<div>Session: 893-XJ-001</div>
+</footer>
+<!-- END: Footer Info -->
+</main>
+<!-- END: Main Content Container -->
+<script src="../../src/shared.js"></script>
+<script>
+window.auth.requireAuth();
+window.setOfficerInfo();
+document.title = 'Analytics — Eco-Inspect AI';
+window.highlightNav('analytics');
+
+// Chart.js global defaults for dark theme
+Chart.defaults.color = '#D4EAD9';
+Chart.defaults.borderColor = '#1E3325';
+Chart.defaults.font.family = 
+    "'JetBrains Mono', monospace";
+
+// ── Load and render all analytics ────────── 
+async function loadAllAnalytics() {
+    try {
+        // Load all 3 data sources in parallel
+        const [summary, urgency, regions, 
+               categories] = 
+            await Promise.all([
+                window.api('GET', 
+                    '/analytics/summary'),
+                window.api('GET', 
+                    '/analytics/urgency'),
+                window.api('GET', 
+                    '/analytics/by-region'),
+                window.api('GET', 
+                    '/analytics/categories')
+            ]);
+
+        console.log('Analytics loaded:', 
+            {summary, urgency, 
+             regions, categories});
+
+        renderSummaryCards(summary);
+        renderUrgencyBar(urgency);
+        renderUrgencyChart(urgency);
+        renderRegionsChart(regions);
+        renderCategoriesChart(categories);
+        
+    } catch(err) {
+        console.error('Analytics error:', err);
+        window.showToast(
+            'Could not load analytics', 
+            'error');
+    }
+}
+
+// ── Summary stat cards ────────────────────── 
+function renderSummaryCards(stats) {
+    if (!stats) return;
+    
+    const cards = [
+        { 
+            keys: ['totalReports'],
+            sels: ['#total-reports',
+                   '.total-reports',
+                   '.stat-total']
+        },
+        { 
+            keys: ['pendingReview',
+                   'pendingCases'],
+            sels: ['#pending-review',
+                   '.pending-review',
+                   '.stat-pending']
+        },
+        { 
+            keys: ['criticalIncidents',
+                   'criticalAlerts'],
+            sels: ['#critical-incidents',
+                   '.critical-incidents',
+                   '.stat-critical']
+        },
+        { 
+            keys: ['resolvedCases',
+                   'resolvedToday'],
+            sels: ['#resolved-cases',
+                   '.resolved-cases',
+                   '.stat-resolved']
+        }
+    ];
+    
+    cards.forEach(card => {
+        let val = 0;
+        card.keys.forEach(k => {
+            if (stats[k] !== undefined) 
+                val = stats[k];
+        });
+        card.sels.forEach(sel => {
+            const el = 
+                document.querySelector(sel);
+            if (el) el.textContent = val;
+        });
+    });
+}
+
+// ── Urgency segmented bar ─────────────────── 
+function renderUrgencyBar(data) {
+    if (!data) return;
+    
+    const bar = document.querySelector(
+        '.urgency-bar,#urgency-bar,' +
+        '.urgency-breakdown-bar,' +
+        '.segmented-bar');
+    
+    if (!bar) {
+        // Create the bar dynamically if 
+        // the container exists
+        const container = 
+            document.querySelector(
+            '.urgency-section,' +
+            '#urgency-section,' +
+            '.urgency-container');
+        
+        if (container) {
+            const barDiv = 
+                document.createElement('div');
+            barDiv.style.cssText = 
+                'display:flex;height:28px;' +
+                'border-radius:8px;overflow:hidden;' +
+                'margin:12px 0;';
+            barDiv.id = 'urgency-bar';
+            container.prepend(barDiv);
+        }
+    }
+    
+    const barEl = document.querySelector(
+        '#urgency-bar,.urgency-bar,.segmented-bar');
+    if (!barEl) return;
+    
+    const total = data.total || 1;
+    const segments = [
+        { key:'critical', pct:'criticalPct', 
+          color:'#FF4D6D', label:'Critical' },
+        { key:'high',     pct:'highPct',     
+          color:'#FFB830', label:'High' },
+        { key:'medium',   pct:'mediumPct',   
+          color:'#4DA6FF', label:'Medium' },
+        { key:'low',      pct:'lowPct',      
+          color:'#2DFF7F', label:'Low' }
+    ];
+    
+    barEl.innerHTML = segments
+        .filter(s => (data[s.key]||0) > 0)
+        .map(s => {
+            const pct = data[s.pct] || 
+                Math.round((data[s.key]||0) 
+                    * 100 / total);
+            return `<div style="background:
+                ${s.color};width:${pct}%;
+                display:flex;align-items:center;
+                justify-content:center;
+                color:#000;font-size:11px;
+                font-weight:700;
+                min-width:${pct>5?'auto':'0'}">
+                ${pct > 8 ? pct+'%' : ''}
+                </div>`;
+        }).join('');
+    
+    // Update individual percentage labels
+    segments.forEach(s => {
+        const pct = data[s.pct] || 
+            Math.round((data[s.key]||0) 
+                * 100 / total);
+        [
+            `#${s.key}-pct`,
+            `.${s.key}-pct`,
+            `#${s.key}-percent`,
+            `.${s.key}-count`
+        ].forEach(sel => {
+            const el = document
+                .querySelector(sel);
+            if (el) el.textContent = 
+                sel.includes('count') 
+                ? data[s.key] || 0
+                : pct + '%';
+        });
+    });
+}
+
+// ── Urgency doughnut chart ────────────────── 
+function renderUrgencyChart(data) {
+    if (!data) return;
+    
+    const canvas = document.querySelector(
+        '#urgency-chart,#urgencyChart,' +
+        'canvas[data-chart="urgency"],' +
+        '.urgency-chart canvas');
+    
+    let targetCanvas = canvas;
+    
+    // If no canvas found, create one
+    if (!targetCanvas) {
+        const container = 
+            document.querySelector(
+            '.urgency-chart-container,' +
+            '#urgency-chart-container,' +
+            '.chart-container:first-child,' +
+            '.charts-row');
+        
+        if (container) {
+            const wrapper = 
+                document.createElement('div');
+            wrapper.style.cssText = 
+                'max-width:280px;margin:0 auto;';
+            const newCanvas = 
+                document.createElement('canvas');
+            newCanvas.id = 'urgency-chart-new';
+            newCanvas.style.cssText = 
+                'max-height:280px;';
+            wrapper.appendChild(newCanvas);
+            container.appendChild(wrapper);
+            targetCanvas = newCanvas;
+        }
+    }
+    
+    if (!targetCanvas) return;
+    
+    // Destroy existing chart if present
+    const existing = Chart.getChart(
+        targetCanvas);
+    if (existing) existing.destroy();
+    
+    new Chart(targetCanvas, {
+        type: 'doughnut',
+        data: {
+            labels: ['Critical','High',
+                     'Medium','Low'],
+            datasets: [{
+                data: [
+                    data.critical || 0,
+                    data.high     || 0,
+                    data.medium   || 0,
+                    data.low      || 0
+                ],
+                backgroundColor: [
+                    '#FF4D6D33',
+                    '#FFB83033',
+                    '#4DA6FF33',
+                    '#2DFF7F33'
+                ],
+                borderColor: [
+                    '#FF4D6D',
+                    '#FFB830',
+                    '#4DA6FF',
+                    '#2DFF7F'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { 
+                        padding: 16,
+                        font: { size: 12 }
+                    }
+                }
+            },
+            cutout: '65%'
+        }
+    });
+}
+
+// ── Regions bar chart ─────────────────────── 
+function renderRegionsChart(regions) {
+    if (!regions || regions.length === 0) 
+        return;
+    
+    const canvas = document.querySelector(
+        '#regions-chart,#regionChart,' +
+        'canvas[data-chart="regions"],' +
+        '.regions-chart canvas');
+    
+    let targetCanvas = canvas;
+    
+    if (!targetCanvas) {
+        const container = 
+            document.querySelector(
+            '.regions-chart-container,' +
+            '#regions-chart-container,' +
+            '.chart-container:nth-child(2)');
+        
+        if (container) {
+            const newCanvas = 
+                document.createElement('canvas');
+            newCanvas.id = 'regions-chart-new';
+            newCanvas.style.maxHeight = '300px';
+            container.appendChild(newCanvas);
+            targetCanvas = newCanvas;
+        }
+    }
+    
+    if (!targetCanvas) return;
+    
+    const existing = 
+        Chart.getChart(targetCanvas);
+    if (existing) existing.destroy();
+    
+    new Chart(targetCanvas, {
+        type: 'bar',
+        data: {
+            labels: regions.map(
+                r => r.regionName),
+            datasets: [{
+                label: 'Total Reports',
+                data: regions.map(
+                    r => r.total),
+                backgroundColor: '#2DFF7F33',
+                borderColor: '#2DFF7F',
+                borderWidth: 2,
+                borderRadius: 6
+            }, {
+                label: 'Resolved',
+                data: regions.map(
+                    r => r.resolved),
+                backgroundColor: '#4DA6FF33',
+                borderColor: '#4DA6FF',
+                borderWidth: 2,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: { padding: 16 }
+                }
+            },
+            scales: {
+                x: { 
+                    grid: { 
+                        color: '#1E3325' 
+                    }
+                },
+                y: { 
+                    grid: { 
+                        color: '#1E3325' 
+                    },
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+}
+
+// ── Categories horizontal bar chart ──────── 
+function renderCategoriesChart(categories) {
+    if (!categories || 
+            categories.length === 0) return;
+    
+    const canvas = document.querySelector(
+        '#categories-chart,#categoryChart,' +
+        'canvas[data-chart="categories"],' +
+        '.categories-chart canvas');
+    
+    let targetCanvas = canvas;
+    
+    if (!targetCanvas) {
+        const container = 
+            document.querySelector(
+            '.categories-chart-container,' +
+            '#categories-chart-container,' +
+            '.chart-container:nth-child(3)');
+        
+        if (container) {
+            const newCanvas = 
+                document.createElement('canvas');
+            newCanvas.id = 
+                'categories-chart-new';
+            container.appendChild(newCanvas);
+            targetCanvas = newCanvas;
+        }
+    }
+    
+    if (!targetCanvas) return;
+    
+    const existing = 
+        Chart.getChart(targetCanvas);
+    if (existing) existing.destroy();
+    
+    const colors = [
+        '#2DFF7F','#00E5CC','#4DA6FF',
+        '#FFB830','#FF4D6D','#C084FC',
+        '#F97316','#06B6D4','#84CC16',
+        '#EC4899'
+    ];
+    
+    new Chart(targetCanvas, {
+        type: 'bar',
+        data: {
+            labels: categories.map(
+                c => c.categoryName
+                    .replace(' ','\n')),
+            datasets: [{
+                label: 'Reports',
+                data: categories.map(
+                    c => c.count),
+                backgroundColor: categories
+                    .map((_,i) => 
+                        colors[i % colors.length] 
+                        + '33'),
+                borderColor: categories
+                    .map((_,i) => 
+                        colors[i % colors.length]),
+                borderWidth: 2,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: { 
+                    grid: { 
+                        color: '#1E3325' 
+                    },
+                    beginAtZero: true,
+                    ticks: { stepSize: 1 }
+                },
+                y: { 
+                    grid: { 
+                        color: '#1E3325' 
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Auto-refresh every 60 seconds
+loadAllAnalytics();
+setInterval(loadAllAnalytics, 60000);
+</script>
+</body></html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | User Profile Detail</title>
+<!-- Google Fonts: Syne and JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            'eco-black': '#0A0F0D',
+            'eco-dark-gray': '#141B18',
+            'eco-border': '#1F2925',
+            'eco-accent': '#00F59B',
+            'eco-text-muted': '#8A9A94',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-scrollbar">
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2925;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00F59B;
+    }
+  </style>
+</head>
+<body class="bg-eco-black text-white font-mono antialiased">
+<!-- BEGIN: MainLayout -->
+<div class="flex min-h-screen">
+<!-- BEGIN: Sidebar -->
+<aside class="w-64 border-r border-eco-border bg-eco-black flex flex-col fixed h-full z-10" data-purpose="navigation">
+<div class="p-6 border-b border-eco-border">
+<h1 class="font-syne text-xl font-bold tracking-tight text-eco-accent">ECO-INSPECT <span class="text-white">AI</span></h1>
+</div>
+<nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-eco-text-muted hover:bg-eco-dark-gray hover:text-white transition-all" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Dashboard
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-eco-dark-gray text-eco-accent border border-eco-border/50" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Users
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-eco-text-muted hover:bg-eco-dark-gray hover:text-white transition-all" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Analytics
+        </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-eco-text-muted hover:bg-eco-dark-gray hover:text-white transition-all" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Settings
+        </a>
+</nav>
+<div class="p-6 border-t border-eco-border">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-eco-accent text-eco-black flex items-center justify-center font-bold">A</div>
+<div class="text-xs">
+<p class="font-bold text-white">Admin Portal</p>
+<p class="text-eco-text-muted">v2.4.1</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: MainContent -->
+<main class="ml-64 flex-1 p-8 bg-eco-black min-h-screen">
+<!-- BEGIN: HeaderNav -->
+<header class="mb-8 flex justify-between items-center" data-purpose="page-header">
+<div>
+<nav class="flex text-xs text-eco-text-muted mb-2 uppercase tracking-widest">
+<a class="hover:text-eco-accent" href="#">Users</a>
+<span class="mx-2">/</span>
+<span class="text-white">Profile Detail</span>
+</nav>
+<h2 class="font-syne text-3xl font-extrabold text-white">User Intelligence</h2>
+</div>
+<div class="flex gap-4">
+<button class="px-5 py-2 border border-eco-border rounded font-bold text-xs hover:bg-eco-dark-gray transition-colors">EXPORT DATA</button>
+<button class="px-5 py-2 bg-eco-accent text-eco-black rounded font-bold text-xs hover:brightness-110 transition-all">EDIT PROFILE</button>
+</div>
+</header>
+<!-- END: HeaderNav -->
+<!-- BEGIN: ProfileGrid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- BEGIN: LeftPane -->
+<section class="col-span-12 lg:col-span-4 space-y-8" data-purpose="user-summary">
+<div class="bg-eco-dark-gray border border-eco-border rounded-2xl p-8 flex flex-col items-center text-center">
+<!-- Large Avatar -->
+<div class="relative mb-6">
+<div class="w-40 h-40 rounded-full border-4 border-eco-accent/20 p-1">
+<img alt="User Avatar" class="w-full h-full rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC8vdCwJUwVvVWBG_8mx89Vsw57hImYJlvAHjfm-hrlbfhejZ_NtG_PmqwTY6YsG5hJibdpts8pZQaGe5zxRJRXh0bYA3PS1cK0JV4TpmJGPDQ8ksOlq9sVTe7F3QV0duK15-9yGTEZ7fr9JNK2SNc5aUOHroMCfmoobDB9VachmxByqdb-FksEIFyDFN9OMvaYiSF7oaeNzBjc6BIKo2NLsysBT2axxvyR6OQAqJ_1qG29b1rI6ZzOn93PfIZBWXIbvXfnfJR_adk"/>
+</div>
+<span class="absolute bottom-2 right-2 w-6 h-6 bg-eco-accent rounded-full border-4 border-eco-dark-gray"></span>
+</div>
+<h3 class="font-syne text-2xl font-bold mb-1">Julian Draxler</h3>
+<p class="text-eco-text-muted text-sm mb-4">julian.draxler@eco-inspect.ai</p>
+<!-- Role Badge -->
+<span class="px-4 py-1 bg-eco-accent/10 border border-eco-accent/30 text-eco-accent rounded-full text-xs font-bold tracking-widest uppercase mb-8">
+              Lead Researcher
+            </span>
+<!-- Mini Stats -->
+<div class="grid grid-cols-2 gap-4 w-full border-t border-eco-border pt-8">
+<div>
+<p class="text-2xl font-bold font-syne">142</p>
+<p class="text-[10px] text-eco-text-muted uppercase tracking-tighter">Reports Filed</p>
+</div>
+<div>
+<p class="text-2xl font-bold font-syne">98%</p>
+<p class="text-[10px] text-eco-text-muted uppercase tracking-tighter">Accuracy Rate</p>
+</div>
+</div>
+</div>
+<!-- Danger Zone -->
+<div class="bg-red-500/5 border border-red-500/20 rounded-2xl p-6" data-purpose="danger-zone">
+<h4 class="text-red-500 text-xs font-bold uppercase mb-4 tracking-widest">Administrative Actions</h4>
+<button class="w-full py-3 bg-red-500/10 border border-red-500 text-red-500 rounded font-bold text-xs hover:bg-red-500 hover:text-white transition-all uppercase tracking-widest">
+              Deactivate Account
+            </button>
+<p class="text-[10px] text-red-500/60 mt-3 text-center">User will lose all access to AI processing nodes immediately.</p>
+</div>
+</section>
+<!-- END: LeftPane -->
+<!-- BEGIN: RightPane -->
+<section class="col-span-12 lg:col-span-8 space-y-8" data-purpose="user-details">
+<!-- Detailed Info Rows -->
+<div class="bg-eco-dark-gray border border-eco-border rounded-2xl overflow-hidden">
+<div class="p-6 border-b border-eco-border bg-eco-black/20">
+<h4 class="font-syne text-lg font-bold">Identity &amp; Security</h4>
+</div>
+<div class="divide-y divide-eco-border">
+<div class="p-6 grid grid-cols-3 items-center">
+<span class="text-xs text-eco-text-muted uppercase">Employee ID</span>
+<span class="col-span-2 text-sm font-mono text-eco-accent">#EI-9920-X1</span>
+</div>
+<div class="p-6 grid grid-cols-3 items-center">
+<span class="text-xs text-eco-text-muted uppercase">Phone Number</span>
+<span class="col-span-2 text-sm">+1 (555) 234-9012</span>
+</div>
+<div class="p-6 grid grid-cols-3 items-center">
+<span class="text-xs text-eco-text-muted uppercase">Primary Location</span>
+<span class="col-span-2 text-sm">San Francisco Hub (Central)</span>
+</div>
+<div class="p-6 grid grid-cols-3 items-center">
+<span class="text-xs text-eco-text-muted uppercase">Last Authentication</span>
+<span class="col-span-2 text-sm">2023-10-24 | 14:22:10 UTC</span>
+</div>
+<div class="p-6 grid grid-cols-3 items-center">
+<span class="text-xs text-eco-text-muted uppercase">MFA Status</span>
+<span class="col-span-2 text-xs flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span> 
+                  Active via Hardware Key
+                </span>
+</div>
+</div>
+</div>
+<!-- Activity Timeline -->
+<div class="bg-eco-dark-gray border border-eco-border rounded-2xl p-8">
+<h4 class="font-syne text-lg font-bold mb-8">Recent System Activity</h4>
+<div class="space-y-8 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-eco-border">
+<!-- Timeline Item 1 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-eco-accent/20 border border-eco-accent flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-eco-accent"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-eco-text-muted uppercase mb-1">2 hours ago</span>
+<p class="text-sm">Initiated batch scan <code class="text-eco-accent bg-eco-black px-1 rounded">#SCAN-4402</code> in Sector 7G</p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-eco-border border border-eco-text-muted/30 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-eco-text-muted"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-eco-text-muted uppercase mb-1">5 hours ago</span>
+<p class="text-sm">Modified threshold parameters for <span class="text-white underline decoration-eco-accent/30 underline-offset-4">Amazon Basin Satellite Feed</span></p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-eco-border border border-eco-text-muted/30 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-eco-text-muted"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] text-eco-text-muted uppercase mb-1">Yesterday</span>
+<p class="text-sm">Completed quarterly compliance certification for <span class="italic">Level 3 Data Handling</span></p>
+</div>
+</div>
+</div>
+<button class="mt-8 text-xs text-eco-accent hover:underline flex items-center gap-2 uppercase font-bold tracking-widest">
+              View Full Audit Log
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+</section>
+<!-- END: RightPane -->
+</div>
+<!-- END: ProfileGrid -->
+</main>
+<!-- END: MainContent -->
+</div>
+<!-- END: MainLayout -->
+</body></html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Edit User Role</title>
+<!-- Google Fonts: Syne for headings, Inter for body -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Syne:wght@700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0D',
+            'eco-surface': '#111A14',
+            'eco-border': '#1E2922',
+            'eco-accent': '#10B981', // Emerald green for eco theme
+            'eco-warning': '#F59E0B', // Amber
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+<style data-purpose="custom-styling">
+    body {
+      background-color: #0A0F0D;
+      font-family: 'Inter', sans-serif;
+      color: #E2E8F0;
+    }
+    .heading-syne {
+      font-family: 'Syne', sans-serif;
+    }
+    /* Custom scrollbar for dark theme */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E2922;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2D3C33;
+    }
+    /* Role selection logic styles */
+    .role-card input:checked + .role-content {
+      border-color: #10B981;
+      background-color: rgba(16, 185, 129, 0.05);
+    }
+    .role-card input:checked + .role-content .check-icon {
+      display: block;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+<!-- BEGIN: MainContainer -->
+<main class="w-full max-w-2xl bg-eco-surface border border-eco-border rounded-2xl shadow-2xl overflow-hidden" data-purpose="edit-role-card">
+<!-- BEGIN: HeaderSection -->
+<header class="p-8 border-b border-eco-border bg-eco-surface/50" data-purpose="user-summary">
+<div class="flex items-center gap-4">
+<!-- User Avatar Placeholder -->
+<div class="w-16 h-16 rounded-full bg-eco-accent/20 flex items-center justify-center text-eco-accent text-2xl font-bold border border-eco-accent/30">
+          JD
+        </div>
+<div>
+<h1 class="heading-syne text-2xl font-bold text-white leading-tight">Edit User Role</h1>
+<p class="text-slate-400 text-sm">Managing permissions for <span class="text-eco-accent font-medium">John Doe (john.doe@eco-inspect.ai)</span></p>
+</div>
+</div>
+</header>
+<!-- END: HeaderSection -->
+<form action="#" method="POST">
+<!-- BEGIN: RoleSelection -->
+<section class="p-8 space-y-6" data-purpose="role-selection-area">
+<h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Select New Role</h2>
+<div class="grid gap-4">
+<!-- Role: Citizen -->
+<label class="role-card relative cursor-pointer block">
+<input class="sr-only peer" name="user_role" type="radio" value="citizen"/>
+<div class="role-content p-5 rounded-xl border border-eco-border bg-eco-dark/50 hover:border-slate-600 transition-all duration-200">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-white text-lg">Citizen</h3>
+<p class="text-slate-400 text-sm mt-1">Submit reports, view public data, and track personal contributions.</p>
+</div>
+<div class="check-icon hidden text-eco-accent">
+<svg class="h-6 w-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+</svg>
+</div>
+</div>
+</div>
+</label>
+<!-- Role: Officer (Selected Default) -->
+<label class="role-card relative cursor-pointer block">
+<input checked="" class="sr-only peer" name="user_role" type="radio" value="officer"/>
+<div class="role-content p-5 rounded-xl border border-eco-border bg-eco-dark/50 hover:border-slate-600 transition-all duration-200">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-white text-lg">Officer</h3>
+<p class="text-slate-400 text-sm mt-1">Verify reports, manage field data, and generate localized environmental alerts.</p>
+</div>
+<div class="check-icon hidden text-eco-accent">
+<svg class="h-6 w-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+</svg>
+</div>
+</div>
+</div>
+</label>
+<!-- Role: Admin -->
+<label class="role-card relative cursor-pointer block">
+<input class="sr-only peer" name="user_role" type="radio" value="admin"/>
+<div class="role-content p-5 rounded-xl border border-eco-border bg-eco-dark/50 hover:border-slate-600 transition-all duration-200">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-white text-lg text-eco-accent">Administrator</h3>
+<p class="text-slate-400 text-sm mt-1">Full system access, user management, and AI model configuration settings.</p>
+</div>
+<div class="check-icon hidden text-eco-accent">
+<svg class="h-6 w-6" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+</svg>
+</div>
+</div>
+</div>
+</label>
+</div>
+</section>
+<!-- END: RoleSelection -->
+<!-- BEGIN: WarningBanner -->
+<section class="px-8 pb-4" data-purpose="safety-check">
+<div class="bg-eco-warning/10 border border-eco-warning/30 rounded-lg p-4 flex gap-3">
+<svg class="h-5 w-5 text-eco-warning shrink-0" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+</svg>
+<div class="text-sm text-eco-warning/90">
+<p class="font-semibold">Changing roles affects user permissions immediately.</p>
+<p>Ensure the user has been notified of their new access level before saving changes.</p>
+</div>
+</div>
+</section>
+<!-- END: WarningBanner -->
+<!-- BEGIN: ActionButtons -->
+<footer class="p-8 bg-eco-dark/30 border-t border-eco-border flex justify-end items-center gap-4" data-purpose="form-actions">
+<button class="px-6 py-2.5 rounded-lg text-slate-400 font-medium hover:text-white hover:bg-white/5 transition-all" type="button">
+          Cancel
+        </button>
+<button class="px-8 py-2.5 rounded-lg bg-eco-accent text-eco-dark font-bold hover:bg-emerald-400 shadow-lg shadow-eco-accent/20 transition-all" type="submit">
+          Save Changes
+        </button>
+</footer>
+<!-- END: ActionButtons -->
+</form>
+</main>
+<!-- END: MainContainer -->
+</body></html>

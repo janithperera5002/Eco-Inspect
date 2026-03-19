@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Case ECO-2026-00142</title>
+<!-- Fonts: Syne for headings, JetBrains Mono for data -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0D',
+            'eco-surface': '#111A14',
+            'eco-accent': '#2DFF7F',
+            'eco-border': '#1B2920',
+            'eco-muted': '#6B7F74'
+          },
+          fontFamily: {
+            sans: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="global-styles">
+    body {
+      background-color: #0A0F0D;
+      color: #E2E8F0;
+      scrollbar-width: thin;
+      scrollbar-color: #2DFF7F #111A14;
+    }
+    /* Custom scrollbar for webkit */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #111A14; }
+    ::-webkit-scrollbar-thumb { background: #2DFF7F; border-radius: 3px; }
+    
+    .glass-panel {
+      background: rgba(17, 26, 20, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid #1B2920;
+    }
+  </style>
+</head>
+<body class="h-full font-sans overflow-hidden">
+<!-- BEGIN: Main Dashboard Layout -->
+<div class="flex flex-col h-screen">
+<!-- BEGIN: Top Navigation -->
+<header class="h-16 border-b border-eco-border bg-eco-surface flex items-center justify-between px-6 shrink-0">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 bg-eco-accent rounded flex items-center justify-center">
+<svg class="w-5 h-5 text-eco-dark" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04M12 21.48V22" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight">Eco-Inspect AI <span class="text-eco-muted font-normal mx-2">/</span> <span class="text-eco-accent font-mono text-sm uppercase">ECO-2026-00142</span></h1>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-[10px] text-eco-muted font-mono uppercase tracking-widest leading-none">Status</span>
+<span class="text-eco-accent text-sm font-bold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-eco-accent animate-pulse"></span>
+            ACTIVE INVESTIGATION
+          </span>
+</div>
+<div class="w-10 h-10 rounded-full border border-eco-border bg-eco-dark flex items-center justify-center">
+<span class="text-xs font-mono">JD</span>
+</div>
+</div>
+</header>
+<!-- END: Top Navigation -->
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- BEGIN: Left Column - Case Info -->
+<aside class="w-[450px] border-r border-eco-border bg-eco-dark/50 overflow-y-auto p-6 space-y-6">
+<!-- Assignment Card -->
+<section class="glass-panel rounded-xl p-5" data-purpose="assignment-card">
+<h2 class="text-xs font-mono uppercase tracking-widest text-eco-muted mb-4">Case Assignment</h2>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-sm text-eco-muted">Lead Inspector</span>
+<span class="font-mono text-sm">Agent Sarah Chen</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-eco-muted">Priority Level</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-red-900/30 text-red-400 border border-red-500/50 font-bold">CRITICAL</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-eco-muted">Location ID</span>
+<span class="font-mono text-sm text-eco-accent underline cursor-pointer">PAC-NW-GRID-04</span>
+</div>
+</div>
+</section>
+<!-- Linked Report Card -->
+<section class="glass-panel rounded-xl p-5" data-purpose="linked-report-card">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-xs font-mono uppercase tracking-widest text-eco-muted">Linked Report</h2>
+<svg class="w-4 h-4 text-eco-accent" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+</div>
+<div class="bg-eco-dark rounded-lg p-3 border border-eco-border">
+<p class="font-mono text-xs text-eco-accent mb-1">REP-AI-99218.pdf</p>
+<p class="text-[11px] text-eco-muted italic leading-relaxed">
+              Automated spectral analysis detected anomalous carbon fluctuations at Site B. 94% confidence of regulatory violation.
+            </p>
+</div>
+</section>
+<!-- AI Summary Card -->
+<section class="glass-panel rounded-xl p-5" data-purpose="ai-summary-card">
+<h2 class="text-xs font-mono uppercase tracking-widest text-eco-muted mb-4">AI Insight Summary</h2>
+<div class="space-y-3">
+<div class="p-3 border-l-2 border-eco-accent bg-eco-accent/5 rounded-r-lg">
+<p class="text-sm leading-relaxed">
+                Sensor array 04-A shows deliberate shielding patterns. Cross-referencing with historical maintenance logs suggests non-accidental interference. Recommend immediate on-site verification.
+              </p>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-eco-border rounded-md text-[10px] font-mono">#AnomalousPatterns</span>
+<span class="px-2 py-1 bg-eco-border rounded-md text-[10px] font-mono">#HardwareTamper</span>
+</div>
+</div>
+</section>
+</aside>
+<!-- END: Left Column -->
+<!-- BEGIN: Right Column - Activity Timeline -->
+<section class="flex-1 bg-eco-dark flex flex-col">
+<div class="p-6 border-b border-eco-border flex items-center justify-between shrink-0">
+<h2 class="text-lg font-bold tracking-tight uppercase">Activity Timeline</h2>
+<div class="flex gap-2">
+<button class="px-3 py-1 text-[10px] font-mono border border-eco-border hover:bg-eco-surface rounded transition-colors uppercase">Filter</button>
+<button class="px-3 py-1 text-[10px] font-mono border border-eco-border hover:bg-eco-surface rounded transition-colors uppercase">Export Logs</button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-8 space-y-8 relative" data-purpose="timeline-container">
+<!-- Timeline Vertical Line -->
+<div class="absolute left-10 top-0 bottom-0 w-px bg-eco-border"></div>
+<!-- Timeline Item 1 -->
+<article class="relative pl-10">
+<div class="absolute left-[3.5px] top-1.5 w-2 h-2 rounded-full bg-eco-accent shadow-[0_0_8px_#2DFF7F]"></div>
+<div class="flex flex-col gap-1">
+<time class="font-mono text-[10px] text-eco-muted">2026-03-14 14:22:05</time>
+<div class="glass-panel p-4 rounded-lg">
+<span class="font-bold text-sm block mb-1">Investigation Initiated</span>
+<p class="text-sm text-eco-muted">Case opened by AI automated trigger based on REP-AI-99218.</p>
+</div>
+</div>
+</article>
+<!-- Timeline Item 2 -->
+<article class="relative pl-10">
+<div class="absolute left-[3.5px] top-1.5 w-2 h-2 rounded-full bg-eco-accent"></div>
+<div class="flex flex-col gap-1">
+<time class="font-mono text-[10px] text-eco-muted">2026-03-14 15:45:12</time>
+<div class="glass-panel p-4 rounded-lg">
+<span class="font-bold text-sm block mb-1">Asset Assigned</span>
+<p class="text-sm text-eco-muted">Lead Inspector <span class="text-eco-accent">S. Chen</span> assigned to field verification task.</p>
+</div>
+</div>
+</article>
+<!-- Timeline Item 3 -->
+<article class="relative pl-10">
+<div class="absolute left-[3.5px] top-1.5 w-2 h-2 rounded-full bg-eco-muted"></div>
+<div class="flex flex-col gap-1">
+<time class="font-mono text-[10px] text-eco-muted">2026-03-15 09:10:00</time>
+<div class="glass-panel p-4 rounded-lg border-dashed opacity-75">
+<span class="font-bold text-sm block mb-1">Pending Field Sync...</span>
+<p class="text-sm text-eco-muted italic">Waiting for telemetry data from PAC-NW-GRID-04 mobile uplink.</p>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- END: Right Column -->
+</main>
+<!-- END: Main Content Area -->
+<!-- BEGIN: Bottom Action Bar -->
+<footer class="h-20 border-t border-eco-border bg-eco-surface px-8 flex items-center justify-between shrink-0">
+<div class="flex gap-4">
+<button class="bg-eco-accent text-eco-dark px-6 py-2.5 rounded font-bold text-sm hover:brightness-110 transition-all flex items-center gap-2">
+<svg class="w-4 h-4" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" fill-rule="evenodd"></path></svg>
+          ADD UPDATE
+        </button>
+<button class="bg-eco-dark border border-eco-border px-6 py-2.5 rounded font-bold text-sm hover:bg-eco-border transition-all">
+          ATTACH EVIDENCE
+        </button>
+</div>
+<div class="flex gap-3">
+<button class="border border-red-900/50 text-red-400 bg-red-950/20 px-6 py-2.5 rounded font-bold text-sm hover:bg-red-900/40 transition-all">
+          ESCALATE
+        </button>
+<button class="border border-eco-accent text-eco-accent px-8 py-2.5 rounded font-bold text-sm hover:bg-eco-accent hover:text-eco-dark transition-all">
+          CLOSE CASE
+        </button>
+</div>
+</footer>
+<!-- END: Bottom Action Bar -->
+</div>
+<!-- END: Main Dashboard Layout -->
+<script src="../../src/shared.js"></script>
+<script>
+window.auth.requireAuth();
+window.setOfficerInfo();
+document.title = 'Case Detail — Eco-Inspect AI';
+window.highlightNav('cases');
+
+const caseId = new URLSearchParams(
+    window.location.search).get('id');
+if (!caseId) {
+    window.location.href = 'list.html';
+}
+
+const user = window.auth.getUser();
+
+// ── Helpers ──────────────────────────────────
+function set(sels, val) {
+    (Array.isArray(sels)?sels:[sels])
+        .forEach(sel => {
+            const el = 
+                document.querySelector(sel);
+            if (el) el.textContent = 
+                val || '—';
+        });
+}
+function setHTML(sels, val) {
+    (Array.isArray(sels)?sels:[sels])
+        .forEach(sel => {
+            const el = 
+                document.querySelector(sel);
+            if (el) el.innerHTML = val || '';
+        });
+}
+
+// ── Priority badge (same colors as urgency) ─
+function priorityBadge(p) {
+    return window.urgencyBadge(p);
+}
+
+// ── Load case data ────────────────────────── 
+async function loadCase() {
+    try {
+        const c = await window.api(
+            'GET', '/cases/' + caseId);
+        
+        console.log('Case data:', c);
+        
+        set(['#case-reference',
+             '.case-reference',
+             '.case-ref'],
+            c.caseReference || '#' + c.caseId);
+        
+        set(['#case-id','.case-id'], 
+            '#' + (c.caseId || caseId));
+        
+        setHTML(['#status-badge',
+                 '.status-badge',
+                 '.case-status'],
+            window.statusBadge(c.status));
+        
+        setHTML(['#priority-badge',
+                 '.priority-badge',
+                 '.case-priority'],
+            priorityBadge(c.priority));
+        
+        set(['#assigned-officer',
+             '.assigned-officer',
+             '.officer-name-case'],
+            c.assignedTo?.fullName || 
+            'Unassigned');
+        
+        set(['#assigned-by','.assigned-by'],
+            c.assignedBy?.fullName || '—');
+        
+        const due = c.dueDate 
+            ? new Date(c.dueDate) : null;
+        const isOverdue = due && 
+            due < new Date() && 
+            c.status !== 'closed';
+        
+        const dueEl = document.querySelector(
+            '#due-date,.due-date,.case-due');
+        if (dueEl) {
+            dueEl.textContent = due 
+                ? due.toLocaleDateString('en-GB',
+                    {day:'numeric',month:'short',
+                    year:'numeric'}) 
+                : '—';
+            if (isOverdue) {
+                dueEl.style.color = '#FF4D6D';
+                dueEl.textContent += ' ⚠️ OVERDUE';
+            }
+        }
+        
+        set(['#created-date','.created-date'],
+            window.formatDate(c.createdAt));
+        
+        // Linked report message
+        if (c.report) {
+            set(['#report-message',
+                 '.report-message',
+                 '.linked-report-msg'],
+                c.report.rawMessage);
+            set(['#report-location',
+                 '.report-location'],
+                c.report.addressText || '—');
+            
+            const reportLink = 
+                document.querySelector(
+                '#view-report,#report-link,' +
+                '.view-report-btn,.report-link');
+            if (reportLink) {
+                reportLink.href = 
+                    '../reports/detail.html' +
+                    '?id=' + c.report.reportId;
+            }
+        }
+        
+        // Resolution notes
+        if (c.resolutionNotes) {
+            set(['#resolution-notes',
+                 '.resolution-notes'],
+                c.resolutionNotes);
+        }
+        
+        // Show/hide resolve button based 
+        // on current status
+        const resolveBtn = 
+            document.querySelector(
+            '#resolve-btn,.resolve-btn,' +
+            '[data-action="resolve"]');
+        if (resolveBtn && 
+                c.status === 'closed') {
+            resolveBtn.style.display = 'none';
+        }
+        
+    } catch(err) {
+        console.error('Case load error:', err);
+        window.showToast(
+            'Could not load case details', 
+            'error');
+    }
+}
+
+// ── Load timeline ─────────────────────────── 
+async function loadTimeline() {
+    try {
+        const updates = await window.api(
+            'GET', '/cases/' + caseId + 
+            '/updates');
+        
+        const container = 
+            document.querySelector(
+            '#timeline,.timeline,' +
+            '.activity-timeline,' +
+            '.case-updates,' +
+            '.timeline-container');
+        
+        if (!container) {
+            console.warn(
+                'No timeline container found');
+            return;
+        }
+        
+        if (!updates || updates.length === 0) {
+            container.innerHTML = 
+                '<div style="padding:20px;' +
+                'color:#5A7A62;text-align:center">' +
+                'No updates yet.</div>';
+            return;
+        }
+        
+        const typeColors = {
+            status_change:  '#4DA6FF',
+            field_visit:    '#2DFF7F',
+            evidence_added: '#FFB830',
+            escalation:     '#FF4D6D',
+            resolution:     '#2DFF7F',
+            comment:        '#5A7A62'
+        };
+        
+        const typeLabels = {
+            status_change:  'Status Change',
+            field_visit:    'Field Visit',
+            evidence_added: 'Evidence Added',
+            escalation:     'Escalation',
+            resolution:     'Resolution',
+            comment:        'Comment'
+        };
+        
+        container.innerHTML = updates.map(
+            (u, i) => {
+            const color = typeColors[
+                u.updateType] || '#5A7A62';
+            const label = typeLabels[
+                u.updateType] || u.updateType;
+            const isLast = 
+                i === updates.length - 1;
+            
+            return `
+            <div style="display:flex;
+                gap:12px;margin-bottom:
+                ${isLast?'0':'16px'}">
+                <div style="display:flex;
+                    flex-direction:column;
+                    align-items:center;
+                    flex-shrink:0">
+                    <div style="width:12px;
+                        height:12px;
+                        border-radius:50%;
+                        background:${color};
+                        margin-top:4px;
+                        flex-shrink:0"></div>
+                    ${!isLast ? 
+                    `<div style="width:2px;
+                        flex:1;background:#1E3325;
+                        margin-top:4px;
+                        min-height:20px"></div>` 
+                    : ''}
+                </div>
+                <div style="flex:1;
+                    background:#111A14;
+                    border:1px solid #1E3325;
+                    border-radius:10px;
+                    padding:12px 14px;
+                    margin-bottom:4px">
+                    <div style="display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        margin-bottom:6px">
+                        <span style="color:${color};
+                            font-size:11px;
+                            font-weight:600;
+                            text-transform:uppercase;
+                            letter-spacing:.05em">
+                            ${label}</span>
+                        <span style="color:#5A7A62;
+                            font-size:11px;
+                            font-family:monospace">
+                            ${window.timeAgo(
+                                u.createdAt)}</span>
+                    </div>
+                    <div style="color:#D4EAD9;
+                        font-size:13px;
+                        line-height:1.6">
+                        ${u.note}</div>
+                    ${u.officerName || 
+                      u.officer?.fullName 
+                    ? `<div style="color:#5A7A62;
+                        font-size:11px;
+                        margin-top:6px">
+                        by ${u.officerName || 
+                        u.officer?.fullName}
+                        </div>` : ''}
+                </div>
+            </div>`;
+        }).join('');
+        
+    } catch(err) {
+        console.error('Timeline error:', err);
+    }
+}
+
+// ── Add update form ───────────────────────── 
+const addUpdateForm = 
+    document.querySelector(
+    '#add-update-form,form.update-form,' +
+    '.add-update-form,form[data-type="update"]');
+
+if (addUpdateForm) {
+    addUpdateForm.addEventListener(
+        'submit', async (e) => {
+        e.preventDefault();
+        
+        const noteEl = 
+            document.querySelector(
+            '#update-note,textarea[name=note],' +
+            'textarea.note-input,.note-field');
+        const typeEl = 
+            document.querySelector(
+            '#update-type,select[name=type],' +
+            'select.type-select,.update-type');
+        
+        const note = noteEl?.value?.trim();
+        if (!note) {
+            window.showToast(
+                'Please enter a note', 'error');
+            return;
+        }
+        
+        const btn = addUpdateForm
+            .querySelector('button[type=submit]');
+        const orig = btn?.textContent;
+        if (btn) {
+            btn.textContent = 'Saving...';
+            btn.disabled = true;
+        }
+        
+        try {
+            await window.api(
+                'POST',
+                '/cases/' + caseId + '/updates',
+                { 
+                    note: note,
+                    updateType: typeEl?.value 
+                        || 'comment'
+                }
+            );
+            
+            if (noteEl) noteEl.value = '';
+            window.showToast(
+                'Update added!', 'success');
+            await loadTimeline();
+            
+        } catch(err) {
+            window.showToast(
+                'Failed to add update: ' + 
+                err.message, 'error');
+        } finally {
+            if (btn) {
+                btn.textContent = orig;
+                btn.disabled = false;
+            }
+        }
+    });
+}
+
+// ── Resolve button ────────────────────────── 
+const resolveBtn = document.querySelector(
+    '#resolve-btn,.resolve-btn,' +
+    '[data-action="resolve"]');
+
+if (resolveBtn) {
+    resolveBtn.addEventListener('click', 
+        async () => {
+        const notes = prompt(
+            'Enter resolution notes:\n' +
+            '(Describe what action was taken)');
+        if (!notes || !notes.trim()) return;
+        
+        resolveBtn.textContent = 'Resolving...';
+        resolveBtn.disabled = true;
+        
+        try {
+            await window.api(
+                'PUT',
+                '/cases/' + caseId + '/resolve',
+                { resolutionNotes: notes }
+            );
+            window.showToast(
+                'Case resolved successfully!', 
+                'success');
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        } catch(err) {
+            window.showToast(
+                'Failed to resolve: ' + 
+                err.message, 'error');
+            resolveBtn.textContent = 'Resolve';
+            resolveBtn.disabled = false;
+        }
+    });
+}
+
+// ── Escalate button ───────────────────────── 
+const escalateBtn = document.querySelector(
+    '#escalate-btn,.escalate-btn,' +
+    '[data-action="escalate"]');
+
+if (escalateBtn) {
+    escalateBtn.addEventListener('click', 
+        async () => {
+        if (!confirm(
+            'Escalate this case to senior ' +
+            'authority?')) return;
+        
+        try {
+            await window.api(
+                'PUT',
+                '/cases/' + caseId + '/status',
+                { status: 'escalated' }
+            );
+            window.showToast(
+                'Case escalated!', 'success');
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+        } catch(err) {
+            window.showToast(
+                'Failed to escalate', 'error');
+        }
+    });
+}
+
+// ── Back button ───────────────────────────── 
+const backBtn = document.querySelector(
+    '.back-btn,#back-btn,.btn-back,' +
+    '[data-action="back"]');
+if (backBtn) {
+    backBtn.onclick = () => {
+        window.location.href = 'list.html';
+    };
+}
+
+// ── Also make cases list rows clickable ───── 
+// Go to cases/list.html and ensure each row
+// links to detail.html?id=CASEID
+
+// ── Load everything ───────────────────────── 
+loadCase();
+loadTimeline();
+</script>
+</body></html>

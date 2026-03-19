@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Officer | Eco-Inspect AI</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Syne -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              background: '#0A0F0D',
+              surface: '#111A14',
+              primary: '#10B981', // Emerald Green
+              primaryDark: '#059669',
+              border: '#1F2937',
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-layout">
+    body {
+      background-color: #0A0F0D;
+      color: #E5E7EB;
+    }
+    /* Custom Green Focus for Inputs */
+    .focus-green:focus {
+      outline: none;
+      border-color: #10B981 !important;
+      box-shadow: 0 0 0 1px #10B981;
+    }
+    /* Toggle Switch Customization */
+    .toggle-checkbox:checked {
+      right: 0;
+      background-color: #10B981;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #064E3B;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+<!-- BEGIN: MainContentContainer -->
+<main class="w-full max-w-2xl" data-purpose="form-container">
+<!-- BEGIN: FormCard -->
+<section class="bg-brand-surface border border-gray-800 rounded-2xl shadow-2xl p-8 md:p-10" data-purpose="add-officer-card">
+<!-- Header -->
+<header class="mb-8">
+<h1 class="font-syne text-3xl font-bold text-white mb-2">Add New Officer</h1>
+<p class="text-gray-400 text-sm">Register a new eco-inspection officer to the Eco-Inspect AI platform.</p>
+</header>
+<form action="#" class="space-y-8" method="POST">
+<!-- BEGIN: PersonalDetailsSection -->
+<fieldset class="space-y-4">
+<legend class="font-syne text-lg font-semibold text-brand-primary mb-4 flex items-center">
+<span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>
+            Personal Details
+          </legend>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-gray-400 uppercase tracking-wider" for="first-name">First Name</label>
+<input class="bg-brand-background border-gray-700 text-white rounded-lg px-4 py-2.5 focus-green transition-all" id="first-name" name="first-name" placeholder="John" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-gray-400 uppercase tracking-wider" for="last-name">Last Name</label>
+<input class="bg-brand-background border-gray-700 text-white rounded-lg px-4 py-2.5 focus-green transition-all" id="last-name" name="last-name" placeholder="Doe" required="" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-gray-400 uppercase tracking-wider" for="email">Official Email Address</label>
+<input class="bg-brand-background border-gray-700 text-white rounded-lg px-4 py-2.5 focus-green transition-all" id="email" name="email" placeholder="j.doe@ecoinspect.ai" required="" type="email"/>
+</div>
+</fieldset>
+<!-- END: PersonalDetailsSection -->
+<!-- BEGIN: SecurityAccessSection -->
+<fieldset class="space-y-4">
+<legend class="font-syne text-lg font-semibold text-brand-primary mb-4 flex items-center">
+<span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>
+            Security &amp; Access
+          </legend>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-gray-400 uppercase tracking-wider" for="officer-role">Assigned Role</label>
+<select class="bg-brand-background border-gray-700 text-white rounded-lg px-4 py-2.5 focus-green transition-all appearance-none" id="officer-role" name="role">
+<option value="field-officer">Field Officer</option>
+<option value="senior-inspector">Senior Inspector</option>
+<option value="data-analyst">Data Analyst</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-medium text-gray-400 uppercase tracking-wider" for="id-number">Badge ID / Employee Number</label>
+<input class="bg-brand-background border-gray-700 text-white rounded-lg px-4 py-2.5 focus-green transition-all" id="id-number" name="id-number" placeholder="EI-9920" required="" type="text"/>
+</div>
+</div>
+</fieldset>
+<!-- END: SecurityAccessSection -->
+<!-- BEGIN: FeaturePermissionsSection -->
+<fieldset class="space-y-4">
+<legend class="font-syne text-lg font-semibold text-brand-primary mb-4 flex items-center">
+<span class="w-2 h-2 bg-brand-primary rounded-full mr-2"></span>
+            Feature Permissions
+          </legend>
+<!-- Permission Toggle 1 -->
+<div class="flex items-center justify-between p-4 bg-brand-background/50 rounded-xl border border-gray-800">
+<div>
+<p class="text-sm font-semibold text-white">AI Vision Analysis</p>
+<p class="text-xs text-gray-500">Allow officer to use real-time AI scanning for species ID.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-primary"></div>
+</label>
+</div>
+<!-- Permission Toggle 2 -->
+<div class="flex items-center justify-between p-4 bg-brand-background/50 rounded-xl border border-gray-800">
+<div>
+<p class="text-sm font-semibold text-white">Report Generation</p>
+<p class="text-xs text-gray-500">Enable automated drafting and export of official compliance reports.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-primary"></div>
+</label>
+</div>
+<!-- Permission Toggle 3 -->
+<div class="flex items-center justify-between p-4 bg-brand-background/50 rounded-xl border border-gray-800">
+<div>
+<p class="text-sm font-semibold text-white">Sensor Management</p>
+<p class="text-xs text-gray-500">Access to configure and calibrate field-deployed IoT sensors.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-primary"></div>
+</label>
+</div>
+</fieldset>
+<!-- END: FeaturePermissionsSection -->
+<!-- BEGIN: ActionButtons -->
+<div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row gap-4">
+<button class="flex-1 bg-brand-primary hover:bg-brand-primaryDark text-brand-background font-syne font-bold py-3.5 px-6 rounded-xl transition-colors duration-200" type="submit">
+            Create Officer Account
+          </button>
+<button class="flex-1 bg-transparent hover:bg-gray-800 text-gray-400 font-syne font-semibold py-3.5 px-6 border border-gray-700 rounded-xl transition-all duration-200" type="button">
+            Cancel
+          </button>
+</div>
+<!-- END: ActionButtons -->
+</form>
+</section>
+<!-- END: FormCard -->
+<footer class="mt-8 text-center">
+<p class="text-gray-600 text-xs">© 2023 Eco-Inspect AI. All rights reserved. System V4.2.0</p>
+</footer>
+</main>
+<!-- END: MainContentContainer -->
+</body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI - WhatsApp Web</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'wa-dark-bg': '#0b141a',
+            'wa-panel-bg': '#202c33',
+            'wa-header-bg': '#202c33',
+            'wa-bubble-out': '#005c4b',
+            'wa-bubble-in': '#202c33',
+            'wa-text-primary': '#e9edef',
+            'wa-text-secondary': '#8696a0',
+            'wa-accent': '#2eff7e', // From THEME_1 custom_color
+            'wa-input-bg': '#2a3942',
+            'wa-link': '#53bdeb',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'], // From THEME_1 font
+          },
+          borderRadius: {
+            'custom': '12px', // From THEME_1 roundness
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="scrollbar-styling">
+    /* WhatsApp-like scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  </style>
+<style data-purpose="chat-layout">.chat-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAoXlUzLkU5efeLkxVOTdWbRB5zg7JWv4FLPqNTLLOs1h_IinSGcoY9VwehhX9nlXuOEv0G-7poa4UCPakgiYZz_L6HMTJakX4OVmhvYEHESUlGDWFpojKeWYYtod04oZNulpmfHgr1yCfpA67OvItKSPZMQcTs_Wk2khAO3UzZljykp9_ReBmFMjXEQ4guufP2fEsweeXhRJ4mnLTy3TEEZfnicoG5LGoylVy5q9r8kFUq1Lh0LN2x6AZktBFeVCe0F03XAxObhfS1);
+    background-repeat: repeat;
+    background-blend-mode: overlay;
+    background-color: #0b141a;
+    opacity: 0.06;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0
+    }</style>
+</head>
+<body class="bg-wa-dark-bg text-wa-text-primary font-sans h-screen flex flex-col overflow-hidden">
+<!-- BEGIN: MainHeader -->
+<header class="bg-wa-header-bg px-4 py-2 flex items-center justify-between z-10 border-l border-gray-700/30">
+<div class="flex items-center gap-3">
+<!-- Bot Avatar Container -->
+<div class="relative w-10 h-10 rounded-full bg-[#111b21] flex items-center justify-center overflow-hidden border border-wa-accent/20">
+<img alt="Eco-Inspect AI Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFVMkcM-8JG1kGPCSSeMECYrJgWS_UpjNyXU96Zdo4kHFea4fPb5ew8gO90QrSbiK3Ejm3CVK9UJH_q7prGi9Siix7F6B1XoK2RnAkK2xjF8yVIpJRy_tY_7OU3CQpY6f0Jkv5CO09QJVTk1fKA1Gk2q9B6tYK-ESuPOgOoqu7r1zk4IK7AQDjqsz1Qk_Vo9e15BfyL0MdJjf4LlKtPj-yJwzTfcJlERkwlnYKXvxldE0ZDyCd1TOwHGTYQy_ogBUoRw4CJvbOnBGK"/>
+</div>
+<div>
+<h1 class="font-medium text-[16px]">Eco-Inspect AI</h1>
+<p class="text-wa-accent text-[12px] font-normal">Online</p>
+</div>
+</div>
+<div class="flex items-center gap-6 text-wa-text-secondary">
+<button class="hover:text-wa-text-primary" title="Search">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>
+</button>
+<button class="hover:text-wa-text-primary" title="Menu">
+<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg>
+</button>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: ChatArea -->
+<main class="flex-1 relative overflow-hidden flex flex-col">
+<!-- WhatsApp Background Pattern -->
+<div class="chat-bg"></div>
+<!-- Scrollable Messages Container -->
+<div class="flex-1 overflow-y-auto p-4 md:px-12 lg:px-24 flex flex-col gap-4 z-10">
+<!-- Date Divider -->
+<div class="flex justify-center my-4">
+<span class="bg-wa-panel-bg text-wa-text-secondary text-[11px] px-3 py-1 rounded-md uppercase tracking-wider">Today</span>
+</div>
+<!-- User Outgoing Message -->
+<div class="flex justify-end">
+<div class="bg-wa-bubble-out text-wa-text-primary p-2 px-3 rounded-custom rounded-tr-none max-w-[85%] sm:max-w-[65%] shadow-sm relative">
+<p class="text-[14.2px] leading-relaxed mb-1 pr-12">
+            I found some trash dumped in the park near the entrance. Sending photo now.
+          </p>
+<div class="flex items-center justify-end gap-1 absolute bottom-1 right-2">
+<span class="text-[11px] text-white/60">10:41 AM</span>
+<svg fill="#53bdeb" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z"></path></svg>
+</div>
+</div>
+</div>
+<!-- Bot Incoming Confirmation Card -->
+<div class="flex justify-start">
+<div class="bg-wa-bubble-in text-wa-text-primary p-3 rounded-custom rounded-tl-none max-w-[90%] sm:max-w-[75%] md:max-w-[500px] shadow-sm relative">
+<!-- Bot Header within Bubble -->
+<div class="flex items-center gap-2 mb-3">
+<svg class="text-wa-accent" fill="currentColor" height="14" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+<span class="text-wa-accent font-semibold text-[13px] tracking-wide">Eco-Inspect AI Assistant</span>
+</div>
+<!-- The Structured Report Card -->
+<div class="bg-[#111b21]/50 border-l-4 border-wa-accent p-4 rounded-md mb-3">
+<div class="flex items-center gap-3 mb-4">
+<span class="text-2xl">✅</span>
+<h2 class="text-[17px] font-bold">Report Submitted Successfully!</h2>
+</div>
+<div class="space-y-2 text-[14px]">
+<p><span class="text-wa-text-secondary">Report ID:</span> <span class="text-wa-accent font-bold">ECO-2026-00142</span></p>
+<p><span class="text-wa-text-secondary">Category:</span> Illegal Waste Disposal</p>
+<p><span class="text-wa-text-secondary">Urgency:</span> <span class="text-orange-500 font-bold">HIGH</span></p>
+<p><span class="text-wa-text-secondary">AI Confidence:</span> 94%</p>
+</div>
+</div>
+<!-- Post-card text message -->
+<p class="text-[14.2px] leading-relaxed mb-4">
+            Our officers have been notified. You will receive updates here. Thank you for protecting the environment 🌿
+          </p>
+<div class="flex justify-end pr-1">
+<span class="text-[11px] text-wa-text-secondary">10:42 AM</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- END: ChatArea -->
+<!-- BEGIN: ChatFooter -->
+<footer class="bg-wa-header-bg p-3 px-4 flex items-center gap-4 z-10 border-l border-gray-700/30">
+<div class="flex items-center gap-4 text-wa-text-secondary">
+<button class="hover:text-wa-text-primary" title="Emojis">
+<svg fill="currentColor" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5s.67 1.5 1.5 1.5zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path></svg>
+</button>
+<button class="hover:text-wa-text-primary" title="Attach">
+<svg fill="currentColor" height="26" style="transform: rotate(45deg);" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.66 1.34 3 3 3s3-1.34 3-3V5c0-2.21-1.79-4-4-4S8 2.79 8 5v12.5c0 3.31 2.69 6 6 6s6-2.69 6-6V6h-1.5z"></path></svg>
+</button>
+</div>
+<!-- Message Input -->
+<div class="flex-1">
+<input class="w-full bg-wa-input-bg border-none rounded-lg py-2.5 px-4 text-wa-text-primary placeholder:text-wa-text-secondary focus:ring-0 text-[15px]" placeholder="Type a message" type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-wa-text-secondary hover:text-wa-text-primary" title="Voice Message">
+<svg fill="currentColor" height="26" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"></path><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"></path></svg>
+</button>
+</div>
+</footer>
+<!-- END: ChatFooter -->
+</body></html>

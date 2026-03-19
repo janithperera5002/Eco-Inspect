@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Filter Reports</title>
+<!-- Fonts: Syne for headings, JetBrains Mono for data/labels -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-black': '#0A0F0D',
+            'eco-card': '#111A14',
+            'eco-green': '#2DFF7F',
+            'eco-border': '#1F2A23',
+            'urgency-critical': '#FF4D4D',
+            'urgency-amber': '#FFBF00',
+            'urgency-yellow': '#F4FF5E',
+            'urgency-low': '#2DFF7F',
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          borderRadius: {
+            'custom': '12px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-styling">
+    body {
+      background-color: #0A0F0D;
+      color: #FFFFFF;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* Custom Scrollbar for the dark theme */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2A23;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2DFF7F;
+    }
+
+    /* Input focus resets */
+    input:focus, select:focus {
+      outline: none !important;
+      box-shadow: 0 0 0 2px #2DFF7F !important;
+      border-color: transparent !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8">
+<!-- BEGIN: Filter Panel Container -->
+<main class="w-full max-w-4xl bg-eco-card border border-eco-border rounded-custom shadow-2xl overflow-hidden" data-purpose="filter-interface-container">
+<!-- BEGIN: Header -->
+<header class="p-6 border-b border-eco-border flex justify-between items-center">
+<h1 class="text-3xl font-syne font-bold text-white uppercase tracking-tight">Filter Reports</h1>
+<button aria-label="Close filters" class="text-gray-500 hover:text-eco-green transition-colors">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</header>
+<!-- END: Header -->
+<div class="p-6 space-y-8">
+<!-- BEGIN: Status Section -->
+<section data-purpose="filter-status">
+<h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 font-mono">Status</h3>
+<div class="flex flex-wrap gap-2">
+<!-- Active Pill -->
+<button class="px-4 py-2 rounded-full border border-eco-green bg-eco-green text-eco-black text-sm font-bold transition-all">All</button>
+<!-- Inactive Pills -->
+<button class="px-4 py-2 rounded-full border border-eco-border bg-transparent text-gray-400 text-sm font-medium hover:border-eco-green hover:text-eco-green transition-all">Received</button>
+<button class="px-4 py-2 rounded-full border border-eco-border bg-transparent text-gray-400 text-sm font-medium hover:border-eco-green hover:text-eco-green transition-all">Pending</button>
+<button class="px-4 py-2 rounded-full border border-eco-border bg-transparent text-gray-400 text-sm font-medium hover:border-eco-green hover:text-eco-green transition-all">Assigned</button>
+<button class="px-4 py-2 rounded-full border border-eco-border bg-transparent text-gray-400 text-sm font-medium hover:border-eco-green hover:text-eco-green transition-all">In Progress</button>
+<button class="px-4 py-2 rounded-full border border-eco-border bg-transparent text-gray-400 text-sm font-medium hover:border-eco-green hover:text-eco-green transition-all">Resolved</button>
+</div>
+</section>
+<!-- END: Status Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- BEGIN: Urgency Level -->
+<section data-purpose="filter-urgency">
+<h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 font-mono">Urgency Level</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-md border border-eco-border bg-eco-black text-xs font-bold text-white hover:border-gray-500 transition-all">All</button>
+<button class="px-3 py-1.5 rounded-md border border-urgency-critical bg-transparent text-xs font-bold text-urgency-critical hover:bg-urgency-critical hover:text-white transition-all">Critical</button>
+<button class="px-3 py-1.5 rounded-md border border-urgency-amber bg-transparent text-xs font-bold text-urgency-amber hover:bg-urgency-amber hover:text-white transition-all">High</button>
+<button class="px-3 py-1.5 rounded-md border border-urgency-yellow bg-transparent text-xs font-bold text-urgency-yellow hover:bg-urgency-yellow hover:text-black transition-all">Medium</button>
+<button class="px-3 py-1.5 rounded-md border border-urgency-low bg-transparent text-xs font-bold text-urgency-low hover:bg-urgency-low hover:text-black transition-all">Low</button>
+</div>
+</section>
+<!-- END: Urgency Level -->
+<!-- BEGIN: Region Selector -->
+<section data-purpose="filter-region">
+<h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 font-mono">Region</h3>
+<div class="relative">
+<select class="w-full bg-eco-black border border-eco-border rounded-custom p-3 text-sm text-white appearance-none cursor-pointer focus:ring-eco-green">
+<option value="">All Regions</option>
+<option value="north">North Sector - Industrial Zone</option>
+<option value="south">South Sector - Coastal Area</option>
+<option value="east">East Sector - Residential</option>
+<option value="west">West Sector - Forest Reserve</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-eco-green">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</section>
+<!-- END: Region Selector -->
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- BEGIN: Date Range Section -->
+<section data-purpose="filter-dates">
+<h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 font-mono">Date Range</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<label class="text-[10px] text-gray-600 uppercase font-bold">Start Date</label>
+<input class="bg-eco-black border border-eco-border rounded-custom p-3 text-sm text-white focus:ring-eco-green" type="date" value="2023-10-01"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[10px] text-gray-600 uppercase font-bold">End Date</label>
+<input class="bg-eco-black border border-eco-border rounded-custom p-3 text-sm text-white focus:ring-eco-green" type="date" value="2023-10-31"/>
+</div>
+</div>
+</section>
+<!-- END: Date Range Section -->
+<!-- BEGIN: Officer Assignment Section -->
+<section data-purpose="filter-officer">
+<h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 font-mono">Officer Assignment</h3>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<svg class="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input class="w-full bg-eco-black border border-eco-border rounded-custom p-3 pl-10 text-sm text-white placeholder-gray-600 focus:ring-eco-green" placeholder="Search officer by name or ID..." type="text"/>
+</div>
+</section>
+<!-- END: Officer Assignment Section -->
+</div>
+<!-- BEGIN: Category Section -->
+<section data-purpose="filter-categories">
+<h3 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 font-mono">Category</h3>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+<!-- Category Tag Item -->
+<label class="flex items-center gap-3 p-3 bg-eco-black border border-eco-border rounded-custom cursor-pointer hover:border-eco-green group transition-all">
+<input class="form-checkbox h-4 w-4 text-eco-green bg-eco-card border-eco-border rounded focus:ring-offset-0 focus:ring-eco-green" type="checkbox"/>
+<span class="text-sm text-gray-300 group-hover:text-white">Water Quality</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-eco-black border border-eco-border rounded-custom cursor-pointer hover:border-eco-green group transition-all">
+<input checked="" class="form-checkbox h-4 w-4 text-eco-green bg-eco-card border-eco-border rounded focus:ring-offset-0 focus:ring-eco-green" type="checkbox"/>
+<span class="text-sm text-white">Air Pollution</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-eco-black border border-eco-border rounded-custom cursor-pointer hover:border-eco-green group transition-all">
+<input class="form-checkbox h-4 w-4 text-eco-green bg-eco-card border-eco-border rounded focus:ring-offset-0 focus:ring-eco-green" type="checkbox"/>
+<span class="text-sm text-gray-300 group-hover:text-white">Industrial Waste</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-eco-black border border-eco-border rounded-custom cursor-pointer hover:border-eco-green group transition-all">
+<input class="form-checkbox h-4 w-4 text-eco-green bg-eco-card border-eco-border rounded focus:ring-offset-0 focus:ring-eco-green" type="checkbox"/>
+<span class="text-sm text-gray-300 group-hover:text-white">Deforestation</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-eco-black border border-eco-border rounded-custom cursor-pointer hover:border-eco-green group transition-all">
+<input class="form-checkbox h-4 w-4 text-eco-green bg-eco-card border-eco-border rounded focus:ring-offset-0 focus:ring-eco-green" type="checkbox"/>
+<span class="text-sm text-gray-300 group-hover:text-white">Soil Erosion</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-eco-black border border-eco-border rounded-custom cursor-pointer hover:border-eco-green group transition-all">
+<input class="form-checkbox h-4 w-4 text-eco-green bg-eco-card border-eco-border rounded focus:ring-offset-0 focus:ring-eco-green" type="checkbox"/>
+<span class="text-sm text-gray-300 group-hover:text-white">Illegal Mining</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-eco-black border border-eco-border rounded-custom cursor-pointer hover:border-eco-green group transition-all">
+<input class="form-checkbox h-4 w-4 text-eco-green bg-eco-card border-eco-border rounded focus:ring-offset-0 focus:ring-eco-green" type="checkbox"/>
+<span class="text-sm text-gray-300 group-hover:text-white">Noise Complaint</span>
+</label>
+<label class="flex items-center gap-3 p-3 bg-eco-black border border-eco-border rounded-custom cursor-pointer hover:border-eco-green group transition-all">
+<input class="form-checkbox h-4 w-4 text-eco-green bg-eco-card border-eco-border rounded focus:ring-offset-0 focus:ring-eco-green" type="checkbox"/>
+<span class="text-sm text-gray-300 group-hover:text-white">Wildlife Trafficking</span>
+</label>
+</div>
+</section>
+<!-- END: Category Section -->
+</div>
+<!-- BEGIN: Footer Actions -->
+<footer class="p-6 border-t border-eco-border flex flex-col sm:flex-row justify-between items-center gap-4">
+<button class="w-full sm:w-auto px-8 py-3 rounded-custom border border-eco-border text-gray-400 font-bold text-sm hover:border-white hover:text-white transition-all">
+        Reset All
+      </button>
+<button class="w-full sm:w-64 px-8 py-3 rounded-custom bg-eco-green text-eco-black font-bold text-base hover:brightness-110 active:scale-95 transition-all shadow-[0_0_20px_rgba(45,255,127,0.2)]">
+        Apply Filters
+      </button>
+</footer>
+<!-- END: Footer Actions -->
+</main>
+<!-- END: Filter Panel Container -->
+<script data-purpose="interaction-logic">
+    // Simple logic for toggle behaviors if needed for protoyping
+    const pills = document.querySelectorAll('section[data-purpose="filter-status"] button');
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => {
+          p.classList.remove('bg-eco-green', 'text-eco-black', 'font-bold', 'border-eco-green');
+          p.classList.add('bg-transparent', 'text-gray-400', 'font-medium', 'border-eco-border');
+        });
+        pill.classList.remove('bg-transparent', 'text-gray-400', 'font-medium', 'border-eco-border');
+        pill.classList.add('bg-eco-green', 'text-eco-black', 'font-bold', 'border-eco-green');
+      });
+    });
+  </script>
+</body></html>

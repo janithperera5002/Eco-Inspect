@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2DFF7F",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#0A0F0D",
+                        "surface": "#111A14",
+                        "surface-accent": "#1A261D",
+                    },
+                    fontFamily: {
+                        "display": ["Syne", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Syne', sans-serif;
+        }
+        .form-input-focus:focus {
+            border-color: #2DFF7F !important;
+            box-shadow: 0 0 0 1px #2DFF7F !important;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="flex items-center justify-between border-b border-primary/10 bg-surface px-6 py-4 lg:px-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8 bg-primary/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">shield_person</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight font-display uppercase italic">Nexus Admin</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Overview</a>
+<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1 transition-colors" href="#">Settings</a>
+<a class="text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Users</a>
+<a class="text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-lg bg-surface-accent text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full border-2 border-primary/30 bg-cover bg-center" data-alt="User profile avatar of Alex Rivera" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1IRTxDPPIzD8Xjvx4QO3eHHXaU_bkJm-tG9v_OzGZALzqPztah313W6aUCfKiS03fSZw3FXX8T1t_LnPE3MPASflyvpzJl-AsKPc-IVJ65G2yoHmSqGFK153ncvnaEELn1zImWyjAbYRuEDELMmw9psI0UdTCDkflVKfLEfUIKstLdxQewLhbVYW-tH4skmXz_ADXeG5JyoOOuzahJoYm0rCEW_u2yA9HQC9Ad6DMqvVMF64vH9W-Rq27pxeImJylye-gyPbQd_Zo')"></div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center p-6 lg:p-12">
+<div class="w-full max-w-2xl bg-surface border border-primary/5 rounded-xl shadow-2xl overflow-hidden">
+<div class="p-8 border-b border-primary/5 bg-gradient-to-r from-surface to-surface-accent">
+<h1 class="text-3xl font-extrabold font-display text-slate-100 tracking-tight">Profile Settings</h1>
+<p class="text-slate-400 mt-1">Configure your account identity and regional access permissions.</p>
+</div>
+<div class="p-8">
+<div class="flex flex-col items-center mb-10">
+<div class="relative group">
+<div class="size-32 rounded-full border-4 border-primary/20 overflow-hidden bg-surface-accent shadow-lg group-hover:border-primary/50 transition-all">
+<img alt="Profile Photo" class="w-full h-full object-cover" data-alt="High resolution professional portrait of administrative user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5kNpOS4Pkw1MBcCEdmzvhAC8Nkw5I-bBIFQfjBe9rSz0j76KU5WQL_NLndNiRNylXgiGVOJrgfU1qdqonfXdPoXvGPQeKIVqu5qTDG2yzZdZzdW9_pgAw1pU0Co3rzA7QAXLpB7Ez1J0Rsebp7rcG2lGRAOhWm_KWBSJBajwv6pcnbNl3WhR3AUg5-zUU0fvFgDau6K0nhZIWHu7hkftxBvMNmmpN4fQH0ooIMhqdhY9WOT2rOkAnfiiTYpMSPkNbEbtweZXq5w8f"/>
+</div>
+<button class="absolute bottom-0 right-0 size-10 bg-primary text-background-dark rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[20px] font-bold">photo_camera</span>
+</button>
+</div>
+<div class="mt-4 text-center">
+<p class="text-slate-100 font-bold text-lg font-display tracking-wide uppercase italic">Alex Rivera</p>
+<p class="text-primary text-xs font-semibold tracking-widest uppercase">Senior Administrator</p>
+</div>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-400 px-1">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl">person</span>
+<input class="form-input w-full bg-surface-accent border-primary/10 rounded-lg py-3.5 pl-12 pr-4 text-slate-100 focus:ring-primary focus:border-primary transition-all outline-none form-input-focus" placeholder="Enter your name" type="text" value="Alex Rivera"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-400 px-1">Email Address</label>
+<div class="relative opacity-60 cursor-not-allowed">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl">mail</span>
+<input class="form-input w-full bg-background-dark border-primary/5 rounded-lg py-3.5 pl-12 pr-4 text-slate-400 cursor-not-allowed italic" disabled="" placeholder="Email cannot be changed" type="email" value="a.rivera@nexus-corp.com"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-400 px-1">Phone Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl">call</span>
+<input class="form-input w-full bg-surface-accent border-primary/10 rounded-lg py-3.5 pl-12 pr-4 text-slate-100 focus:ring-primary focus:border-primary transition-all outline-none form-input-focus" placeholder="+1 (000) 000-0000" type="tel" value="+1 (555) 902-4421"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-400 px-1">Assigned Region</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl">public</span>
+<select class="form-select w-full bg-surface-accent border-primary/10 rounded-lg py-3.5 pl-12 pr-10 text-slate-100 focus:ring-primary focus:border-primary transition-all outline-none appearance-none form-input-focus">
+<option>North America (NA-West)</option>
+<option selected="">European Union (EU-Central)</option>
+<option>Asia Pacific (APAC-Tokyo)</option>
+<option>South America (LATAM-Sao Paulo)</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<div class="pt-8 flex flex-col sm:flex-row gap-4 justify-between items-center border-t border-primary/5 mt-4">
+<button class="text-slate-400 hover:text-white transition-colors text-sm font-medium px-4 py-2" type="button">
+                                Deactivate Account
+                            </button>
+<div class="flex gap-3 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-8 py-3 bg-surface-accent text-slate-200 rounded-lg font-semibold hover:bg-slate-800 transition-colors border border-primary/10" type="button">
+                                    Cancel
+                                </button>
+<button class="flex-1 sm:flex-none px-10 py-3 bg-primary text-background-dark rounded-lg font-bold font-display uppercase tracking-wider hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(45,255,127,0.3)]" type="submit">
+                                    Save Changes
+                                </button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</main>
+<footer class="py-8 px-6 text-center text-slate-600 text-sm">
+            © 2024 Nexus Operations Dashboard • Secure Protocol 7.2.1
+        </footer>
+</div>
+</body></html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI - Case Resolution</title>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for WhatsApp-like typography -->
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-layout">body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0c1317;
+    /* WhatsApp Dark Mode Background */
+    }
+.chat-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuC2TDhSgZlEr521f2HoWn60-Szrd34HmZA-PdjTocoeyQPsoY-3Vj1VIeV2CjFtlUw1arJExlUy_D2OuJxVa2z74Y9rIEU10hp4938pQYMF1tIKrd8PkBp10kNiEVVcP6xpQh7cWdJYH-Z4Be3ywur_LTyiA5o5XFq7DMzndlEangrmFOW1KdTjUWK71TbvffvMstiWL_wrBId-JQEBAa25K8MFxSLco5n_lsustm-hlZ-ZhNKRy3_MyzRBxlclJam9PPcIzXFKwz9M);
+    background-repeat: repeat;
+    background-blend-mode: overlay;
+    opacity: 0.06;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0
+    }
+.message-bubble-bot {
+    background-color: #202c33;
+    /* Dark bubble */
+    border-radius: 0 8px 8px 8px
+    }
+.message-bubble-user {
+    background-color: #005c4b;
+    /* WhatsApp user green */
+    border-radius: 8px 0 8px 8px
+    }
+.resolved-badge {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.3)
+    }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px
+    }
+::-webkit-scrollbar-thumb {
+    background: #374045
+    }</style>
+</head>
+<body class="h-screen flex items-center justify-center p-4 md:p-8">
+<!-- BEGIN: MainInterfaceContainer -->
+<main class="relative w-full max-w-5xl h-[85vh] bg-[#111b21] flex shadow-2xl rounded-lg overflow-hidden border border-white/5">
+<!-- BEGIN: LeftSidebar (Contacts) -->
+<aside class="hidden md:flex flex-col w-1/3 border-r border-[#222d34]" data-purpose="sidebar">
+<!-- Sidebar Header -->
+<header class="h-16 bg-[#202c33] flex items-center justify-between px-4 py-2">
+<div class="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center text-white overflow-hidden">
+<img alt="User Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLrnO8bbmVwjcM5l6iZi9xNmvChvkr56f28K-wJAE9QOMl0tIG_LcRV4_x78190oTr2sfThMy1DE6HbBy2BWgWFAzeX2TbJm441aFtOMT1ObDKTeHbzHd51eVfTMKlrlMsK3acFechctPgTaxkkfhZylHYr8lKi_ZoDxr1uoMf3ppCCirKRgL91oP9YmcEGpY5I5hQnjo04S8TpHycBivjuJ5oAiF4epjeiiRgcHFhmeY11P-PzZ2I_wUnBKtgJpYDAf_oCPOE1Nax"/>
+</div>
+<div class="flex space-x-6 text-[#aebac1]">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</header>
+<!-- Search Bar -->
+<div class="p-2 bg-[#111b21]">
+<div class="bg-[#202c33] rounded-lg flex items-center px-4 py-1.5">
+<svg class="h-4 w-4 text-[#aebac1] mr-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-[#d1d7db] w-full" placeholder="Search or start new chat" type="text"/>
+</div>
+</div>
+<!-- Contact List -->
+<div class="flex-1 overflow-y-auto">
+<div class="flex items-center p-3 bg-[#2a3942] cursor-pointer">
+<div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4">
+<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div class="flex-1 border-b border-[#222d34] pb-3">
+<div class="flex justify-between items-baseline">
+<h3 class="text-[#e9edef] font-medium">Eco-Inspect AI</h3>
+<span class="text-xs text-[#00a884]">14:20</span>
+</div>
+<p class="text-sm text-[#d1d7db] truncate">✅ Case Resolved! Report ECO-2026...</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainChatArea -->
+<section class="relative flex-1 flex flex-col bg-[#0b141a]" data-purpose="chat-window">
+<!-- Chat Background Wallpaper Layer -->
+<div class="chat-bg"></div>
+<!-- Chat Header -->
+<header class="h-16 bg-[#202c33] z-10 flex items-center justify-between px-4 py-2 border-l border-white/5">
+<div class="flex items-center">
+<div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center mr-3">
+<svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div>
+<h2 class="text-[#e9edef] text-base leading-tight">Eco-Inspect AI</h2>
+<p class="text-[#aebac1] text-xs">Official Environmental Service</p>
+</div>
+</div>
+<div class="flex space-x-5 text-[#aebac1]">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</header>
+<!-- Chat History -->
+<div class="flex-1 overflow-y-auto z-10 p-6 space-y-4 flex flex-col" data-purpose="chat-messages">
+<!-- Date Divider -->
+<div class="self-center">
+<span class="bg-[#182229] text-[#8696a0] text-xs px-3 py-1.5 rounded-md uppercase tracking-wide">March 08, 2026</span>
+</div>
+<!-- Bot Resolution Message -->
+<div class="self-start max-w-[85%] md:max-w-[70%]" data-purpose="bot-response">
+<div class="message-bubble-bot p-3 shadow-md relative">
+<!-- Resolved Badge Component -->
+<div class="resolved-badge rounded-md p-3 mb-3 flex items-center justify-center space-x-2">
+<span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+<span class="text-green-400 font-semibold text-sm tracking-wide">CASE RESOLVED</span>
+<svg class="h-4 w-4 text-green-400" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<div class="text-[#e9edef] text-[14.2px] leading-relaxed">
+<p>✅ <strong>Case Resolved!</strong> Report ECO-2026-00142 has been closed.</p>
+<p class="mt-2"><strong>Action Taken:</strong> Illegal waste removed, site cleaned by municipal team on 08 March 2026.</p>
+<p class="mt-2">Thank you for your report. You helped protect the environment! 🌿</p>
+<p class="mt-3 text-emerald-400 italic">Rate your experience: Reply 1-5.</p>
+</div>
+<div class="flex justify-end mt-1">
+<span class="text-[11px] text-[#8696a0]">14:20</span>
+</div>
+</div>
+</div>
+<!-- Citizen Reply Message -->
+<div class="self-end max-w-[85%] md:max-w-[70%]" data-purpose="user-reply">
+<div class="message-bubble-user p-2 px-3 shadow-md relative min-w-[60px]">
+<div class="text-[#e9edef] text-[15px]">
+              5
+            </div>
+<div class="flex items-center justify-end mt-1 space-x-1">
+<span class="text-[11px] text-[#ffffff99]">14:21</span>
+<svg fill="none" height="11" viewbox="0 0 16 11" width="16" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.25 5.612L1.875 3.237L0.5 4.612L4.25 8.362L12.312 0.299L10.937 -1.076L4.25 5.612Z" fill="#53bdeb" transform="translate(0 2) scale(1.1)"></path>
+<path d="M4.25 5.612L1.875 3.237L0.5 4.612L4.25 8.362L12.312 0.299L10.937 -1.076L4.25 5.612Z" fill="#53bdeb" transform="translate(3 2) scale(1.1)"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Input Area -->
+<footer class="bg-[#202c33] px-4 py-3 z-10 flex items-center space-x-4">
+<div class="flex space-x-3 text-[#aebac1]">
+<svg class="h-6 w-6 cursor-pointer" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="h-6 w-6 cursor-pointer" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div class="flex-1">
+<input class="w-full bg-[#2a3942] border-none rounded-lg text-[#d1d7db] text-sm focus:ring-0 py-2.5 px-4" placeholder="Type a message" type="text"/>
+</div>
+<div class="text-[#aebac1]">
+<svg class="h-6 w-6 cursor-pointer" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</footer>
+</section>
+<!-- END: MainChatArea -->
+</main>
+<!-- END: MainInterfaceContainer -->
+</body></html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Notifications Center</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0D',
+            'eco-surface': '#111A14',
+            'eco-surface-light': '#1A261D',
+            'eco-accent': '#00FF9D',
+            'eco-border': '#2D3A30',
+            'priority-high': '#FF4D4D',
+            'priority-medium': '#FFB800',
+            'priority-low': '#00FF9D',
+          },
+          fontFamily: {
+            sans: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    body {
+      background-color: #0A0F0D;
+      color: #E0E7E1;
+      font-family: 'Syne', sans-serif;
+    }
+    .mono-text {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2D3A30;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00FF9D;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex overflow-hidden">
+<!-- BEGIN: Sidebar Navigation -->
+<aside class="w-64 bg-eco-surface border-r border-eco-border flex flex-col h-full shrink-0" data-purpose="main-navigation">
+<div class="p-8">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-8 h-8 bg-eco-accent rounded-sm rotate-45"></div>
+<h1 class="text-xl font-extrabold tracking-tight">ECO-INSPECT</h1>
+</div>
+<nav class="space-y-6">
+<a class="flex items-center gap-4 text-gray-400 hover:text-eco-accent transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="mono-text text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 text-gray-400 hover:text-eco-accent transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 20l-5.447-2.724A2 2 0 013 15.488V5.512a2 2 0 011.553-1.944L9 2l5.447 2.724A2 2 0 0116 6.669v11.843a2 2 0 01-1.553 1.944L9 20z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="mono-text text-sm">Inspections</span>
+</a>
+<a class="flex items-center gap-4 text-eco-accent transition-colors border-r-2 border-eco-accent pr-2" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="mono-text text-sm">Notifications</span>
+</a>
+<a class="flex items-center gap-4 text-gray-400 hover:text-eco-accent transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="mono-text text-sm">Settings</span>
+</a>
+</nav>
+</div>
+<!-- User Profile Snapshot -->
+<div class="mt-auto p-8 border-t border-eco-border">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-eco-surface-light border border-eco-border flex items-center justify-center overflow-hidden">
+<span class="mono-text text-xs text-eco-accent">JD</span>
+</div>
+<div>
+<p class="text-sm font-bold">John Doe</p>
+<p class="mono-text text-[10px] text-gray-500 uppercase tracking-wider">Lead Auditor</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar Navigation -->
+<!-- BEGIN: Main Content -->
+<main class="flex-1 flex flex-col h-full bg-eco-dark overflow-hidden" data-purpose="notification-center">
+<!-- Header Tools -->
+<header class="h-20 px-10 border-b border-eco-border flex items-center justify-between shrink-0" data-purpose="content-header">
+<h2 class="text-2xl font-extrabold uppercase tracking-tight">Notifications Center</h2>
+<div class="flex items-center gap-6">
+<!-- Search Bar -->
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+<input class="bg-eco-surface border-eco-border text-xs mono-text pl-10 pr-4 py-2 rounded-md focus:border-eco-accent focus:ring-0 w-64 placeholder:text-gray-600" placeholder="Search logs..." type="text"/>
+</div>
+<button class="mono-text text-[10px] font-bold uppercase tracking-widest px-4 py-2 border border-eco-border hover:border-eco-accent hover:text-eco-accent transition-all">
+          Mark All Read
+        </button>
+</div>
+</header>
+<!-- Notifications List -->
+<section class="flex-1 overflow-y-auto px-10 py-8 space-y-12" data-purpose="notifications-scroll-area">
+<!-- BEGIN: Group Today -->
+<div class="space-y-4" data-purpose="notification-group">
+<div class="flex items-center gap-4">
+<h3 class="mono-text text-xs font-bold text-gray-500 uppercase tracking-widest">Today</h3>
+<div class="flex-1 h-px bg-eco-border"></div>
+</div>
+<!-- Notification Card: High Priority -->
+<article class="bg-eco-surface border-l-4 border-priority-high p-5 rounded-r-lg group hover:bg-eco-surface-light transition-all flex items-start gap-5 cursor-pointer" data-purpose="notification-item-urgent">
+<div class="w-2 h-2 rounded-full bg-priority-high mt-2 shrink-0 shadow-[0_0_8px_rgba(255,77,77,0.6)]"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-lg text-white">Critical Emission Alert: Zone 7</h4>
+<span class="mono-text text-[10px] text-gray-500">14:22 PM</span>
+</div>
+<p class="text-sm text-gray-400 mb-4 max-w-2xl leading-relaxed">CO2 levels in the Northwest industrial sector have exceeded threshold limits by 15.4%. Immediate on-site verification required.</p>
+<div class="flex gap-3">
+<button class="mono-text text-[10px] px-3 py-1 bg-priority-high text-white font-bold uppercase hover:opacity-80 transition-opacity">View Real-time Data</button>
+<button class="mono-text text-[10px] px-3 py-1 border border-eco-border text-gray-400 uppercase hover:text-white transition-colors">Dismiss</button>
+</div>
+</div>
+</article>
+<!-- Notification Card: Medium Priority -->
+<article class="bg-eco-surface border-l-4 border-priority-medium p-5 rounded-r-lg group hover:bg-eco-surface-light transition-all flex items-start gap-5 cursor-pointer" data-purpose="notification-item-warning">
+<div class="w-2 h-2 rounded-full bg-priority-medium mt-2 shrink-0"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-lg text-white">Weekly Sustainability Report Ready</h4>
+<span class="mono-text text-[10px] text-gray-500">09:15 AM</span>
+</div>
+<p class="text-sm text-gray-400 leading-relaxed">The AI has finalized the aggregate analysis for the week ending Oct 14. Performance index shows a 3% improvement in overall efficiency.</p>
+</div>
+</article>
+</div>
+<!-- END: Group Today -->
+<!-- BEGIN: Group Earlier -->
+<div class="space-y-4" data-purpose="notification-group">
+<div class="flex items-center gap-4">
+<h3 class="mono-text text-xs font-bold text-gray-500 uppercase tracking-widest">Earlier</h3>
+<div class="flex-1 h-px bg-eco-border"></div>
+</div>
+<!-- Notification Card: Low Priority (Read) -->
+<article class="opacity-60 bg-eco-surface border-l-4 border-eco-border p-5 rounded-r-lg flex items-start gap-5" data-purpose="notification-item-info">
+<div class="w-2 h-2 rounded-full bg-transparent border border-eco-border mt-2 shrink-0"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-lg text-gray-300">System Patch Successful</h4>
+<span class="mono-text text-[10px] text-gray-500">Yesterday, 18:00 PM</span>
+</div>
+<p class="text-sm text-gray-500 leading-relaxed">Core processing engine updated to v2.4.1. Neural net response latency decreased by 40ms.</p>
+</div>
+</article>
+<!-- Notification Card: Low Priority -->
+<article class="bg-eco-surface border-l-4 border-priority-low p-5 rounded-r-lg group hover:bg-eco-surface-light transition-all flex items-start gap-5 cursor-pointer" data-purpose="notification-item-success">
+<div class="w-2 h-2 rounded-full bg-priority-low mt-2 shrink-0"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-lg text-white">New Sensor Node Integrated</h4>
+<span class="mono-text text-[10px] text-gray-500">Yesterday, 14:30 PM</span>
+</div>
+<p class="text-sm text-gray-400 leading-relaxed">Site D-12 has successfully connected 12 new hydrometric sensors to the central mesh network.</p>
+</div>
+</article>
+<!-- Notification Card: Medium Priority -->
+<article class="bg-eco-surface border-l-4 border-priority-medium p-5 rounded-r-lg group hover:bg-eco-surface-light transition-all flex items-start gap-5 cursor-pointer" data-purpose="notification-item-warning-2">
+<div class="w-2 h-2 rounded-full bg-priority-medium mt-2 shrink-0"></div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-bold text-lg text-white">Maintenance Schedule: Server Rack #4</h4>
+<span class="mono-text text-[10px] text-gray-500">Oct 12, 11:00 AM</span>
+</div>
+<p class="text-sm text-gray-400 leading-relaxed">Scheduled cooling system maintenance will occur tomorrow between 02:00 and 04:00 UTC. Expect minor latency spikes.</p>
+</div>
+</article>
+</div>
+<!-- END: Group Earlier -->
+</section>
+<!-- Footer Status -->
+<footer class="h-10 px-10 border-t border-eco-border bg-eco-surface flex items-center justify-between shrink-0" data-purpose="system-status-bar">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-eco-accent animate-pulse"></span>
+<span class="mono-text text-[9px] uppercase tracking-widest text-gray-500">AI Mesh Online</span>
+</div>
+<div class="mono-text text-[9px] uppercase tracking-widest text-gray-500">
+        Lat: 40.7128° N, Lon: 74.0060° W
+      </div>
+</footer>
+</main>
+<!-- END: Main Content -->
+</body></html>

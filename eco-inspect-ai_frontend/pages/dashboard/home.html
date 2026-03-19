@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard — Eco-Inspect AI</title>
+<!-- Google Fonts: Syne for headings, JetBrains Mono for data -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0A0F0D',
+              surface: '#111A14',
+              accent: '#2DFF7F',
+              muted: '#1F2B24',
+              text: '#E0E7E1',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+            syne: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    h1, h2, h3, .font-syne { font-family: 'Syne', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    body { background-color: #0A0F0D; color: #E0E7E1; }
+    /* Custom Scrollbar for Dark Theme */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0A0F0D; }
+    ::-webkit-scrollbar-thumb { background: #1F2B24; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #2DFF7F; }
+  </style>
+  <script src="../../src/shared.js"></script>
+</head>
+<body class="min-h-screen flex overflow-hidden">
+<!-- BEGIN: Sidebar Navigation -->
+<aside class="w-64 bg-brand-surface border-r border-brand-muted flex flex-col h-screen" data-purpose="sidebar-nav">
+<div class="p-6">
+<div class="flex items-center gap-2 text-brand-accent mb-10">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+<span class="font-syne text-xl font-bold tracking-tight">ECO-INSPECT AI</span>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-brand-muted text-brand-accent transition-all" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-brand-muted/50 text-gray-400 hover:text-white transition-all" href="../reports/list.html">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-brand-muted/50 text-gray-400 hover:text-white transition-all" href="../map/map.html">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7l6-3 5.447 2.724A1 1 0 0121 7.618v10.764a1 1 0 01-1.447.894L15 17l-6 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-medium">Map</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-brand-muted/50 text-gray-400 hover:text-white transition-all" href="../cases/list.html">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-medium">Cases</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-brand-muted/50 text-gray-400 hover:text-white transition-all" href="analytics.html">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+<span class="font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-brand-muted/50 text-gray-400 hover:text-white transition-all" href="../users/list.html">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-medium">Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-brand-muted/50 text-red-400 hover:text-red-300 transition-all" href="#" onclick="window.auth.logout(); return false;">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-medium">Logout</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Profile Trigger -->
+<div class="mt-auto p-4 border-t border-brand-muted">
+<a class="flex items-center gap-3 p-2 rounded-lg hover:bg-brand-muted transition-all" href="../profile/profile.html">
+<img alt="Officer Silva Profile" class="w-10 h-10 rounded-full border border-brand-accent/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3ZA0mjrCIXrH2XOyefTrsAxEBH9I_fCud1OaU7Y2ZhVFcX9qWEfMD5F3z-pk4iTgUHKo_Ap7f70ctl-O_u9ZqzCSTuqUUXSV_IRnXbp7NG7zumFz0Bbz6QBU4Rp454yM_u3eTVnWwwu418d-h9xnu0Rbhh__wVxvVWwdNW_m_E1_mjAe0QSVmCpsh2rJV2bOoOIZYafv4zIq27jLdOQMYvqjsKuuqgqEtsJ9LPU1j_UvAAS2J1lluK7gieI30YLN2ZcZzaT0aZ7j_"/>
+<div>
+<p id="officer-name" class="text-sm font-bold text-brand-text">Officer Silva</p>
+<p id="officer-role" class="text-xs text-gray-500 font-mono">ID: 4829-01</p>
+</div>
+</a>
+</div>
+</aside>
+<!-- END: Sidebar Navigation -->
+<!-- Main View Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- BEGIN: Header -->
+<header class="h-20 border-b border-brand-muted bg-brand-surface/50 backdrop-blur-md px-8 flex items-center justify-between sticky top-0 z-10">
+<h1 class="greeting font-syne text-2xl font-bold tracking-tight">
+        Good Morning, Officer Silva <span class="text-brand-accent">🌿</span>
+</h1>
+<div class="flex items-center gap-6">
+<!-- Search Bar -->
+<div class="relative hidden lg:block">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3">
+<svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+<input class="bg-brand-muted border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-brand-accent w-64 text-brand-text placeholder-gray-600" placeholder="Search incidents..." type="text"/>
+</div>
+<!-- Notification Bell -->
+<button class="relative p-2 text-gray-400 hover:text-brand-accent transition-colors">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="absolute top-2 right-2 h-2 w-2 bg-brand-accent rounded-full border-2 border-brand-surface"></span>
+</button>
+</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: Dashboard Content -->
+<div class="p-8 space-y-8">
+<!-- BEGIN: KPI Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-purpose="kpi-cards">
+<!-- Card 1: Total Reports -->
+<div class="bg-brand-surface p-6 rounded-2xl border border-brand-muted hover:border-brand-accent/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<p class="text-gray-400 font-medium text-sm">Total Reports</p>
+<div class="bg-brand-muted p-2 rounded-lg text-brand-accent">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<p id="stat-total" class="text-4xl font-syne font-bold mb-1">1,284</p>
+<p class="text-xs text-brand-accent font-mono">+12.5% from last month</p>
+</div>
+<!-- Card 2: Pending -->
+<div class="bg-brand-surface p-6 rounded-2xl border border-brand-muted hover:border-brand-accent/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<p class="text-gray-400 font-medium text-sm">Pending Review</p>
+<div class="bg-brand-muted p-2 rounded-lg text-yellow-500">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<p id="stat-pending" class="text-4xl font-syne font-bold mb-1">42</p>
+<p class="text-xs text-yellow-500 font-mono">Requires immediate triage</p>
+</div>
+<!-- Card 3: Critical -->
+<div class="bg-brand-surface p-6 rounded-2xl border border-brand-muted hover:border-brand-accent/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<p class="text-gray-400 font-medium text-sm">Critical Incidents</p>
+<div class="bg-brand-muted p-2 rounded-lg text-red-500">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<p id="stat-critical" class="text-4xl font-syne font-bold mb-1">08</p>
+<p class="text-xs text-red-500 font-mono">Active environmental alerts</p>
+</div>
+<!-- Card 4: Resolved -->
+<div class="bg-brand-surface p-6 rounded-2xl border border-brand-muted hover:border-brand-accent/40 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<p class="text-gray-400 font-medium text-sm">Resolved Cases</p>
+<div class="bg-brand-muted p-2 rounded-lg text-brand-accent">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<p id="stat-resolved" class="text-4xl font-syne font-bold mb-1">1,156</p>
+<p class="text-xs text-brand-accent font-mono">92% success rate YTD</p>
+</div>
+</section>
+<!-- END: KPI Grid -->
+<!-- BEGIN: Recent Reports Table -->
+<section class="bg-brand-surface rounded-2xl border border-brand-muted overflow-hidden" data-purpose="recent-reports">
+<div class="px-8 py-6 border-b border-brand-muted flex justify-between items-center">
+<h2 class="font-syne text-xl font-bold">Recent Reports</h2>
+<button class="text-brand-accent text-sm font-mono hover:underline">View All Data →</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left" id="reports-table">
+<thead>
+<tr class="bg-brand-muted/30 text-gray-400 font-mono text-xs uppercase tracking-wider">
+<th class="px-8 py-4">Report ID</th>
+<th class="px-8 py-4">Location</th>
+<th class="px-8 py-4">Type</th>
+<th class="px-8 py-4">Risk Level</th>
+<th class="px-8 py-4">Status</th>
+<th class="px-8 py-4">Timestamp</th>
+<th class="px-8 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-brand-muted font-mono text-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-8 py-4 font-bold text-brand-accent">#REP-9021</td>
+<td class="px-8 py-4 text-brand-text">Amazonas Delta B-12</td>
+<td class="px-8 py-4">Illegal Logging</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 rounded bg-red-500/10 text-red-500 border border-red-500/20 text-xs">CRITICAL</span>
+</td>
+<td class="px-8 py-4">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
+                    In-Progress
+                  </span>
+</td>
+<td class="px-8 py-4 text-gray-500">2023-10-24 08:45</td>
+<td class="px-8 py-4 text-right">
+<button class="p-2 hover:bg-brand-muted rounded-lg transition-all" title="View Details">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-8 py-4 font-bold text-brand-accent">#REP-9018</td>
+<td class="px-8 py-4 text-brand-text">Pantanal Wetlands</td>
+<td class="px-8 py-4">Waste Runoff</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 rounded bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 text-xs">MEDIUM</span>
+</td>
+<td class="px-8 py-4">
+<span class="flex items-center gap-2 text-gray-500">
+<span class="w-2 h-2 rounded-full bg-gray-600"></span>
+                    Pending Review
+                  </span>
+</td>
+<td class="px-8 py-4 text-gray-500">2023-10-24 07:12</td>
+<td class="px-8 py-4 text-right">
+<button class="p-2 hover:bg-brand-muted rounded-lg transition-all" title="View Details">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-8 py-4 font-bold text-brand-accent">#REP-8992</td>
+<td class="px-8 py-4 text-brand-text">Cerrado Reserve</td>
+<td class="px-8 py-4">Unauth. Land Clearing</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 rounded bg-brand-accent/10 text-brand-accent border border-brand-accent/20 text-xs">LOW</span>
+</td>
+<td class="px-8 py-4">
+<span class="flex items-center gap-2 text-brand-accent">
+<span class="w-2 h-2 rounded-full bg-brand-accent"></span>
+                    Resolved
+                  </span>
+</td>
+<td class="px-8 py-4 text-gray-500">2023-10-23 18:30</td>
+<td class="px-8 py-4 text-right">
+<button class="p-2 hover:bg-brand-muted rounded-lg transition-all" title="View Details">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-8 py-4 font-bold text-brand-accent">#REP-8990</td>
+<td class="px-8 py-4 text-brand-text">Xingu River Basin</td>
+<td class="px-8 py-4">Illegal Mining</td>
+<td class="px-8 py-4">
+<span class="px-2 py-1 rounded bg-red-500/10 text-red-500 border border-red-500/20 text-xs">CRITICAL</span>
+</td>
+<td class="px-8 py-4">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
+                    In-Progress
+                  </span>
+</td>
+<td class="px-8 py-4 text-gray-500">2023-10-23 15:10</td>
+<td class="px-8 py-4 text-right">
+<button class="p-2 hover:bg-brand-muted rounded-lg transition-all" title="View Details">
+<svg class="h-4 w-4" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- END: Recent Reports Table -->
+</div>
+<!-- END: Dashboard Content -->
+</main>
+<script>
+window.auth.requireAuth();
+window.setOfficerInfo();
+document.title = 'Dashboard — Eco-Inspect AI';
+window.highlightNav('dashboard');
+
+// Update greeting using stored user
+const user = window.auth.getUser();
+const now = new Date();
+const hour = now.getHours();
+const greeting = hour < 12 ? 'Good morning'
+  : hour < 17 ? 'Good afternoon' : 'Good evening';
+const greetEl = document.querySelector('h1, .greeting, .welcome-heading, .dashboard-title');
+if (greetEl && user) {
+  greetEl.textContent = greeting + ', ' + (user.fullName || 'Officer') + ' 👋';
+}
+
+// Animated counter
+function animateCount(el, target) {
+  if (!el) return;
+  let current = 0;
+  const step = Math.ceil(target / 30) || 1;
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current;
+    if (current >= target) clearInterval(timer);
+  }, 40);
+}
+
+async function loadStats() {
+  try {
+    const stats = await window.api('GET', '/analytics/summary');
+    if (!stats) return;
+    console.log('Stats received:', stats);
+
+    const mapping = [
+      { keys: ['totalReports','total_reports'],
+        selectors: ['#stat-total','.stat-card:nth-child(1) h2','.stat-card:nth-child(1) .number','#total-reports'] },
+      { keys: ['pendingReview','pending_review','pendingCases'],
+        selectors: ['#stat-pending','.stat-card:nth-child(2) h2','.stat-card:nth-child(2) .number','#pending-review'] },
+      { keys: ['criticalIncidents','criticalAlerts','critical'],
+        selectors: ['#stat-critical','.stat-card:nth-child(3) h2','.stat-card:nth-child(3) .number','#critical-incidents'] },
+      { keys: ['resolvedCases','resolvedToday','resolved'],
+        selectors: ['#stat-resolved','.stat-card:nth-child(4) h2','.stat-card:nth-child(4) .number','#resolved-cases'] }
+    ];
+
+    mapping.forEach(m => {
+      let value = 0;
+      m.keys.forEach(k => { if (stats[k] !== undefined) value = stats[k]; });
+      let found = false;
+      m.selectors.forEach(sel => {
+        if (found) return;
+        const el = document.querySelector(sel);
+        if (el) { animateCount(el, Number(value) || 0); found = true; }
+      });
+    });
+
+  } catch(err) { console.error('Stats failed:', err); }
+}
+
+async function loadRecentReports() {
+  const container = document.querySelector(
+    'tbody, .reports-list, #recent-reports, .recent-list, .report-items, .table tbody');
+  if (container) container.innerHTML =
+    '<tr><td colspan="7" style="text-align:center;padding:40px;color:#2DFF7F">Loading...</td></tr>';
+  try {
+    const res = await window.api('GET', '/reports?urgency=critical&page=0&size=8');
+    const reports = res.content || res.data || (Array.isArray(res) ? res : []);
+    console.log('Reports received:', reports.length);
+
+    const tbody = document.querySelector(
+      'tbody, .reports-list, #recent-reports, .recent-list, .report-items');
+    if (!tbody || reports.length === 0) return;
+    const isTable = tbody.tagName === 'TBODY';
+
+    tbody.innerHTML = reports.map(r => {
+      const id = r.reportId || r.id;
+      const urgency = r.aiAnalysis?.urgencyLevel || r.urgencyLevel || 'medium';
+      const link = '../reports/detail.html?id=' + id;
+      return isTable
+        ? `<tr class="hover:bg-white/5 transition-colors cursor-pointer" onclick="location.href='${link}'">
+            <td class="px-8 py-4 font-bold text-brand-accent">#${id}</td>
+            <td class="px-8 py-4 text-brand-text">${window.truncate(r.addressText || 'Unknown Location', 30)}</td>
+            <td class="px-8 py-4">${r.category ? r.category.replace(/_/g,' ') : 'Other'}</td>
+            <td class="px-8 py-4">${window.urgencyBadge(urgency)}</td>
+            <td class="px-8 py-4">${window.statusBadge(r.status)}</td>
+            <td class="px-8 py-4 text-gray-500">${window.timeAgo(r.submittedAt)}</td>
+            <td class="px-8 py-4 text-right"><a href="${link}" style="color:#2DFF7F">View →</a></td>
+           </tr>`
+        : `<div onclick="location.href='${link}'"
+            style="padding:12px;cursor:pointer;border-bottom:1px solid #1E3325;
+            display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <span style="color:#2DFF7F;font-family:monospace">#${id}</span>
+              <span style="color:#D4EAD9;margin-left:10px">${window.truncate(r.rawMessage, 45)}</span>
+            </div>
+            <div style="display:flex;gap:6px">
+              ${window.urgencyBadge(urgency)} ${window.statusBadge(r.status)}
+            </div>
+           </div>`;
+    }).join('');
+
+  } catch(err) {
+    const c = document.querySelector('tbody, .reports-list, #recent-reports, .recent-list, .report-items');
+    if (c) c.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:#FF4B4B">Could not load data. Please make sure the server is running.</td></tr>';
+    console.error('Reports failed:', err);
+  }
+}
+
+loadStats();
+loadRecentReports();
+setInterval(() => { loadStats(); loadRecentReports(); }, 30000);
+</script>
+</body></html>
+
+  

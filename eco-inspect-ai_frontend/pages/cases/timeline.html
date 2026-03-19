@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Case Activity Timeline</title>
+<!-- Google Fonts: Syne for headings, JetBrains Mono for timestamps -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&amp;family=Syne:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0B',
+            'eco-surface': '#111A14',
+            'eco-green': '#22C55E',
+            'eco-border': '#1F2E23',
+            'status-resolved': '#10B981',
+            'status-update': '#3B82F6',
+            'status-assignment': '#F59E0B',
+            'status-escalation': '#EF4444',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            syne: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-layout">
+    body {
+      background-color: #0A0F0B;
+      color: #E2E8F0;
+    }
+    
+    /* Custom scrollbar for dark theme */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0F0B;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2E23;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #22C55E;
+    }
+
+    /* Timeline vertical line */
+    .timeline-line::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #22C55E 0%, #1F2E23 100%);
+      z-index: 0;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen">
+<!-- BEGIN: Main Dashboard Layout -->
+<main class="flex h-screen overflow-hidden">
+<!-- Sidebar / Case Info Panel -->
+<aside class="w-80 bg-eco-surface border-r border-eco-border flex-shrink-0 flex flex-col hidden lg:flex" data-purpose="case-info-sidebar">
+<div class="p-6 border-b border-eco-border">
+<h1 class="font-syne text-2xl font-bold text-eco-green mb-1">Eco-Inspect AI</h1>
+<p class="text-xs text-gray-500 font-mono">DASHBOARD / CASE_4829</p>
+</div>
+<div class="p-6 overflow-y-auto flex-grow">
+<div class="mb-8">
+<span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-2 block">Case Subject</span>
+<h2 class="font-syne text-xl font-semibold">Illegal Deforestation Zone C</h2>
+<p class="text-sm text-gray-400 mt-2 italic">Detected via satellite anomaly at 04:00 UTC.</p>
+</div>
+<div class="space-y-4">
+<div class="p-3 rounded bg-eco-dark border border-eco-border">
+<span class="text-[10px] text-gray-500 block mb-1">Priority</span>
+<span class="text-status-escalation font-bold text-sm">CRITICAL</span>
+</div>
+<div class="p-3 rounded bg-eco-dark border border-eco-border">
+<span class="text-[10px] text-gray-500 block mb-1">Assigned Officer</span>
+<span class="text-white text-sm">Sgt. Elena Vance</span>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-eco-border">
+<button class="w-full bg-eco-green text-black font-bold py-3 px-4 rounded-lg hover:bg-green-400 transition-colors flex items-center justify-center gap-2">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
+<span class="font-syne text-sm uppercase tracking-wider">Add Update</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area: Case Activity Timeline -->
+<section class="flex-grow flex flex-col bg-eco-dark overflow-hidden relative" data-purpose="timeline-container">
+<!-- Timeline Header -->
+<header class="p-6 border-b border-eco-border bg-eco-dark/80 backdrop-blur-md flex justify-between items-center z-10">
+<div>
+<h3 class="font-syne text-lg font-bold">Activity Timeline</h3>
+<p class="text-xs text-gray-500 font-mono">CASE_ID: 884-XJ-90</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-eco-surface border border-eco-border text-xs rounded hover:border-eco-green transition">Filter</button>
+<button class="px-3 py-1 bg-eco-surface border border-eco-border text-xs rounded hover:border-eco-green transition">Export</button>
+</div>
+</header>
+<!-- Scrollable Timeline Area -->
+<div class="flex-grow overflow-y-auto p-6 md:p-12">
+<div class="max-w-3xl mx-auto relative timeline-line">
+<!-- BEGIN: Timeline Node - Resolved -->
+<div class="mb-12 relative pl-10" data-purpose="timeline-item">
+<!-- Status Dot -->
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-eco-dark border-4 border-status-resolved z-10 shadow-[0_0_10px_rgba(16,185,129,0.3)]"></div>
+<div class="bg-eco-surface border border-eco-border p-5 rounded-xl hover:border-status-resolved/50 transition-colors group">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-syne font-bold text-status-resolved uppercase tracking-wide">Case Resolved</h4>
+<time class="font-mono text-xs text-gray-500">2023-11-24 16:45:12</time>
+</div>
+<p class="text-gray-300 text-sm leading-relaxed mb-4">
+                Area secured. Perpetrators identified and citations issued. Reforestation protocol initiated for damaged sector.
+              </p>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center text-[10px] font-bold">AV</div>
+<span class="text-xs font-semibold text-gray-400">Officer: Elena Vance</span>
+</div>
+</div>
+</div>
+<!-- END: Timeline Node - Resolved -->
+<!-- BEGIN: Timeline Node - Update -->
+<div class="mb-12 relative pl-10" data-purpose="timeline-item">
+<!-- Status Dot -->
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-eco-dark border-4 border-status-update z-10 shadow-[0_0_10px_rgba(59,130,246,0.3)]"></div>
+<div class="bg-eco-surface border border-eco-border p-5 rounded-xl hover:border-status-update/50 transition-colors">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-syne font-bold text-status-update uppercase tracking-wide">Field Update</h4>
+<time class="font-mono text-xs text-gray-500">2023-11-24 14:20:05</time>
+</div>
+<p class="text-gray-300 text-sm leading-relaxed mb-4">
+                Ground team reached coordinates 45.322, -122.677. Confirmed presence of heavy machinery. Thermal scans indicate activity within the last 2 hours.
+              </p>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center text-[10px] font-bold">JD</div>
+<span class="text-xs font-semibold text-gray-400">Officer: John Doe</span>
+</div>
+</div>
+</div>
+<!-- END: Timeline Node - Update -->
+<!-- BEGIN: Timeline Node - Escalation -->
+<div class="mb-12 relative pl-10" data-purpose="timeline-item">
+<!-- Status Dot -->
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-eco-dark border-4 border-status-escalation z-10 animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+<div class="bg-eco-surface border border-eco-border p-5 rounded-xl border-l-4 border-l-status-escalation">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-syne font-bold text-status-escalation uppercase tracking-wide">Escalation Level 2</h4>
+<time class="font-mono text-xs text-gray-500">2023-11-24 09:12:30</time>
+</div>
+<p class="text-gray-300 text-sm leading-relaxed mb-4">
+                Violation detected in protected biosphere. Automated request for enforcement backup triggered by AI risk assessment model.
+              </p>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-eco-green/20 flex items-center justify-center text-[10px] font-bold text-eco-green">AI</div>
+<span class="text-xs font-semibold text-gray-400">System: Eco-Inspect Core</span>
+</div>
+</div>
+</div>
+<!-- END: Timeline Node - Escalation -->
+<!-- BEGIN: Timeline Node - Assignment -->
+<div class="mb-12 relative pl-10" data-purpose="timeline-item">
+<!-- Status Dot -->
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-eco-dark border-4 border-status-assignment z-10 shadow-[0_0_10px_rgba(245,158,11,0.3)]"></div>
+<div class="bg-eco-surface border border-eco-border p-5 rounded-xl hover:border-status-assignment/50 transition-colors">
+<div class="flex justify-between items-start mb-3">
+<h4 class="font-syne font-bold text-status-assignment uppercase tracking-wide">Case Assigned</h4>
+<time class="font-mono text-xs text-gray-500">2023-11-24 04:30:00</time>
+</div>
+<p class="text-gray-300 text-sm leading-relaxed mb-4">
+                Case assigned to Sector 7 response unit. Sgt. Vance designated as primary responder.
+              </p>
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center text-[10px] font-bold">HQ</div>
+<span class="text-xs font-semibold text-gray-400">Admin: Central Dispatch</span>
+</div>
+</div>
+</div>
+<!-- END: Timeline Node - Assignment -->
+</div>
+</div>
+<!-- Floating Action Button (Mobile/Secondary) -->
+<button class="fixed bottom-8 right-8 lg:hidden w-14 h-14 bg-eco-green rounded-full shadow-2xl flex items-center justify-center text-black hover:scale-110 transition-transform z-50">
+<svg fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
+</button>
+</section>
+</main>
+<!-- END: Main Dashboard Layout -->
+</body></html>

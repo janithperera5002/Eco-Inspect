@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#0A0F0D] text-gray-100" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Admin Analytics Dashboard</title>
+<!-- Fonts: Syne for headings, JetBrains Mono for data -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Syne:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- BEGIN: Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0D',
+            'eco-surface': '#111A14',
+            'eco-green': '#10B981',
+            'eco-accent': '#34D399',
+            'eco-border': '#1F2937'
+          },
+          fontFamily: {
+            sans: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: Tailwind Configuration -->
+<style data-purpose="custom-typography">
+    body {
+      font-family: 'Syne', sans-serif;
+    }
+    .data-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Custom Scrollbar for dark theme */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1F2937;
+      border-radius: 10px;
+    }
+  </style>
+<style data-purpose="card-styles">
+    .stat-card {
+      background-color: #111A14;
+      border: 1px solid #1F2937;
+      transition: all 0.2s ease-in-out;
+    }
+    .stat-card:hover {
+      border-color: #10B981;
+    }
+    .chart-container {
+      background-color: #111A14;
+      border: 1px solid #1F2937;
+    }
+  </style>
+</head>
+<body class="h-full flex">
+<!-- BEGIN: Persistent Sidebar -->
+<aside class="w-64 flex-shrink-0 bg-eco-surface border-r border-eco-border flex flex-col h-full" data-purpose="sidebar-navigation">
+<div class="p-6">
+<div class="flex items-center gap-2 mb-10">
+<div class="w-8 h-8 bg-eco-green rounded-lg flex items-center justify-center">
+<svg class="w-5 h-5 text-eco-dark" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="text-xl font-extrabold tracking-tight uppercase">Eco-Inspect</span>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-eco-green bg-eco-green/10 rounded-lg group" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Hotspots</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors group" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Stakeholders</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-eco-border">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-eco-green/20 flex items-center justify-center text-eco-green font-bold">JD</div>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">Jane Doe</p>
+<p class="text-xs text-gray-500 truncate">System Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Persistent Sidebar -->
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 overflow-y-auto p-8" data-purpose="dashboard-main">
+<!-- BEGIN: Header -->
+<header class="flex justify-between items-end mb-10" data-purpose="main-header">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tighter">ANALYTICS OVERVIEW</h1>
+<p class="text-gray-500 mt-1 uppercase text-sm tracking-widest font-mono">System Health &amp; Sustainability Metrics</p>
+</div>
+<div class="flex gap-4">
+<div class="data-font text-xs text-eco-green bg-eco-green/5 border border-eco-green/20 px-3 py-2 rounded">
+          STATUS: OPERATIONAL
+        </div>
+<button class="bg-eco-green text-eco-dark px-4 py-2 font-bold rounded hover:bg-eco-accent transition-colors">
+          EXPORT DATA
+        </button>
+</div>
+</header>
+<!-- END: Header -->
+<!-- BEGIN: KPI Row -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10" data-purpose="kpi-metrics">
+<!-- Total Reports -->
+<div class="stat-card p-6 rounded-xl relative overflow-hidden">
+<p class="text-gray-500 text-xs font-mono uppercase mb-2">Total Reports</p>
+<h2 class="text-3xl font-extrabold data-font tracking-tight">12,482</h2>
+<div class="flex items-center gap-1 mt-2">
+<span class="text-eco-green text-xs font-mono">+12.4%</span>
+<span class="text-gray-600 text-[10px] uppercase">vs last month</span>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 text-eco-green">
+<svg class="w-24 h-24" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+<!-- Resolved Rate -->
+<div class="stat-card p-6 rounded-xl relative overflow-hidden">
+<p class="text-gray-500 text-xs font-mono uppercase mb-2">Resolved Rate</p>
+<h2 class="text-3xl font-extrabold data-font tracking-tight">94.2%</h2>
+<div class="w-full bg-eco-border h-1.5 mt-4 rounded-full overflow-hidden">
+<div class="bg-eco-green h-full w-[94.2%]"></div>
+</div>
+</div>
+<!-- Avg Response Time -->
+<div class="stat-card p-6 rounded-xl relative overflow-hidden">
+<p class="text-gray-500 text-xs font-mono uppercase mb-2">Avg Response Time</p>
+<h2 class="text-3xl font-extrabold data-font tracking-tight">1.8 <span class="text-lg">hrs</span></h2>
+<div class="flex items-center gap-1 mt-2">
+<span class="text-eco-green text-xs font-mono">-14m</span>
+<span class="text-gray-600 text-[10px] uppercase">improvement</span>
+</div>
+</div>
+<!-- Critical Cases -->
+<div class="stat-card p-6 rounded-xl border-l-4 border-l-red-500 relative overflow-hidden">
+<p class="text-gray-500 text-xs font-mono uppercase mb-2">Critical Cases</p>
+<h2 class="text-3xl font-extrabold data-font tracking-tight text-red-400">28</h2>
+<p class="text-gray-600 text-[10px] uppercase mt-2">Requires Immediate Action</p>
+</div>
+</section>
+<!-- END: KPI Row -->
+<!-- BEGIN: Charts Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6" data-purpose="analytics-charts">
+<!-- Reports Over Time (Line Chart Placeholder) -->
+<div class="lg:col-span-2 chart-container p-6 rounded-xl flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold tracking-tight">REPORTS OVER TIME</h3>
+<select class="bg-eco-dark border-eco-border text-xs rounded font-mono text-gray-400 focus:ring-eco-green focus:border-eco-green">
+<option>LAST 30 DAYS</option>
+<option>LAST 90 DAYS</option>
+</select>
+</div>
+<div class="flex-1 min-h-[300px] relative">
+<!-- Canvas for chart -->
+<canvas class="w-full h-full" id="reportsLineChart"></canvas>
+</div>
+</div>
+<!-- Violation Categories (Horizontal Bar Chart) -->
+<div class="chart-container p-6 rounded-xl">
+<h3 class="text-lg font-bold tracking-tight mb-6 uppercase">Violation Categories</h3>
+<div class="space-y-6">
+<!-- Category 1 -->
+<div>
+<div class="flex justify-between text-xs font-mono mb-1">
+<span>WATER POLLUTION</span>
+<span>42%</span>
+</div>
+<div class="h-4 bg-eco-border rounded-sm overflow-hidden">
+<div class="h-full bg-eco-green w-[42%]"></div>
+</div>
+</div>
+<!-- Category 2 -->
+<div>
+<div class="flex justify-between text-xs font-mono mb-1">
+<span>ILLEGAL LOGGING</span>
+<span>28%</span>
+</div>
+<div class="h-4 bg-eco-border rounded-sm overflow-hidden">
+<div class="h-full bg-eco-green w-[28%]"></div>
+</div>
+</div>
+<!-- Category 3 -->
+<div>
+<div class="flex justify-between text-xs font-mono mb-1">
+<span>WASTE DUMPING</span>
+<span>18%</span>
+</div>
+<div class="h-4 bg-eco-border rounded-sm overflow-hidden">
+<div class="h-full bg-eco-green w-[18%]"></div>
+</div>
+</div>
+<!-- Category 4 -->
+<div>
+<div class="flex justify-between text-xs font-mono mb-1">
+<span>AIR QUALITY</span>
+<span>12%</span>
+</div>
+<div class="h-4 bg-eco-border rounded-sm overflow-hidden">
+<div class="h-full bg-eco-green w-[12%] opacity-60"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-eco-border">
+<button class="w-full text-center text-xs font-mono text-gray-500 hover:text-eco-green transition-colors uppercase">View Detailed Breakdown →</button>
+</div>
+</div>
+</section>
+<!-- END: Charts Section -->
+<!-- BEGIN: Recent Activity Placeholder -->
+<section class="mt-10" data-purpose="recent-activity">
+<div class="stat-card rounded-xl p-6">
+<h3 class="text-lg font-bold tracking-tight mb-4">SYSTEM LOGS</h3>
+<div class="space-y-4 font-mono text-sm">
+<div class="flex items-center gap-4 text-gray-400 border-b border-eco-border pb-3">
+<span class="text-eco-green">[14:22:01]</span>
+<span class="text-white">New high-priority report:</span>
+<span>ID-8921 Sector-G (Water Contamination)</span>
+</div>
+<div class="flex items-center gap-4 text-gray-400 border-b border-eco-border pb-3">
+<span class="text-eco-green">[13:45:12]</span>
+<span class="text-white">AI Analysis complete:</span>
+<span>Case ID-8919 flagged as "Highly Reliable"</span>
+</div>
+<div class="flex items-center gap-4 text-gray-400">
+<span class="text-eco-green">[13:02:44]</span>
+<span class="text-white">Auto-Escalation:</span>
+<span>Unresolved critical alert moved to Tier 2 Admin</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Recent Activity -->
+</main>
+<!-- END: Main Content Area -->
+<script data-purpose="chart-rendering">
+    /**
+     * Minimal JavaScript to render a simulated line chart using Canvas API
+     * since we are not using external libraries.
+     */
+    function renderReportsChart() {
+      const canvas = document.getElementById('reportsLineChart');
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      
+      // Set canvas internal dimensions matching visual dimensions
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      const width = rect.width;
+      const height = rect.height;
+      
+      // Draw Grid Lines
+      ctx.strokeStyle = '#1F2937';
+      ctx.lineWidth = 1;
+      for(let i=0; i < 5; i++) {
+        const y = (height / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Draw Simulated Line Data
+      const points = [
+        {x: 0, y: 0.8}, {x: 0.1, y: 0.75}, {x: 0.2, y: 0.85}, 
+        {x: 0.3, y: 0.6}, {x: 0.4, y: 0.65}, {x: 0.5, y: 0.4}, 
+        {x: 0.6, y: 0.45}, {x: 0.7, y: 0.3}, {x: 0.8, y: 0.35}, 
+        {x: 0.9, y: 0.2}, {x: 1, y: 0.25}
+      ];
+
+      ctx.beginPath();
+      ctx.strokeStyle = '#10B981';
+      ctx.lineWidth = 3;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+
+      points.forEach((p, i) => {
+        const px = p.x * width;
+        const py = p.y * height;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      });
+      ctx.stroke();
+
+      // Add Gradient Fill
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+      gradient.addColorStop(0, 'rgba(16, 185, 129, 0.2)');
+      gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+      
+      ctx.lineTo(width, height);
+      ctx.lineTo(0, height);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+    }
+
+    // Initialize on load and resize
+    window.addEventListener('load', renderReportsChart);
+    window.addEventListener('resize', renderReportsChart);
+  </script>
+</body></html>

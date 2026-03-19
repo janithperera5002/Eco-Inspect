@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notification Preferences</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2eff7e",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#0A0F0D",
+                        "surface": "#111A14",
+                        "border-subtle": "#1A261E",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "heading": ["Syne", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Syne', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between border-b border-border-subtle bg-surface px-6 md:px-10 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">settings_suggest</span>
+</div>
+<h2 class="text-slate-100 text-xl font-heading leading-tight tracking-tight">Preferences</h2>
+</div>
+<div class="hidden md:flex">
+<label class="flex flex-col min-w-64 h-10">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full bg-background-dark/50 border border-border-subtle">
+<div class="text-slate-400 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent text-slate-100 focus:ring-0 placeholder:text-slate-500 text-sm" placeholder="Search settings..." value=""/>
+</div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-4 lg:gap-8">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-medium transition-colors" href="#">Settings</a>
+<a class="text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Profile</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-xl size-10 bg-border-subtle text-slate-100 hover:bg-border-subtle/80 transition-all">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full border-2 border-primary/20 p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="User profile avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQts4gjQARJXVinfuZ32j0zkKkJETpJpUewYWyAQFqrgYERRLuDLoyvPrp6gvpKp_azIhmIzWKzD2lg188bRv3o_PtlAZnD9vI1uJplgV7O_oBED84KXkYmqGuZjJwlBDdF_32lmefx3HmmvBdDDl3DdErxA6EYedGpSEb4j0Kn2bfP_Ssl2-ZMxPBr0S9JPs583nwXil818Rxd047ZCd9uamKX0Ao6W4AIpCRBn448XmrKkALaZ1ctvAtevdIcrgbl7BmcFVFBiNd"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col max-w-5xl mx-auto w-full p-6 md:p-10">
+<!-- Hero Header -->
+<div class="mb-10">
+<h1 class="text-white text-4xl md:text-5xl font-heading mb-4 tracking-tighter">Notification Settings</h1>
+<p class="text-slate-400 text-lg max-w-2xl">Tailor your alert experience. Choose how and when you want to stay updated with your business activities.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Sidebar Nav -->
+<aside class="lg:col-span-3 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary border border-primary/20 group transition-all" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="font-medium">Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-surface hover:text-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span>Account</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-surface hover:text-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined">security</span>
+<span>Security</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-surface hover:text-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Billing</span>
+</a>
+</aside>
+<!-- Settings Content -->
+<div class="lg:col-span-9 space-y-12">
+<!-- Section: Push Notifications -->
+<section>
+<div class="flex items-center gap-3 mb-6 border-b border-border-subtle pb-4">
+<span class="material-symbols-outlined text-primary">phonelink_ring</span>
+<h2 class="text-2xl font-heading text-slate-100">Push Notifications</h2>
+</div>
+<div class="space-y-4">
+<!-- Toggle Row 1 -->
+<div class="flex items-center justify-between p-5 rounded-2xl bg-surface border border-border-subtle hover:border-primary/30 transition-all">
+<div class="flex items-start gap-4">
+<div class="size-12 rounded-xl bg-background-dark flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">shopping_cart</span>
+</div>
+<div>
+<p class="text-slate-100 font-semibold text-lg">New Order Alerts</p>
+<p class="text-slate-400 text-sm">Real-time alerts whenever a new order is placed in your store.</p>
+</div>
+</div>
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-border-subtle p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-all peer-checked:translate-x-5"></div>
+</label>
+</div>
+<!-- Toggle Row 2 -->
+<div class="flex items-center justify-between p-5 rounded-2xl bg-surface border border-border-subtle hover:border-primary/30 transition-all">
+<div class="flex items-start gap-4">
+<div class="size-12 rounded-xl bg-background-dark flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">chat</span>
+</div>
+<div>
+<p class="text-slate-100 font-semibold text-lg">Customer Messages</p>
+<p class="text-slate-400 text-sm">Direct notifications for new support queries and chats.</p>
+</div>
+</div>
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-border-subtle p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-all peer-checked:translate-x-5"></div>
+</label>
+</div>
+<!-- Toggle Row 3 -->
+<div class="flex items-center justify-between p-5 rounded-2xl bg-surface border border-border-subtle hover:border-primary/30 transition-all">
+<div class="flex items-start gap-4">
+<div class="size-12 rounded-xl bg-background-dark flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<div>
+<p class="text-slate-100 font-semibold text-lg">Low Stock Warnings</p>
+<p class="text-slate-400 text-sm">Get notified when product inventory falls below set thresholds.</p>
+</div>
+</div>
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-border-subtle p-0.5 transition-colors has-[:checked]:bg-primary">
+<input class="sr-only peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-all peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Section: WhatsApp Notifications -->
+<section>
+<div class="flex items-center gap-3 mb-6 border-b border-border-subtle pb-4">
+<span class="material-symbols-outlined text-[#25D366]">chat_bubble</span>
+<h2 class="text-2xl font-heading text-slate-100">WhatsApp Notifications</h2>
+</div>
+<div class="space-y-4">
+<!-- Toggle Row 4 -->
+<div class="flex items-center justify-between p-5 rounded-2xl bg-surface border border-border-subtle hover:border-primary/30 transition-all">
+<div class="flex items-start gap-4">
+<div class="size-12 rounded-xl bg-background-dark flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#25D366]">analytics</span>
+</div>
+<div>
+<p class="text-slate-100 font-semibold text-lg">Weekly Performance Digest</p>
+<p class="text-slate-400 text-sm">Summarized business analytics delivered every Monday morning.</p>
+</div>
+</div>
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-border-subtle p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-all peer-checked:translate-x-5"></div>
+</label>
+</div>
+<!-- Toggle Row 5 -->
+<div class="flex items-center justify-between p-5 rounded-2xl bg-surface border border-border-subtle hover:border-primary/30 transition-all">
+<div class="flex items-start gap-4">
+<div class="size-12 rounded-xl bg-background-dark flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#25D366]">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-slate-100 font-semibold text-lg">Payout Confirmations</p>
+<p class="text-slate-400 text-sm">Instant confirmation when funds are transferred to your account.</p>
+</div>
+</div>
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full bg-border-subtle p-0.5 transition-colors has-[:checked]:bg-primary">
+<input class="sr-only peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-md transition-all peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Save Action -->
+<div class="flex items-center justify-end gap-4 pt-6">
+<button class="px-6 py-2.5 rounded-xl font-semibold text-slate-400 hover:text-white transition-colors">Discard Changes</button>
+<button class="px-8 py-2.5 rounded-xl bg-primary text-background-dark font-bold hover:brightness-110 transition-all shadow-[0_0_20px_rgba(46,255,126,0.3)]">Save Preferences</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

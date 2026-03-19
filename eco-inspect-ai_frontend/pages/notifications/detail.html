@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notification Detail - Eco-Inspect AI</title>
+<!-- Google Fonts: Syne for headings, Inter for body -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0D',
+            'eco-surface': '#111A14',
+            'eco-green': '#2DFF83',
+            'eco-green-muted': '#1A3326',
+            'eco-border': '#1E2923',
+            'eco-text-muted': '#A1A1AA',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            syne: ['Syne', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+<style data-purpose="typography-adjustments">
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0A0F0D;
+      color: #FFFFFF;
+    }
+    h1, h2, h3 {
+      font-family: 'Syne', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-8">
+<!-- BEGIN: NotificationDetailContainer -->
+<main class="w-full max-w-2xl bg-eco-surface rounded-2xl border border-eco-border shadow-2xl overflow-hidden" data-purpose="notification-detail-view">
+<!-- BEGIN: HeaderSection -->
+<header class="p-8 pb-4 text-center">
+<!-- Priority Icon Indicator -->
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-eco-green-muted text-eco-green mb-6 border border-eco-green/20" data-purpose="priority-icon">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+<line x1="12" x2="12" y1="9" y2="13"></line>
+<line x1="12" x2="12.01" y1="17" y2="17"></line>
+</svg>
+</div>
+<h1 class="text-3xl md:text-4xl font-extrabold text-white mb-2 leading-tight">
+        Critical Anomaly Detected
+      </h1>
+<p class="text-eco-text-muted text-sm font-medium uppercase tracking-widest">
+        Sent: Oct 24, 2023 • 09:42 AM
+      </p>
+</header>
+<!-- END: HeaderSection -->
+<!-- BEGIN: MessageContent -->
+<section class="px-8 py-6">
+<div class="bg-eco-dark/50 rounded-xl p-6 border border-eco-border/50">
+<p class="text-gray-300 leading-relaxed text-lg">
+          Our satellite monitoring system has flagged a significant shift in methane emission levels at <strong>Sector 7-G (Amazon North)</strong>. This exceeds the pre-set threshold by 24% and requires immediate manual verification or field team deployment.
+        </p>
+</div>
+</section>
+<!-- END: MessageContent -->
+<!-- BEGIN: LinkedEntityCard -->
+<section class="px-8 py-4">
+<div class="group cursor-pointer bg-eco-dark rounded-xl border border-eco-border p-5 hover:border-eco-green/40 transition-colors duration-200" data-purpose="linked-record-card">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-bold text-eco-green bg-eco-green/10 px-2 py-1 rounded">REPORT ID: #EI-9921</span>
+<span class="text-xs text-eco-text-muted">High Priority Case</span>
+</div>
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded bg-eco-surface flex items-center justify-center border border-eco-border">
+<svg class="w-6 h-6 text-eco-text-muted" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3 class="text-white font-semibold">Amazon Basin Methane Survey</h3>
+<p class="text-eco-text-muted text-sm">Last updated by AI Agent Alpha-9</p>
+</div>
+<div class="ml-auto text-eco-text-muted group-hover:text-eco-green transition-colors">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- END: LinkedEntityCard -->
+<!-- BEGIN: FooterActions -->
+<footer class="p-8 flex flex-col sm:flex-row gap-4">
+<button class="flex-1 bg-eco-green hover:bg-emerald-400 text-eco-dark font-bold py-4 px-6 rounded-xl transition-all duration-200 transform active:scale-95 shadow-[0_0_20px_rgba(45,255,131,0.2)]" data-purpose="primary-action-button">
+        View Full Record
+      </button>
+<button class="px-6 py-4 bg-transparent border border-eco-border text-white font-semibold rounded-xl hover:bg-white/5 transition-colors" data-purpose="secondary-action-button">
+        Archive
+      </button>
+</footer>
+<!-- END: FooterActions -->
+</main>
+<!-- END: NotificationDetailContainer -->
+</body></html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Error - Eco-Inspect AI</title>
+<!-- Tailwind CSS CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Syne for headings, JetBrains Mono for error codes -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0A0F0D',
+              green: '#2DDB81',
+              mutedRed: '#E57373',
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-animations">
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    .animate-pulse-soft {
+      animation: pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+</head>
+<body class="bg-brand-dark text-white min-h-screen flex items-center justify-center p-6">
+<!-- BEGIN: ErrorContainer -->
+<main class="max-w-xl w-full text-center flex flex-col items-center" data-purpose="error-display-wrapper">
+<!-- BEGIN: ErrorIllustration -->
+<div class="mb-8 relative" data-purpose="icon-container">
+<!-- Muted Red Disconnected Icon (SVG) -->
+<div class="w-24 h-24 bg-brand-mutedRed/10 rounded-full flex items-center justify-center animate-pulse-soft">
+<svg class="w-12 h-12 text-brand-mutedRed" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 3l18 18M10.5 10.5L3 18m10.5-10.5l7.5 7.5M16.5 16.5l3 3m-12-12l-3-3" stroke-linecap="round" stroke-linejoin="round"></path>
+<circle cx="12" cy="12" r="9" stroke-dasharray="2 2"></circle>
+</svg>
+</div>
+</div>
+<!-- END: ErrorIllustration -->
+<!-- BEGIN: ErrorTextContent -->
+<div class="space-y-4 mb-10">
+<h1 class="font-syne text-4xl md:text-5xl font-extrabold tracking-tight">
+        Something Went Wrong
+      </h1>
+<p class="text-gray-400 text-lg max-w-md mx-auto">
+        Eco-Inspect AI encountered an unexpected interruption. Our systems are working to restore the green path.
+      </p>
+</div>
+<!-- END: ErrorTextContent -->
+<!-- BEGIN: ActionButtons -->
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center items-center">
+<!-- Primary Action: Try Again -->
+<button class="group relative inline-flex items-center justify-center px-8 py-3 font-bold text-black transition-all duration-200 bg-brand-green font-syne rounded-lg hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-green w-full sm:w-auto" data-purpose="retry-button" onclick="window.location.reload()">
+        Try Again
+      </button>
+<!-- Secondary Action: Go Home -->
+<a class="px-8 py-3 font-bold text-white border border-gray-700 transition-all duration-200 font-syne rounded-lg hover:bg-gray-800 focus:outline-none w-full sm:w-auto" data-purpose="home-button" href="/">
+        Go Home
+      </a>
+</div>
+<!-- END: ActionButtons -->
+<!-- BEGIN: ErrorMetadata -->
+<footer class="mt-16 pt-8 border-t border-gray-900 w-full">
+<!-- Error code displayed in JetBrains Mono -->
+<p class="font-mono text-xs uppercase tracking-widest text-gray-600">
+        Error Code: <span class="text-gray-400">ERR_ECO_CONN_TIMEOUT_092</span>
+</p>
+</footer>
+<!-- END: ErrorMetadata -->
+</main>
+<!-- END: ErrorContainer -->
+</body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI Splash Screen</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Syne for the Heading and Inter for the Tagline -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              background: '#0A0F0D',
+              accent: '#2DFF7F',
+              muted: '#1B4D35', // Muted green for tagline/effects
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          animation: {
+            'progress-fill': 'fill 4s cubic-bezier(0.65, 0, 0.35, 1) infinite',
+            'glow-pulse': 'pulse-glow 4s ease-in-out infinite',
+            'fade-in-up': 'fade-up 1.2s ease-out forwards',
+          },
+          keyframes: {
+            fill: {
+              '0%': { width: '0%' },
+              '100%': { width: '100%' },
+            },
+            'pulse-glow': {
+              '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
+              '50%': { opacity: '0.6', transform: 'scale(1.3)' },
+            },
+            'fade-up': {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-effects">
+    /* Custom radial glow behind the icon - optimized for desktop spreads */
+    .radial-glow {
+      background: radial-gradient(circle, rgba(45, 255, 127, 0.2) 0%, rgba(10, 15, 13, 0) 75%);
+    }
+    
+    /* Full height cinematic container */
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      background-color: #0A0F0D;
+    }
+
+    /* Subtle texture for cinematic feel */
+    .noise-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center font-inter selection:bg-brand-accent selection:text-brand-background">
+<!-- BEGIN: SplashContainer -->
+<main class="relative w-full h-screen flex flex-col items-center justify-center bg-brand-background overflow-hidden px-8" data-purpose="splash-container">
+<div class="noise-overlay"></div>
+<!-- BEGIN: IconSection -->
+<div class="relative flex flex-col items-center animate-fade-in-up" data-purpose="branding-center">
+<!-- Radial glow effect behind the icon -->
+<div class="absolute w-[600px] h-[600px] radial-glow animate-glow-pulse -z-10 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+<!-- Leaf Icon: Scaled for Desktop -->
+<div class="mb-12 text-brand-accent drop-shadow-[0_0_25px_rgba(45,255,127,0.4)] transition-transform duration-700 hover:scale-110" data-purpose="logo-icon">
+<svg class="lucide lucide-leaf" fill="none" height="120" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="120" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+<path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+</svg>
+</div>
+<!-- App Name: Larger for Desktop -->
+<h1 class="font-syne font-extrabold text-6xl md:text-7xl text-white tracking-tighter mb-4 text-center" data-purpose="app-title">
+      Eco-Inspect AI
+    </h1>
+<!-- Tagline: More spaced and refined for Desktop -->
+<p class="text-brand-accent/70 font-medium text-sm md:text-base tracking-[0.3em] text-center uppercase" data-purpose="app-tagline">
+      Protecting the Environment, Together
+    </p>
+</div>
+<!-- END: IconSection -->
+<!-- BEGIN: FooterProgress -->
+<div class="absolute bottom-0 left-0 w-full h-1.5 bg-brand-muted/10" data-purpose="loading-indicator">
+<div class="h-full bg-brand-accent shadow-[0_0_20px_#2DFF7F] animate-progress-fill origin-left"></div>
+</div>
+<!-- END: FooterProgress -->
+<!-- Subtle version or loading text for desktop context -->
+<div class="absolute bottom-6 text-white/20 text-xs font-medium tracking-widest uppercase pointer-events-none">
+    Initializing Eco-Systems Data...
+  </div>
+</main>
+<!-- END: SplashContainer -->
+</body></html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Syne:wght@700;800&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2eff7e",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#0A0F0D",
+                        "card-dark": "#141C18",
+                        "border-dark": "#1E2923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "heading": ["Syne", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Syne', sans-serif;
+        }
+        .data-value {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+  <script src="../../src/shared.js"></script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-slate-200 dark:border-border-dark flex flex-col bg-white dark:bg-background-dark sticky top-0 h-screen">
+<div class="p-6 flex items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined font-bold">policy</span>
+</div>
+<div>
+<h1 class="text-lg font-heading leading-none">POLICE HQ</h1>
+<p class="text-xs text-slate-500 dark:text-primary/60 font-mono">ADMIN PORTAL</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/10 rounded-lg transition-colors group" href="../dashboard/home.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/10 rounded-lg transition-colors" href="../reports/list.html">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/10 rounded-lg transition-colors" href="../cases/list.html">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-medium">Cases</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg transition-colors" href="profile.html">
+<span class="material-symbols-outlined">badge</span>
+<span class="font-medium">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-primary/10 rounded-lg transition-colors" href="../users/list.html">
+<span class="material-symbols-outlined">group</span>
+<span class="font-medium">Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-red-500 hover:bg-red-500/10 rounded-lg transition-colors" href="#" onclick="window.auth.logout();return false;">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-medium">Logout</span>
+</a>
+</nav>
+<div class="p-4 mt-auto border-t border-slate-200 dark:border-border-dark">
+<div class="flex items-center gap-3 p-2">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-card-dark overflow-hidden border border-primary/20">
+<img alt="Admin profile picture" class="w-full h-full object-cover" data-alt="Portrait of a senior police administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTokfTVevcXKuQagh_nav9aAXdWhGzprrKLWE_N06z2Q5wi-WcSuqiS2DQ7vPnpH7azbNN1D_8RSViuof3s-6j7OusQ7GZt-vCBdfv1JJbKoG0wVGXVj9JShwOgIm93ts6xJ_1rKpMshPUVDq28jCV5u0qP7FUxK1R0zq681AaKf-Lwu4xr2pyvlPRXeXBn-Yizr_pxs7Mpa8Gn_Ytzl5ODt4tOqmI8BH8SpYY6b8vtacTu0TVwmSFa9QjPgFH_8LbvkvUfHaqiiCb"/>
+</div>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">Cmdr. Vance</p>
+<p class="text-xs text-slate-500 truncate">System Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 p-8 lg:p-12 overflow-y-auto">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="flex items-center gap-6">
+<div class="relative">
+<div class="size-32 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 p-1 border-2 border-primary/30">
+<img alt="Officer Marcus Thorne" class="w-full h-full object-cover rounded-lg shadow-2xl shadow-primary/10" data-alt="Professional portrait of Officer Marcus Thorne" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb6iBj7x9HJKV-bqDZcD5WJRu--FLBEvqyUArw5rt_T2o_Slp9flDjJFmkbTLrdTuvS84k9UzVOH9gqucvXxEehEwsQ1KynxR4OQeT7Y6SLGtcKopDKfn9WV_LI1cV-pbdzXwTdcItLE8IfT4rY2BzaOFWRBuvo7hJRvbQle2_L52SNx_uQdRR6hC7KFhcx-7xm48uoqMeOTbqMoIosyQyGVMCioNhisy283qrpLGXixk1xRs9P1OPrVogwqlNe2lbSPMCX-XjzHev"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-background-dark p-1.5 rounded-lg flex items-center justify-center ring-4 ring-background-dark">
+<span class="material-symbols-outlined text-sm font-bold">verified</span>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h2 id="profile-name" class="text-4xl font-heading tracking-tight">Loading...</h2>
+<span id="account-status" class="px-2 py-0.5 bg-primary/20 text-primary text-[10px] font-mono rounded border border-primary/30">ACTIVE</span>
+</div>
+<p id="profile-role" class="text-lg text-slate-500 dark:text-slate-400 font-medium">Officer</p>
+<p id="joined-date" class="text-sm text-slate-400 dark:text-slate-500">Member since —</p>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 bg-slate-200 dark:bg-card-dark hover:bg-slate-300 dark:hover:bg-border-dark rounded-lg font-semibold transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">edit</span> Edit Profile
+                    </button>
+<button class="px-6 py-2.5 bg-primary text-background-dark hover:opacity-90 rounded-lg font-bold transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">mail</span> Send Message
+                    </button>
+</div>
+</header>
+<!-- Metrics Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-white dark:bg-card-dark p-8 rounded-xl border border-slate-200 dark:border-border-dark relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 text-primary/10 group-hover:text-primary/20 transition-colors">
+<span class="material-symbols-outlined text-6xl">check_circle</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 font-medium mb-4 uppercase tracking-widest text-xs">Cases Resolved</p>
+<div class="flex items-baseline gap-3">
+<h3 class="text-5xl font-mono font-bold text-primary" id="cases-resolved">—</h3>
+<span class="text-primary text-sm font-mono">+5%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark p-8 rounded-xl border border-slate-200 dark:border-border-dark relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 text-primary/10 group-hover:text-primary/20 transition-colors">
+<span class="material-symbols-outlined text-6xl">pending</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 font-medium mb-4 uppercase tracking-widest text-xs">Active Cases</p>
+<div class="flex items-baseline gap-3">
+<h3 class="text-5xl font-mono font-bold" id="cases-assigned">—</h3>
+<span class="text-slate-500 text-sm font-mono">0%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark p-8 rounded-xl border border-slate-200 dark:border-border-dark relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 text-red-500/10 group-hover:text-red-500/20 transition-colors">
+<span class="material-symbols-outlined text-6xl">summarize</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 font-medium mb-4 uppercase tracking-widest text-xs">Reports Reviewed</p>
+<div class="flex items-baseline gap-3">
+<h3 class="text-5xl font-mono font-bold">856</h3>
+<span class="text-red-500 text-sm font-mono">-2%</span>
+</div>
+</div>
+</section>
+<!-- Info & Location Section -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Personal Information -->
+<section class="bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-border-dark overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-border-dark bg-slate-50/50 dark:bg-white/5">
+<h3 class="text-xl font-heading">Personal Information</h3>
+</div>
+<div class="p-8">
+<div class="grid grid-cols-1 gap-y-8">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">alternate_email</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Official Email</p>
+<p id="profile-email" class="text-lg font-mono dark:text-slate-100">—</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Direct Line</p>
+<p id="profile-phone" class="text-lg font-mono dark:text-slate-100">—</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Assigned Region</p>
+<p class="text-lg font-mono dark:text-slate-100">North District Metro</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 uppercase tracking-wider mb-0.5">Service Since</p>
+<p class="text-lg font-mono dark:text-slate-100">March 2018</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Activity Map / Region -->
+<section class="bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-border-dark overflow-hidden flex flex-col">
+<div class="p-6 border-b border-slate-200 dark:border-border-dark bg-slate-50/50 dark:bg-white/5 flex justify-between items-center">
+<h3 class="text-xl font-heading">Active Precinct Map</h3>
+<span class="text-xs font-mono text-primary">LIVE DATA</span>
+</div>
+<div class="flex-1 relative min-h-[300px] bg-slate-100 dark:bg-slate-900/50">
+<div class="absolute inset-0 grayscale opacity-40 dark:opacity-20 pointer-events-none">
+<img alt="Regional Precinct Map" class="w-full h-full object-cover" data-alt="Stylized map showing precinct boundaries and hotspots" data-location="Chicago" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALlnMGMlxoxv5atwdUu1AdyZ-iiXgH_j2Yvg-lJrxRxe0wrSsYfIA3s1hDSab4pv4jGrYQYbwi5096YI9mxx0TM7gHjy3Kf4ts2VfovjHdXGshHH7iEPdtftHbllVBQv6zVdmodoJ-Vvz6uvUg9qniyJpJ1EY2Bkw9GwZILmMLkCTd_e5IdVSKFFAUnguU_hxNVAM4IGvpjlhX78_ugwAWG4BsyT_laIlm4YuEz5Nih1CP8_lcFFh2d3sRiKVugbXRSMNjFibULurX"/>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/20 rounded-full animate-pulse"></div>
+<div class="relative bg-primary text-background-dark p-3 rounded-full shadow-lg shadow-primary/40">
+<span class="material-symbols-outlined font-bold">my_location</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 right-4 bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/10">
+<div class="flex justify-between items-center">
+<div>
+<p class="text-xs text-white/60 font-medium">CURRENT POST</p>
+<p class="font-bold text-white">Sector 7-B Patrol Zone</p>
+</div>
+<button class="p-2 bg-primary text-background-dark rounded-md">
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Recent Activity Table -->
+<section class="mt-12">
+<h3 class="text-xl font-heading mb-6">Recent Case Activity</h3>
+<div class="bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-border-dark overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-slate-50 dark:bg-white/5 border-b border-slate-200 dark:border-border-dark">
+<tr>
+<th class="px-6 py-4 text-xs font-mono uppercase tracking-wider text-slate-500">Case ID</th>
+<th class="px-6 py-4 text-xs font-mono uppercase tracking-wider text-slate-500">Classification</th>
+<th class="px-6 py-4 text-xs font-mono uppercase tracking-wider text-slate-500">Status</th>
+<th class="px-6 py-4 text-xs font-mono uppercase tracking-wider text-slate-500">Last Update</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-border-dark">
+<tr>
+<td class="px-6 py-4 font-mono text-sm">#CR-2023-884</td>
+<td class="px-6 py-4 font-medium">Grand Larceny Investigation</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-yellow-500/20 text-yellow-500 text-[10px] font-bold rounded">IN PROGRESS</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">2 hours ago</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-mono text-sm">#CR-2023-912</td>
+<td class="px-6 py-4 font-medium">Cyber Fraud - Sector 4</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-primary/20 text-primary text-[10px] font-bold rounded">RESOLVED</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">Yesterday</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-mono text-sm">#CR-2023-744</td>
+<td class="px-6 py-4 font-medium">Evidence Review: 09-C</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-slate-500/20 text-slate-500 text-[10px] font-bold rounded">ARCHIVED</span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500">3 days ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</div>
+</body>
+<script>
+window.auth.requireAuth();
+document.title = 'My Profile — Eco-Inspect AI';
+window.highlightNav('profile');
+
+const _user = window.auth.getUser();
+if (!_user) window.auth.logout();
+
+async function loadProfile() {
+  try {
+    const profile = await window.api('GET', '/users/profile/' + _user.userId);
+    console.log('Profile data:', profile);
+    const setText = (sels, val) => {
+      (Array.isArray(sels)?sels:[sels]).forEach(sel => {
+        const el = document.querySelector(sel);
+        if (el) el.textContent = val || '—';
+      });
+    };
+    setText(['#profile-name'], profile.fullName);
+    setText(['#profile-email'], profile.email);
+    setText(['#profile-phone'], profile.phone || 'Not set');
+    setText(['#profile-role'], (profile.role||'officer').charAt(0).toUpperCase() + (profile.role||'officer').slice(1));
+    setText(['#joined-date'], 'Member since ' + window.formatDate(profile.createdAt));
+    setText(['#cases-resolved'], profile.casesResolved || 0);
+    setText(['#cases-assigned'], profile.casesAssigned || 0);
+    const statusEl = document.getElementById('account-status');
+    if (statusEl) statusEl.textContent = profile.isActive ? 'ACTIVE' : 'INACTIVE';
+  } catch(err) {
+    console.error('Profile error:', err);
+    window.showToast('Could not load profile data', 'error');
+    // Fallback: show data from token
+    const setText = (sel, val) => { const el = document.querySelector(sel); if (el) el.textContent = val || '—'; };
+    setText('#profile-name', _user.fullName);
+    setText('#profile-email', _user.email);
+    setText('#profile-role', (_user.role||'officer').charAt(0).toUpperCase() + (_user.role||'officer').slice(1));
+  }
+}
+
+loadProfile();
+</script>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Assign Case</title>
+<!-- BEGIN: Fonts and Tailwind -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Syne:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'eco-black': '#0A0F0D',
+            'eco-card': '#111A14',
+            'eco-green': '#10B981',
+            'eco-border': '#1F2937'
+          },
+          fontFamily: {
+            sans: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+<!-- END: Fonts and Tailwind -->
+<style data-purpose="custom-glows">
+    .selected-officer-glow {
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+      border-color: #10B981 !important;
+    }
+    body {
+      background-color: #0A0F0D;
+      color: #F3F4F6;
+    }
+    /* Hide scrollbar but keep functionality */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen p-4 md:p-8 flex items-center justify-center">
+<!-- BEGIN: Modal Container -->
+<main class="w-full max-w-4xl bg-eco-card rounded-2xl border border-eco-border shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+<!-- BEGIN: Modal Header -->
+<header class="p-6 border-b border-eco-border flex justify-between items-center" data-purpose="header-section">
+<div>
+<h1 class="text-2xl font-bold text-white tracking-tight">Assign Case</h1>
+<p class="text-gray-400 text-sm font-mono mt-1">Ref ID: #EI-9928-ALPHA</p>
+</div>
+<button class="p-2 hover:bg-white/5 rounded-full transition-colors text-gray-400 hover:text-white">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</header>
+<!-- END: Modal Header -->
+<!-- BEGIN: Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto p-6 space-y-8 no-scrollbar">
+<!-- BEGIN: Report Summary Card -->
+<section data-purpose="report-summary">
+<div class="bg-eco-black/50 p-5 rounded-xl border border-eco-border flex flex-wrap md:flex-nowrap gap-6 items-center">
+<div class="w-full md:w-32 h-24 bg-eco-border rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Environmental Snapshot" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhQgeNhZwLAr1PICzTTzJfz4vFTmcQcsdMm_cOeSCC3a9OiNXiWkKMfvPcYQ976wziVTc9-wmyH89znHGynTqQDjsWPgTORLkTKlG2bQ-QsBEUVv5y3XSTsPIts5SeHdQd6wsYz5WANNxPZrbHgOiwfPPCryKfEVZg5kvrvPR010o819rK5Ydzxt0uOp9saCQMwG1EWRQ2ewZAuMXQ5N7WCXAAXERqe9KmCxoo6VvBi_pbWlAh2PD1IeLtYK1-c3t0JhhAT3KzV295"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 bg-red-900/30 text-red-400 text-[10px] font-bold uppercase tracking-widest border border-red-900/50 rounded">Critical Alert</span>
+<span class="text-xs text-gray-500 font-mono">2 hours ago</span>
+</div>
+<h2 class="text-lg font-semibold text-white">Anomalous Water Contamination - Sector 7G</h2>
+<p class="text-sm text-gray-400 mt-1 line-clamp-1">Detection of heavy metal spikes near the runoff drainage basin. Initial sensor readings indicate lead levels 400% above threshold.</p>
+</div>
+</div>
+</section>
+<!-- END: Report Summary Card -->
+<!-- BEGIN: Officer Selection Section -->
+<section data-purpose="officer-selection">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+<h3 class="text-lg font-semibold text-white">Select Officer</h3>
+<div class="relative w-full md:w-72">
+<input class="w-full bg-eco-black border-eco-border text-sm rounded-lg focus:ring-eco-green focus:border-eco-green text-gray-300 pl-10" placeholder="Search officers..." type="text"/>
+<svg class="h-4 w-4 absolute left-3 top-3 text-gray-500" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- BEGIN: Officer Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Officer Card: Selected -->
+<article class="p-4 bg-eco-black border border-eco-border rounded-xl cursor-pointer hover:border-eco-green transition-all selected-officer-glow" data-purpose="officer-card">
+<div class="flex items-center gap-4">
+<img alt="Officer Sarah Thorne" class="w-12 h-12 rounded-full border-2 border-eco-green p-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYzTCwxfkUOJ7fhooyPaFloNpQgh41aKyFOFgOiQv7SOFcJuL-et7qBOa1yZZnbCgitveOru7v8DI-QBajaJoG4bFyl_QCXHkErITjiKT3GyxUPf1MHjXBJzgUootzMgYZby6J_MiSBX1KNKZEEwfaTAZQIwCEdmdUaMH5EJWrbA4ccSYupayEwQBPRGPOEnRSA9EQYsQkxMlSTwx0YTbkVS-cDReYE1VNXoQOv0lKDJhZ1w9_ZXunCPCXddrj0a5ktl7MJ5iwnGhN"/>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-white">Sarah Thorne</h4>
+<span class="text-[10px] font-mono bg-eco-green/20 text-eco-green px-1.5 py-0.5 rounded">SELECTED</span>
+</div>
+<p class="text-xs text-gray-400 italic">Senior Field Analyst</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="text-[10px] text-gray-500 font-mono">Region: NORTH-WEST</span>
+<span class="text-[10px] text-gray-500 font-mono">Active: 2 Cases</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Officer Card: Default -->
+<article class="p-4 bg-eco-black border border-eco-border rounded-xl cursor-pointer hover:border-gray-500 transition-all" data-purpose="officer-card">
+<div class="flex items-center gap-4">
+<img alt="Officer Marcus Vane" class="w-12 h-12 rounded-full border border-eco-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdAyKD66hmYYo9UfPkB7kkG-QGr7Gxpf5tgveWM4iZAKXW3ICLVe0nta_mydSjdTVrhZ-Uo_NTLLkq9gV5UZRumAr6-hBXbkRZP3280eud4Uqthw7FTo6pGgZzPrFb-Fe9zHf1rHiyLLolhYvySFrXJfP7w2elhDWRzK_8B10MvgO1O-2AvTP3-OsSDI-lGRLhm0uP3a-qNZQTAEV88Fv74YsDaHZWCGWvQEVGpUN_8yGVIN1bF6jBGnx4ynFVOT1TLYSXWPkpzbG8"/>
+<div class="flex-1">
+<h4 class="font-bold text-white">Marcus Vane</h4>
+<p class="text-xs text-gray-400 italic">Hazmat Specialist</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="text-[10px] text-gray-500 font-mono">Region: CENTRAL</span>
+<span class="text-[10px] text-gray-500 font-mono">Active: 4 Cases</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Officer Card: Default -->
+<article class="p-4 bg-eco-black border border-eco-border rounded-xl cursor-pointer hover:border-gray-500 transition-all" data-purpose="officer-card">
+<div class="flex items-center gap-4">
+<img alt="Officer Elena Rodriguez" class="w-12 h-12 rounded-full border border-eco-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYCq-6BC3EGayhcRB9Te5G9f9iCWUUv_GW9EGq2NtQAQ4oXSHZlAIAP_MtI8GaTTpSHKL4wqO9irJm3hTowCzVLsagqEJYnbFdTBi2b2RDp5etdp8qDitsIcjeXJZP9qDvsJx7MN36oq-2qvl-cCUG2OXnjAEaocpM8xs-xQkeQntVbLa7V5M_02bvReRjlO7pGBmgU14URD9fGIheBx-UTkVWrpX_zZhY_hSh6QhT4Ys_5-l2-xfuHrLPTkMwmJi2r0IKoOW8XoSk"/>
+<div class="flex-1">
+<h4 class="font-bold text-white">Elena Rodriguez</h4>
+<p class="text-xs text-gray-400 italic">Ecological Consultant</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="text-[10px] text-gray-500 font-mono">Region: SECTOR 7G</span>
+<span class="text-[10px] text-gray-500 font-mono">Active: 1 Case</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Officer Card: Default -->
+<article class="p-4 bg-eco-black border border-eco-border rounded-xl cursor-pointer hover:border-gray-500 transition-all opacity-60" data-purpose="officer-card">
+<div class="flex items-center gap-4">
+<img alt="Officer Jaxon Kade" class="w-12 h-12 rounded-full border border-eco-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoCI9RgsPJ7TrZEhmsPd5v7PA9D-scMxZqtqcADp9EC20SuEvynpBl7fqe8653weCwG6_ldYTaPv-Ef74EaAnuP8bh5HuXCRk1PCCaBoUWXSq_vBGfszZRaIywanoLmttyrJX-N2vR7toYmXYLy5WpzF6upD4jOlR_Ez4nADpmzvBCjdD0Urxyzbh-uKnCHmKb7TRXuenRgNN3xJIY2apnMQ4zYORj3YNY0Q4zqfCJsv4Whw0JFn8YVAvMkK6EBkSVh7HNSmeVwfid"/>
+<div class="flex-1">
+<h4 class="font-bold text-white">Jaxon Kade</h4>
+<p class="text-xs text-gray-400 italic">Response Lead</p>
+<div class="flex items-center gap-4 mt-2">
+<span class="text-[10px] text-red-500 font-mono">OFF DUTY</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- END: Officer Grid -->
+</section>
+<!-- END: Officer Selection Section -->
+<!-- BEGIN: Configuration Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8" data-purpose="case-configuration">
+<!-- Priority Selector -->
+<div>
+<label class="block text-sm font-semibold text-gray-300 mb-3">Priority Level</label>
+<div class="flex gap-2">
+<button class="flex-1 py-2 px-3 text-xs font-bold rounded bg-eco-black border border-eco-border text-gray-500 hover:border-gray-400 transition-all">LOW</button>
+<button class="flex-1 py-2 px-3 text-xs font-bold rounded bg-eco-black border border-eco-border text-gray-500 hover:border-gray-400 transition-all">MEDIUM</button>
+<button class="flex-1 py-2 px-3 text-xs font-bold rounded bg-eco-green/10 border border-eco-green text-eco-green">HIGH</button>
+<button class="flex-1 py-2 px-3 text-xs font-bold rounded bg-eco-black border border-eco-border text-red-500/50 hover:border-red-500 transition-all">URGENT</button>
+</div>
+</div>
+<!-- Due Date Selector -->
+<div>
+<label class="block text-sm font-semibold text-gray-300 mb-3">Resolution Due Date</label>
+<div class="relative">
+<input class="w-full bg-eco-black border-eco-border text-sm rounded-lg focus:ring-eco-green focus:border-eco-green text-gray-300 font-mono" type="date" value="2023-10-27"/>
+</div>
+</div>
+</section>
+<!-- END: Configuration Section -->
+<!-- BEGIN: Notes Area -->
+<section data-purpose="additional-instructions">
+<label class="block text-sm font-semibold text-gray-300 mb-3">Assignment Notes (Optional)</label>
+<textarea class="w-full bg-eco-black border-eco-border text-sm rounded-lg focus:ring-eco-green focus:border-eco-green text-gray-300 placeholder-gray-600" placeholder="Add specific instructions for the officer..." rows="3"></textarea>
+</section>
+<!-- END: Notes Area -->
+</div>
+<!-- END: Scrollable Content Area -->
+<!-- BEGIN: Modal Footer -->
+<footer class="p-6 border-t border-eco-border bg-eco-black/40 flex justify-between items-center" data-purpose="footer-actions">
+<button class="text-sm font-semibold text-gray-400 hover:text-white transition-colors">Cancel</button>
+<button class="px-8 py-3 bg-eco-green hover:bg-emerald-500 text-eco-black font-extrabold rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-eco-green/20 uppercase tracking-tight">
+        Confirm Assignment
+      </button>
+</footer>
+<!-- END: Modal Footer -->
+</main>
+<!-- END: Modal Container -->
+</body></html><!-- MISSING_IMAGES:
+- Environmental Snapshot of water contamination Sector 7G
+- Avatar for Sarah Thorne
+- Avatar for Marcus Vane
+- Avatar for Elena Rodriguez
+- Avatar for Jaxon Kade
+-->

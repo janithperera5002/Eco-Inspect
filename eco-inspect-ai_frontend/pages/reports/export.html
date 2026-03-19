@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Export Report | Eco-Inspect AI</title>
+<!-- Google Fonts: Syne for headings -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0A0F0D',
+              green: '#22C55E',
+              surface: '#151C19',
+              border: '#2A332F',
+            }
+          },
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0A0F0D;
+      color: #E2E8F0;
+    }
+    h1, h2, h3 {
+      font-family: 'Syne', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #2A332F;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="flex min-h-screen">
+<!-- BEGIN: Sidebar Navigation -->
+<aside class="w-64 border-r border-brand-border bg-brand-dark flex flex-col fixed h-full" data-purpose="sidebar-nav">
+<div class="p-6 border-b border-brand-border">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-brand-green rounded flex items-center justify-center">
+<svg class="w-5 h-5 text-brand-dark" fill="currentColor" viewbox="0 0 20 20"><path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.536 14.95a1 1 0 011.414-1.414l.707.707a1 1 0 01-1.414 1.414l-.707-.707zM16.243 16.243a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414z"></path></svg>
+</div>
+<span class="text-xl font-bold tracking-tight text-white uppercase font-syne">Eco-Inspect</span>
+</div>
+</div>
+<nav class="flex-1 p-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-brand-surface rounded-lg transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-brand-surface rounded-lg transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Inspections</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-brand-green bg-opacity-10 text-brand-green rounded-lg border border-brand-green border-opacity-20 font-medium" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Export Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-brand-surface rounded-lg transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-brand-border">
+<div class="flex items-center gap-3 px-2 py-3">
+<div class="w-10 h-10 rounded-full bg-slate-700 overflow-hidden">
+<img alt="User Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-_H0RwReaIq4yyMGG5adZ8DN6Y1YVw1EhveDfh0wF5HKNjHBUarDye0CiulZkH-s1DMvusNqXl8sLc30WsUrxol-876OimnCWyY-LdqrjC6GZmEBurIKl8YRdcN11uP3r-Co8Lq2tyVkoGXLryMdZw8o2h2XQ4CJpA1kDUAeF72waqqLsOHFtqJNTFxxoN-VUi5jPFOHvVH2JrSwoP95Ua_1s0q65n2ozIkI3YuLbC4M1wb__b51KBh3yXYLFPyMPzrqn3IqM2uA4"/>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="text-sm font-semibold text-white truncate">Alex Inspector</p>
+<p class="text-xs text-slate-500 truncate">Lead Environmentalist</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar Navigation -->
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 ml-64 p-8 overflow-y-auto" data-purpose="main-layout">
+<!-- BEGIN: Header -->
+<header class="mb-10 max-w-5xl">
+<h1 class="text-4xl font-extrabold text-white mb-2 uppercase tracking-tight">Export Report</h1>
+<p class="text-slate-400 text-lg">Configure and download your ecological inspection data for offline analysis.</p>
+</header>
+<!-- END: Header -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8 max-w-6xl">
+<!-- BEGIN: Configuration Form -->
+<section class="xl:col-span-2 space-y-8" data-purpose="report-form-container">
+<form class="space-y-8">
+<!-- Report Type Selection -->
+<div class="bg-brand-surface p-6 rounded-xl border border-brand-border">
+<h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+<span class="w-1 h-6 bg-brand-green rounded-full"></span>
+              Report Type
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<label class="relative block cursor-pointer group">
+<input checked="" class="peer sr-only" name="report_type" type="radio" value="summary"/>
+<div class="p-4 rounded-lg border-2 border-brand-border bg-brand-dark/50 peer-checked:border-brand-green peer-checked:bg-brand-green/5 transition-all">
+<span class="block text-white font-semibold mb-1">Executive Summary</span>
+<span class="block text-sm text-slate-500">Aggregated high-level data and key environmental trends.</span>
+</div>
+</label>
+<label class="relative block cursor-pointer group">
+<input class="peer sr-only" name="report_type" type="radio" value="detailed"/>
+<div class="p-4 rounded-lg border-2 border-brand-border bg-brand-dark/50 peer-checked:border-brand-green peer-checked:bg-brand-green/5 transition-all">
+<span class="block text-white font-semibold mb-1">Raw Data Logs</span>
+<span class="block text-sm text-slate-500">Full inspection records including timestamped raw sensor logs.</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Date Range & Format -->
+<div class="bg-brand-surface p-6 rounded-xl border border-brand-border">
+<h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+<span class="w-1 h-6 bg-brand-green rounded-full"></span>
+              Parameters &amp; Format
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-slate-400 mb-2">Start Date</label>
+<input class="w-full bg-brand-dark border-brand-border text-white rounded-lg focus:ring-brand-green focus:border-brand-green" type="date"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-400 mb-2">End Date</label>
+<input class="w-full bg-brand-dark border-brand-border text-white rounded-lg focus:ring-brand-green focus:border-brand-green" type="date"/>
+</div>
+<div class="md:col-span-2">
+<label class="block text-sm font-medium text-slate-400 mb-2">Export Format</label>
+<div class="flex gap-4">
+<button class="flex-1 py-3 px-4 rounded-lg border-2 border-brand-green bg-brand-green bg-opacity-10 text-brand-green font-bold text-sm tracking-wide transition-all" type="button">
+                    PDF (.pdf)
+                  </button>
+<button class="flex-1 py-3 px-4 rounded-lg border-2 border-brand-border bg-brand-dark text-slate-400 font-bold text-sm tracking-wide hover:border-slate-600 transition-all" type="button">
+                    CSV (.csv)
+                  </button>
+<button class="flex-1 py-3 px-4 rounded-lg border-2 border-brand-border bg-brand-dark text-slate-400 font-bold text-sm tracking-wide hover:border-slate-600 transition-all" type="button">
+                    JSON (.json)
+                  </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Inclusion Toggles -->
+<div class="bg-brand-surface p-6 rounded-xl border border-brand-border">
+<h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+<span class="w-1 h-6 bg-brand-green rounded-full"></span>
+              Data Inclusion
+            </h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors">
+<div>
+<h3 class="font-semibold text-white">Visual Evidence</h3>
+<p class="text-sm text-slate-500">Include high-resolution captured images from drone inspections.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-green"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors">
+<div>
+<h3 class="font-semibold text-white">Heatmaps &amp; Overlays</h3>
+<p class="text-sm text-slate-500">Generated thermal and topological analysis maps.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-green"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-white/5 transition-colors">
+<div>
+<h3 class="font-semibold text-white">Inspector Annotations</h3>
+<p class="text-sm text-slate-500">Manual notes and AI-generated risk assessment commentary.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-brand-green"></div>
+</label>
+</div>
+</div>
+</div>
+</form>
+</section>
+<!-- END: Configuration Form -->
+<!-- BEGIN: Preview Panel -->
+<aside class="space-y-6">
+<div class="bg-brand-surface rounded-xl border border-brand-border overflow-hidden flex flex-col h-fit sticky top-8">
+<div class="p-6 border-b border-brand-border bg-white/5">
+<h2 class="text-lg font-bold text-white uppercase tracking-wider">Export Preview</h2>
+</div>
+<div class="p-6 space-y-6">
+<!-- File Visualization -->
+<div class="aspect-[3/4] bg-brand-dark rounded-lg border-2 border-dashed border-brand-border flex flex-col items-center justify-center p-8 text-center" data-purpose="file-preview-graphic">
+<svg class="w-20 h-20 text-slate-700 mb-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+<p class="text-slate-500 text-sm italic">Summary_Report_Q3.pdf</p>
+</div>
+<!-- Stats -->
+<div class="space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-slate-400">Estimated Size</span>
+<span class="text-white font-mono">14.8 MB</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-400">Total Records</span>
+<span class="text-white font-mono">1,248</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-400">Processing Time</span>
+<span class="text-white font-mono">~15s</span>
+</div>
+</div>
+<!-- Action -->
+<button class="w-full bg-brand-green hover:bg-green-500 text-brand-dark font-black text-sm uppercase tracking-widest py-4 rounded-lg transition-all transform active:scale-[0.98] shadow-lg shadow-brand-green/20">
+              Generate &amp; Download
+            </button>
+<p class="text-[10px] text-center text-slate-500 px-4">
+              Your report will be encrypted and a copy will be stored in your Cloud History for 30 days.
+            </p>
+</div>
+</div>
+<div class="p-6 rounded-xl border border-brand-border bg-blue-500/5 flex gap-4">
+<svg class="w-6 h-6 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<div>
+<h4 class="text-sm font-semibold text-blue-300">Pro Tip</h4>
+<p class="text-xs text-blue-300/70 mt-1">Exporting in JSON format allows for seamless integration with external GIS platforms.</p>
+</div>
+</div>
+</aside>
+<!-- END: Preview Panel -->
+</div>
+</main>
+<!-- END: Main Content Area -->
+</body></html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cases — Eco-Inspect AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Syne:wght@700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2DFF7F",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#0A0F0D",
+                        "surface": "#111A14",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0F0D;
+        }
+        .active-glow {
+            filter: drop-shadow(0 0 8px rgba(45, 255, 127, 0.4));
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+  <script src="../../src/shared.js"></script>
+</head>
+<body class="bg-background-dark text-slate-100 min-h-screen flex">
+<!-- Side Navigation Bar -->
+<aside class="w-20 lg:w-64 border-r border-primary/10 flex flex-col sticky top-0 h-screen bg-background-dark z-30">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">eco</span>
+</div>
+<span class="hidden lg:block font-syne font-bold text-xl tracking-tight text-white">EcoTrack</span>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-2">
+<a class="flex items-center gap-4 px-3 py-3 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-xl transition-all group" href="../dashboard/home.html">
+<span class="material-symbols-outlined">home</span>
+<span class="hidden lg:block font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-3 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-xl transition-all group" href="../reports/list.html">
+<span class="material-symbols-outlined">description</span>
+<span class="hidden lg:block font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-3 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-xl transition-all group" href="../map/map.html">
+<span class="material-symbols-outlined">map</span>
+<span class="hidden lg:block font-medium">Map</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-3 text-primary bg-primary/10 rounded-xl transition-all active-glow" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+<span class="hidden lg:block font-bold">Cases</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-3 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-xl transition-all group" href="../dashboard/analytics.html">
+<span class="material-symbols-outlined">analytics</span>
+<span class="hidden lg:block font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-3 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-xl transition-all group" href="../users/list.html">
+<span class="material-symbols-outlined">group</span>
+<span class="hidden lg:block font-medium">Users</span>
+</a>
+<a class="flex items-center gap-4 px-3 py-3 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-xl transition-all group" href="../profile/profile.html">
+<span class="material-symbols-outlined">person</span>
+<span class="hidden lg:block font-medium">Profile</span>
+</a>
+</nav>
+<div class="p-4 border-t border-primary/10">
+<a class="flex items-center gap-4 px-3 py-3 text-slate-400 hover:text-red-400 transition-all group" href="#" onclick="window.auth.logout(); return false;">
+<span class="material-symbols-outlined">logout</span>
+<span class="hidden lg:block font-medium">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- Top Header -->
+<header class="h-20 border-b border-primary/10 flex items-center justify-between px-8 bg-background-dark/50 backdrop-blur-sm sticky top-0 z-20">
+<div class="max-w-xl w-full hidden md:block">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+<input class="w-full bg-surface border-primary/10 rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-primary focus:border-primary text-slate-200" placeholder="Search cases, reports, or officers..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-background-dark"></span>
+</button>
+<div class="flex items-center gap-3 pl-6 border-l border-primary/10">
+<div class="text-right hidden sm:block">
+<p id="officer-name" class="text-sm font-bold text-white leading-none">Officer Silva</p>
+<p id="officer-role" class="text-[10px] text-slate-500 font-medium tracking-wide uppercase mt-1">Lead Inspector</p>
+</div>
+<div class="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">
+                        JS
+                    </div>
+</div>
+</div>
+</header>
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h1 class="text-4xl font-syne font-bold text-white tracking-tight">My Cases</h1>
+<p class="text-slate-500 mt-1">Manage and track environmental compliance investigations.</p>
+</div>
+<div class="flex bg-surface p-1 rounded-xl border border-primary/10">
+<button class="px-6 py-2 text-sm font-bold rounded-lg bg-primary text-background-dark transition-all">All</button>
+<button class="px-6 py-2 text-sm font-bold text-slate-400 hover:text-white transition-all">Open</button>
+<button class="px-6 py-2 text-sm font-bold text-slate-400 hover:text-white transition-all">In Progress</button>
+<button class="px-6 py-2 text-sm font-bold text-slate-400 hover:text-white transition-all">Closed</button>
+</div>
+</div>
+<!-- Case Table (Web Dashboard View) -->
+<div class="bg-surface rounded-xl border border-primary/5 shadow-2xl overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-primary/10 bg-white/5">
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">Case Reference</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">Violation Category</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">Assigned Officer</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">Priority</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">Due Date</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">Status</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/5">
+<!-- Row 1 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-6 py-5">
+<span class="font-mono text-sm text-primary font-medium">ECO-2026-00142</span>
+</td>
+<td class="px-6 py-5">
+<h3 class="font-syne font-bold text-white">Illegal Waste Disposal</h3>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center text-slate-400 text-sm">
+<span class="material-symbols-outlined text-base mr-2">badge</span>
+                                            Officer Silva
+                                        </div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded-full bg-red-500/10 text-red-500 text-[10px] font-bold uppercase tracking-wider border border-red-500/20">Critical</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center text-red-400 text-sm font-medium">
+<span class="material-symbols-outlined text-base mr-1">calendar_today</span>
+                                            Oct 24 (Overdue)
+                                        </div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase">Assigned</span>
+</td>
+<td class="px-6 py-5">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-primary/20 text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-6 py-5">
+<span class="font-mono text-sm text-primary font-medium">ECO-2026-00155</span>
+</td>
+<td class="px-6 py-5">
+<h3 class="font-syne font-bold text-white">Water Pollution Trace</h3>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center text-slate-400 text-sm">
+<span class="material-symbols-outlined text-base mr-2">badge</span>
+                                            Officer Silva
+                                        </div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded-full bg-amber-500/10 text-amber-500 text-[10px] font-bold uppercase tracking-wider border border-amber-500/20">High</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center text-slate-400 text-sm font-medium">
+<span class="material-symbols-outlined text-base mr-1">calendar_today</span>
+                                            Oct 28
+                                        </div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase">In Review</span>
+</td>
+<td class="px-6 py-5">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-primary/20 text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-6 py-5">
+<span class="font-mono text-sm text-primary font-medium">ECO-2026-00168</span>
+</td>
+<td class="px-6 py-5">
+<h3 class="font-syne font-bold text-white">Air Quality Violation</h3>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center text-slate-400 text-sm">
+<span class="material-symbols-outlined text-base mr-2">badge</span>
+                                            Officer Silva
+                                        </div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded-full bg-yellow-500/10 text-yellow-500 text-[10px] font-bold uppercase tracking-wider border border-yellow-500/20">Medium</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center text-slate-400 text-sm font-medium">
+<span class="material-symbols-outlined text-base mr-1">calendar_today</span>
+                                            Nov 02
+                                        </div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-primary/20 text-primary text-[10px] font-bold uppercase">Assigned</span>
+</td>
+<td class="px-6 py-5">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-primary/20 text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-6 py-5">
+<span class="font-mono text-sm text-primary font-medium">ECO-2026-00174</span>
+</td>
+<td class="px-6 py-5">
+<h3 class="font-syne font-bold text-white">Soil Contamination Report</h3>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center text-slate-400 text-sm">
+<span class="material-symbols-outlined text-base mr-2">badge</span>
+                                            Officer Silva
+                                        </div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-bold uppercase tracking-wider border border-emerald-500/20">Low</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center text-slate-400 text-sm font-medium">
+<span class="material-symbols-outlined text-base mr-1">calendar_today</span>
+                                            Nov 15
+                                        </div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-slate-500/20 text-slate-400 text-[10px] font-bold uppercase">Pending</span>
+</td>
+<td class="px-6 py-5">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-primary/20 text-slate-500 hover:text-primary transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div id="cases-count" class="px-6 py-4 border-t border-primary/10 flex items-center justify-between bg-white/[0.02]">
+<p class="text-xs text-slate-500">Loading cases...</p>
+</div>
+</div>
+</div>
+</main>
+<script>
+  window.auth.requireAuth();
+  document.title = 'Cases — Eco-Inspect AI';
+  window.highlightNav('cases');
+  
+  const user = window.auth.getUser();
+  if (user) {
+    const nameEl = document.getElementById(
+      'officer-name');
+    if (nameEl) {
+      nameEl.textContent = 
+        user.fullName || 
+        user.full_name || 
+        user.email || 
+        'Officer';
+    }
+    
+    // Also update role badge if it exists
+    const roleEl = document.getElementById(
+      'officer-role');
+    if (roleEl) {
+      roleEl.textContent = 
+        (user.role || 'officer')
+          .charAt(0).toUpperCase() + 
+        (user.role || 'officer').slice(1);
+    }
+    
+    // Update greeting if it exists
+    const greetEl = document.querySelector(
+      '.greeting, .welcome-text, h1.greeting');
+    if (greetEl && greetEl.textContent
+          .includes('Officer')) {
+      greetEl.textContent = 
+        'Good day, ' + 
+        (user.fullName || 'Officer') + ' 👋';
+    }
+  }
+  
+  async function loadCases() {
+    const container = document.querySelector('tbody,.cases-list,#cases-container,.case-items');
+    if (container) container.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:#2DFF7F">Loading...</td></tr>';
+    try {
+      const res = await window.api('GET', '/cases?size=50&page=0');
+      const cases = res.content || res.data || 
+                    (Array.isArray(res) ? res : []);
+      
+      if (!container) return;
+      
+      if (cases.length === 0) {
+        container.innerHTML = 
+          '<tr><td colspan="7" style="text-align:' +
+          'center;padding:40px;color:#5A7A62">' +
+          'No cases found</td></tr>';
+        return;
+      }
+      
+      const isTable = container.tagName === 'TBODY';
+      
+      container.innerHTML = cases.map(c => {
+        const cid = c.caseId || c.id;
+        const ref = c.caseReference || '#' + cid;
+        const isOverdue = c.dueDate && 
+          new Date(c.dueDate) < new Date() && 
+          c.status !== 'closed';
+        const dueColor = isOverdue 
+          ? '#FF4D6D' : '#5A7A62';
+        const link = 'detail.html?id=' + cid;
+        
+        return isTable
+          ? '<tr class="hover:bg-white/[0.02] transition-colors group" style="cursor:pointer" onclick="window.location.href=\'' + link + '\'">' +
+            '<td class="px-6 py-5" style="color:#2DFF7F;font-family:monospace">' + ref + '</td>' +
+            '<td class="px-6 py-5 font-syne font-bold text-white">' + (c.category ? c.category.replace(/_/g,' ').toUpperCase() : 'GENERAL') + '</td>' +
+            '<td class="px-6 py-5" style="color:#D4EAD9">' + (c.assignedOfficerName || c.assignedTo?.fullName || 'Unassigned') + '</td>' +
+            '<td class="px-6 py-5">' + window.urgencyBadge(c.priority||'medium') + '</td>' +
+            '<td class="px-6 py-5" style="color:' + dueColor + '">' + (c.dueDate ? new Date(c.dueDate).toLocaleDateString('en-GB') : '—') + (isOverdue ? ' ⚠️ OVERDUE' : '') + '</td>' +
+            '<td class="px-6 py-5">' + window.statusBadge(c.status) + '</td>' +
+            '<td class="px-6 py-5 text-right"><a href="' + link + '" style="color:#2DFF7F;text-decoration:none;font-weight:bold" onclick="event.stopPropagation()">View →</a></td>' +
+            '</tr>'
+          : '<div style="padding:14px;border-bottom:1px solid #1E3325;cursor:pointer" onclick="window.location.href=\'' + link + '\'">' +
+            '<div style="color:#2DFF7F;font-family:monospace;margin-bottom:6px">' + ref + '</div>' +
+            '<div style="display:flex;gap:8px">' +
+            window.urgencyBadge(c.priority||'medium') +
+            window.statusBadge(c.status) + '</div></div>';
+      }).join('');
+      
+      const countEl = document.getElementById('cases-count');
+      if (countEl) {
+        countEl.innerHTML = 'Showing <span class="text-white font-bold">' + cases.length + '</span> cases';
+      }
+    } catch (err) {
+      const container = document.querySelector('tbody,.cases-list,#cases-container,.case-items');
+      if (container) container.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:#FF4B4B">Could not load data. Please make sure the server is running.</td></tr>';
+      window.showToast('Failed to load cases', 'error');
+    }
+  }
+  
+  loadCases();
+</script>
+</body></html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI - WhatsApp Web</title>
+<!-- BEGIN: External Scripts -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- END: External Scripts -->
+<style data-purpose="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: '#2eff7e',
+            whatsapp: {
+              bg: '#0b141a',
+              header: '#202c33',
+              bubbleOut: '#005c4b',
+              bubbleIn: '#202c33',
+              panel: '#111b21',
+              text: '#e9edef',
+              textSecondary: '#8696a0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            'twelve': '12px',
+          }
+        }
+      }
+    }
+  </style>
+<style data-purpose="layout-styles">body {
+    background-color: #0c1317;
+    color: #e9edef;
+    height: 100vh;
+    display: flex;
+    overflow: hidden
+    }
+.chat-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDDPhZeEI1yW1nsSNTGqd8Vcv-WhsMSSnU4sp4G8yVklg3CRURv8GPn2XcVlepTadQ6LA-bTus1_hX3--0SEwJK_gbgJRYf8U0jNzbMkdLoRB3ztB0SpjwetPIOPv1jWSdiWuCHG2PLidzXhuCXKc1dfUNiMMsue0j7dptkuVKXlqe_8MJt7_-JfHCEDKZfTrEBTCfd67FIG7oY8XqTBUpq63vvn5oNfzDjZyFsO4URSV0VsoaBIJmEEoYRm_Kokyeplbci8yTrItlJ);
+    background-blend-mode: overlay;
+    background-color: #0b141a;
+    opacity: 0.06;
+    position: absolute;
+    inset: 0;
+    z-index: 0
+    }
+.scrollbar-thin::-webkit-scrollbar {
+    width: 6px
+    }
+.scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #374151
+    }</style>
+</head>
+<body class="font-sans">
+<!-- BEGIN: Sidebar -->
+<aside class="w-1/3 max-w-[400px] border-r border-gray-700 flex flex-col bg-whatsapp-panel z-10" data-purpose="navigation-sidebar">
+<header class="h-16 bg-whatsapp-header flex items-center justify-between px-4">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-brand flex items-center justify-center text-black font-bold">U</div>
+</div>
+<div class="flex space-x-4 text-whatsapp-textSecondary">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 6.1H3"></path><path d="M21 12.1H3"></path><path d="M15.1 18.1H3"></path></svg>
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+</div>
+</header>
+<div class="p-2">
+<div class="bg-whatsapp-header rounded-lg flex items-center px-4 py-2">
+<svg class="w-5 h-5 text-whatsapp-textSecondary mr-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full text-whatsapp-text" placeholder="Search or start new chat" type="text"/>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto scrollbar-thin">
+<!-- Active Chat Item -->
+<div class="flex items-center p-3 bg-whatsapp-header cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-brand flex items-center justify-center mr-3 relative">
+<svg class="w-7 h-7 text-black" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+</svg>
+</div>
+<div class="flex-1 border-b border-gray-700 pb-3">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-medium text-whatsapp-text">Eco-Inspect AI</h3>
+<span class="text-xs text-brand">10:06 AM</span>
+</div>
+<p class="text-sm text-whatsapp-textSecondary truncate">✅ Media received! Processing your evidence...</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: Main Chat Area -->
+<main class="flex-1 flex flex-col relative bg-whatsapp-bg" data-purpose="chat-window">
+<div class="chat-bg"></div>
+<!-- BEGIN: Chat Header -->
+<header class="h-16 bg-whatsapp-header flex items-center justify-between px-4 z-10 border-l border-gray-700">
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-brand flex items-center justify-center mr-3">
+<svg class="w-6 h-6 text-black" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path>
+</svg>
+</div>
+<div>
+<h2 class="font-medium text-whatsapp-text leading-tight">Eco-Inspect AI</h2>
+<span class="text-xs text-brand">online</span>
+</div>
+</div>
+<div class="flex space-x-6 text-whatsapp-textSecondary">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</header>
+<!-- END: Chat Header -->
+<!-- BEGIN: Messages Area -->
+<section class="flex-1 overflow-y-auto p-10 flex flex-col space-y-4 z-10 scrollbar-thin" id="messages-container">
+<!-- Bot Message 1 -->
+<div class="flex justify-start">
+<div class="bg-whatsapp-bubbleIn text-whatsapp-text p-3 rounded-twelve rounded-tl-none max-w-md shadow-sm relative">
+<p class="text-sm">📸 Please attach a photo or video of the violation as evidence. This helps our AI analyze the issue more accurately.</p>
+<span class="text-[10px] text-whatsapp-textSecondary block text-right mt-1">10:05 AM</span>
+</div>
+</div>
+<!-- User Image Message -->
+<div class="flex justify-end">
+<div class="bg-whatsapp-bubbleOut p-1 rounded-twelve rounded-tr-none max-w-sm shadow-sm relative">
+<!-- Thumbnail Container -->
+<div class="relative overflow-hidden rounded-lg">
+<img alt="Evidence" class="w-full h-auto object-cover filter blur-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTJqCgfZRVHJeJAEBEA3Pjh9mT00FvgGWT4EETSWvy8VrFRCN-bRaeqQkZhV6GyEnqE8ChcyX7u_dZ8_EmMcnnfPjTDj05iMIbSUhb1WdLLjWD0g9UtZb9K4IJDvOrOlwK5tYuWGFXsDkfP2o0dSklVe316MdCjoeug5atDfy0Y8BLxB8umPUp_SDA0ChzGD0lD2P3HMJY3mtv6sDHHqAq1QPYQRIq36suRprxL-eY2bLtvpBFLoj1wEWRDvqz-kmKyBucDGWbyRZz"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center bg-black/20">
+<span class="text-white text-xs font-bold uppercase tracking-widest bg-black/40 px-3 py-1 rounded">Reported Violation</span>
+<div class="mt-2 flex items-center space-x-1 opacity-80">
+<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+<span class="text-[10px] text-white">SAFE FOR WORK</span>
+</div>
+</div>
+</div>
+<div class="flex justify-end items-center px-2 py-1 space-x-1">
+<span class="text-[10px] text-gray-300">10:06 AM</span>
+<svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m7 13 3 3 7-7"></path><path d="m2 13 3 3 7-7"></path></svg>
+</div>
+</div>
+</div>
+<!-- Bot Message 2 (Confirmation) -->
+<div class="flex justify-start">
+<div class="bg-whatsapp-bubbleIn text-whatsapp-text p-3 rounded-twelve rounded-tl-none max-w-md shadow-sm relative">
+<p class="text-sm">✅ Media received! Processing your evidence...</p>
+<span class="text-[10px] text-whatsapp-textSecondary block text-right mt-1">10:06 AM</span>
+</div>
+</div>
+</section>
+<!-- END: Messages Area -->
+<!-- BEGIN: Chat Input Area -->
+<footer class="h-16 bg-whatsapp-header flex items-center px-4 space-x-4 z-10 border-l border-gray-700">
+<div class="flex items-center space-x-4 text-whatsapp-textSecondary">
+<button class="hover:text-whatsapp-text">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button class="hover:text-whatsapp-text">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<div class="flex-1">
+<input class="w-full bg-whatsapp-panel border-none rounded-lg py-2.5 px-4 text-sm focus:ring-0 text-whatsapp-text" placeholder="Type a message" type="text"/>
+</div>
+<button class="text-whatsapp-textSecondary hover:text-whatsapp-text">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</footer>
+<!-- END: Chat Input Area -->
+</main>
+<!-- END: Main Chat Area -->
+<script data-purpose="scroll-behavior">
+    // Auto scroll to bottom of messages on load
+    window.onload = () => {
+      const container = document.getElementById('messages-container');
+      container.scrollTop = container.scrollHeight;
+    };
+  </script>
+</body></html>

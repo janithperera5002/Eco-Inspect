@@ -1,0 +1,30 @@
+﻿        u1_0.email,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.password_hash,
+        u1_0.phone_number,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-18T21:20:36.212+05:30  INFO 25544 --- [eco-inspect-ai] [  restartedMain] com.ecoinspect.ai.config.DataSeeder      : User already exists: test@test.com
+Hibernate: 
+    select
+        u1_0.user_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.full_name,
+        u1_0.is_active,
+        u1_0.password_hash,
+        u1_0.phone_number,
+        u1_0.profile_photo,
+        u1_0.role,
+        u1_0.updated_at 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-03-18T21:20:36.216+05:30  INFO 25544 --- [eco-inspect-ai] [  restartedMain] com.ecoinspect.ai.config.DataSeeder      : User already exists: admin@ecoinspect.com

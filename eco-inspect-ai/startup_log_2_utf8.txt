@@ -1,0 +1,98 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.ecoinspect:eco-inspect-ai >--------------------
+[INFO] Building Eco-Inspect AI 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.3:run (default-cli) > test-compile @ eco-inspect-ai >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ eco-inspect-ai ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ eco-inspect-ai ---
+[INFO] Recompiling the module because of added or removed source files.
+[INFO] Compiling 50 source files with javac [debug parameters release 17] to target\classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ eco-inspect-ai ---
+[INFO] skip non existing resourceDirectory D:\CrossPlatform Dev Projects\eco-inspect-ai\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ eco-inspect-ai ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target\test-classes
+[INFO] 
+[INFO] <<< spring-boot:4.0.3:run (default-cli) < test-compile @ eco-inspect-ai <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.3:run (default-cli) @ eco-inspect-ai ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.3)
+
+2026-03-19T13:01:04.572+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] c.ecoinspect.ai.EcoInspectAiApplication  : Starting EcoInspectAiApplication using Java 17.0.15 with PID 10352 (D:\CrossPlatform Dev Projects\eco-inspect-ai\target\classes started by Janith Perera in D:\CrossPlatform Dev Projects\eco-inspect-ai)
+2026-03-19T13:01:04.577+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] c.ecoinspect.ai.EcoInspectAiApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-03-19T13:01:04.661+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-03-19T13:01:04.662+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-03-19T13:01:05.601+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-19T13:01:05.706+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94 ms. Found 10 JPA repository interfaces.
+2026-03-19T13:01:06.636+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-03-19T13:01:06.668+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-03-19T13:01:06.670+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-03-19T13:01:06.788+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2124 ms
+2026-03-19T13:01:07.103+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-03-19T13:01:07.241+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-03-19T13:01:07.864+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-19T13:01:07.906+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-03-19T13:01:08.437+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b6124fc
+2026-03-19T13:01:08.439+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-03-19T13:01:08.569+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/eco_inspect_ai]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.30
+	Default catalog/schema: eco_inspect_ai/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-19T13:01:10.287+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-19T13:01:10.446+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-19T13:01:10.558+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-03-19T13:01:11.097+05:30  WARN 10352 --- [eco-inspect-ai] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-19T13:01:12.028+05:30  WARN 10352 --- [eco-inspect-ai] [  restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-03-19T13:01:12.031+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-19T13:01:12.039+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-03-19T13:01:12.075+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-03-19T13:01:12.090+05:30  INFO 10352 --- [eco-inspect-ai] [  restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-03-19T13:01:12.148+05:30 ERROR 10352 --- [eco-inspect-ai] [  restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  25.762 s
+[INFO] Finished at: 2026-03-19T13:01:12+05:30
+[INFO] ------------------------------------------------------------------------

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Inspect AI | Officer Performance Leaderboard</title>
+<!-- BEGIN: Fonts and Tailwind -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Syne:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'eco-dark': '#0A0F0D',
+            'eco-surface': '#111A14',
+            'eco-accent': '#22C55E', // Standard Green
+            'eco-border': '#1F2937',
+          },
+          fontFamily: {
+            sans: ['Syne', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+<!-- END: Fonts and Tailwind -->
+<style data-purpose="custom-typography">
+    body {
+      background-color: #0A0F0D;
+      color: #E2E8F0;
+      font-family: 'Syne', sans-serif;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Custom scrollbar for dark theme */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0F0D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #111A14;
+      border: 1px solid #1F2937;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+<!-- BEGIN: Sidebar Navigation -->
+<aside class="w-64 border-r border-eco-border bg-eco-surface flex flex-col" data-purpose="sidebar">
+<div class="p-6 border-b border-eco-border">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-eco-accent rounded-sm flex items-center justify-center text-eco-dark font-bold">EI</div>
+<h1 class="text-xl font-extrabold tracking-tighter uppercase">Eco-Inspect AI</h1>
+</div>
+</div>
+<nav class="flex-1 p-4 space-y-2">
+<a class="flex items-center gap-3 p-3 rounded-md hover:bg-eco-dark transition-colors group" href="#">
+<svg class="w-5 h-5 text-slate-400 group-hover:text-eco-accent" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-md bg-eco-accent/10 border-l-2 border-eco-accent text-eco-accent font-semibold" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Leaderboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-md hover:bg-eco-dark transition-colors group" href="#">
+<svg class="w-5 h-5 text-slate-400 group-hover:text-eco-accent" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Officers</span>
+</a>
+</nav>
+<div class="p-4 mt-auto border-t border-eco-border">
+<div class="flex items-center gap-3 p-2">
+<div class="w-10 h-10 rounded-full bg-slate-700 overflow-hidden border border-eco-border">
+<img alt="Admin Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5_eD9LnaMVnKT5noTqitlwORUGhx7ruqfLvjkIOHuwEXJ_qjQipRytIfugaJezucbbe1A9f-cZE6q23pvbsAM4JKZmjuRXFGwXs74pFtti6ggKacKr7MIn9MlTGFmDaKzNbrCTypETF4lUJI28ADnRzVM7BSj1WNn9MqDbBdWKd68apvyMOZs-bssRgI3Gr7sH2XmLZ8GnDA5FuGHRbL6DLXBsKM1yzfPZ4I4KzVgHq3h3e70xZVKgAoreN7YTGWbYm1FG53Gp6MA"/>
+</div>
+<div>
+<p class="text-sm font-bold">Admin Panel</p>
+<p class="text-xs text-slate-500 font-mono">ID: 0x92f...a</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar Navigation -->
+<!-- BEGIN: Main Content -->
+<main class="flex-1 overflow-y-auto p-8" data-purpose="main-content">
+<!-- BEGIN: Header Section -->
+<header class="mb-10 flex justify-between items-end">
+<div>
+<h2 class="text-4xl font-black uppercase tracking-tight mb-2">Officer Leaderboard</h2>
+<p class="text-slate-400 max-w-xl">Real-time performance metrics tracking resolution efficiency and average response times across the inspectorate.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-eco-surface px-4 py-2 border border-eco-border rounded-md">
+<span class="text-xs text-slate-500 uppercase font-bold block mb-1">Timeframe</span>
+<select class="bg-transparent border-none p-0 text-sm font-bold focus:ring-0 cursor-pointer">
+<option>Last 30 Days</option>
+<option>Last 7 Days</option>
+<option>All Time</option>
+</select>
+</div>
+</div>
+</header>
+<!-- END: Header Section -->
+<div class="grid grid-cols-12 gap-8">
+<!-- BEGIN: Chart Comparison Section -->
+<section class="col-span-12 lg:col-span-5 space-y-6" data-purpose="charts-container">
+<div class="bg-eco-surface border border-eco-border p-6 rounded-xl">
+<h3 class="text-lg font-bold mb-6 flex items-center gap-2">
+<span class="w-1.5 h-6 bg-eco-accent"></span>
+            Assigned vs Resolved (Top 5)
+          </h3>
+<!-- Mock Grouped Bar Chart -->
+<div class="space-y-6" id="bar-chart-visualization">
+<!-- Row 1 -->
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-mono uppercase mb-2">
+<span>Officer Jensen</span>
+<span class="text-eco-accent">92% Completion</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-3 bg-slate-800 rounded-full overflow-hidden relative">
+<div class="absolute inset-0 bg-slate-600" style="width: 85%"></div> <!-- Assigned -->
+<div class="absolute inset-0 bg-eco-accent" style="width: 78%"></div> <!-- Resolved -->
+</div>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-mono uppercase mb-2">
+<span>Officer Miller</span>
+<span class="text-eco-accent">88% Completion</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-3 bg-slate-800 rounded-full overflow-hidden relative">
+<div class="absolute inset-0 bg-slate-600" style="width: 72%"></div>
+<div class="absolute inset-0 bg-eco-accent" style="width: 63%"></div>
+</div>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-mono uppercase mb-2">
+<span>Officer Blake</span>
+<span class="text-eco-accent">95% Completion</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-3 bg-slate-800 rounded-full overflow-hidden relative">
+<div class="absolute inset-0 bg-slate-600" style="width: 65%"></div>
+<div class="absolute inset-0 bg-eco-accent" style="width: 62%"></div>
+</div>
+</div>
+</div>
+<!-- Row 4 -->
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-mono uppercase mb-2">
+<span>Officer Tanaka</span>
+<span class="text-eco-accent">82% Completion</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-3 bg-slate-800 rounded-full overflow-hidden relative">
+<div class="absolute inset-0 bg-slate-600" style="width: 90%"></div>
+<div class="absolute inset-0 bg-eco-accent" style="width: 74%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex gap-4 text-xs font-mono text-slate-400">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-slate-600"></span> Assigned Cases
+            </div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-eco-accent"></span> Resolved Cases
+            </div>
+</div>
+</div>
+</section>
+<!-- END: Chart Comparison Section -->
+<!-- BEGIN: Ranking Table Section -->
+<section class="col-span-12 lg:col-span-7" data-purpose="leaderboard-table">
+<div class="bg-eco-surface border border-eco-border rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-eco-dark/50 border-b border-eco-border">
+<th class="py-4 px-6 text-xs uppercase tracking-widest text-slate-500 font-bold">Officer</th>
+<th class="py-4 px-6 text-xs uppercase tracking-widest text-slate-500 font-bold text-center">Assigned</th>
+<th class="py-4 px-6 text-xs uppercase tracking-widest text-slate-500 font-bold text-center">Resolved</th>
+<th class="py-4 px-6 text-xs uppercase tracking-widest text-slate-500 font-bold text-right">Avg Time</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-eco-border font-mono">
+<!-- Row 1 -->
+<tr class="hover:bg-eco-accent/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<span class="text-eco-accent font-black text-lg w-4">1</span>
+<img alt="Officer Avatar" class="w-10 h-10 rounded bg-slate-800 border border-eco-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA87C4zozJwGxOresRjRI64xgVW1lERcg9dldv9TPGNu0aB6dwar6sLZr3qULw5UqnjEFWUV-I6IwCsd4vOHdDYUIQ8RcE8RntHFapzKxljuYS0YWjGCwGAYBNRbwmMCuochDKKf3ZK-gquGOUmr_p6U91SV62x01N_EGUBCuiQB0UiJ-8zcPo6YqbbM60Xxsf74b6_khryFT_cVYs6SAoL4gTRiUo7tqiC3HLVYx8N63Uts36W75PcB16lVPOSeuK4QKWpEw-_Ej0"/>
+<div>
+<div class="font-sans font-bold text-white group-hover:text-eco-accent transition-colors">Sarah Jensen</div>
+<span class="text-[10px] bg-eco-accent/20 text-eco-accent px-1.5 py-0.5 rounded border border-eco-accent/30 uppercase">Lead Inspector</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-center text-slate-300">142</td>
+<td class="py-4 px-6 text-center font-bold text-white">131</td>
+<td class="py-4 px-6 text-right text-eco-accent font-bold">2.4h</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-eco-accent/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<span class="text-slate-500 font-black text-lg w-4">2</span>
+<img alt="Officer Avatar" class="w-10 h-10 rounded bg-slate-800 border border-eco-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD872PIHVgleA0pbo64FygiU9kTjrZI8pNIRHWRX_iTmLuEseWG3GBdBkFg8xE7bQ_n1a2zVEyR-GeWTHz7SCxf9qeXku4v89Aa7NkyscN_V_82o3jlmAfWjSxcllQyi73QXtNM7efmYQi0P79diOQCEf-PV_DWAGtCegtQz7b2ZQb3uj9-Ydn1ayifDvcnnblAOsV2yr0c-XjgoWcFMI_9fSQu2i2KtNr00jUfuv1KZhC-1IZAwAb_0Fj_IZ782FG5883T32S07poe"/>
+<div>
+<div class="font-sans font-bold text-white group-hover:text-eco-accent transition-colors">Marcus Miller</div>
+<span class="text-[10px] bg-blue-500/20 text-blue-400 px-1.5 py-0.5 rounded border border-blue-500/30 uppercase">Senior</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-center text-slate-300">128</td>
+<td class="py-4 px-6 text-center font-bold text-white">113</td>
+<td class="py-4 px-6 text-right text-eco-accent font-bold">3.1h</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-eco-accent/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<span class="text-slate-500 font-black text-lg w-4">3</span>
+<img alt="Officer Avatar" class="w-10 h-10 rounded bg-slate-800 border border-eco-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOHS25M-0v4yNG36Nz0JEWvLEQpTiQIoY4BTcVS8OkB0_qBVu3ZkAQSY86nk5Zqu7lcxdEdPVh2RVgDmNLPDG_eYJjKghfFtBcA2W0T3Rka0snt6E-YnHaXGuNiDF7VjlPkgaTeJTh86UBBTYPL0S3XeIa1hH0cOMQyTsk0AO-BA1IsH0CcX-zbkd-7TJiuLoMtlGLgoBsGeuuuzIJXXtb3yI3FlF0pbZbbxCW7Tg7vr7ho89giPOkXt33rjOtHyll92j-S9m8AX2y"/>
+<div>
+<div class="font-sans font-bold text-white group-hover:text-eco-accent transition-colors">Alex Blake</div>
+<span class="text-[10px] bg-slate-500/20 text-slate-400 px-1.5 py-0.5 rounded border border-slate-500/30 uppercase">Field Officer</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-center text-slate-300">94</td>
+<td class="py-4 px-6 text-center font-bold text-white">89</td>
+<td class="py-4 px-6 text-right text-eco-accent font-bold">1.8h</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-eco-accent/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<span class="text-slate-500 font-black text-lg w-4">4</span>
+<img alt="Officer Avatar" class="w-10 h-10 rounded bg-slate-800 border border-eco-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM7uu8l7v4WF75vva6K2qLjZFlWtGsi3OGBIgQh23-PFKlAUfLM2hfe7hM1IIUh0pbPHkghdSzTBrewU5xGDtdrFAJ8azqJ5TNlxULzs9QrtfE5YzkgPaxBUAuNGgaAHsLqE07FA0WqrR4ky6tZUjijmqeFYoAr5HueCFwkkqs_keTx5kUB5PJnPK8_fKg9VcIqmJ1zFtIXXQ6MIFhpMSQO2dWI7FN0L1L4NhxYnAou-1dAyAwmY0FbGEoOcYuWrl7inzMIR4SAKbo"/>
+<div>
+<div class="font-sans font-bold text-white group-hover:text-eco-accent transition-colors">Kenji Tanaka</div>
+<span class="text-[10px] bg-slate-500/20 text-slate-400 px-1.5 py-0.5 rounded border border-slate-500/30 uppercase">Field Officer</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-center text-slate-300">156</td>
+<td class="py-4 px-6 text-center font-bold text-white">128</td>
+<td class="py-4 px-6 text-right text-eco-accent font-bold">4.2h</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-eco-accent/5 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-4">
+<span class="text-slate-500 font-black text-lg w-4">5</span>
+<img alt="Officer Avatar" class="w-10 h-10 rounded bg-slate-800 border border-eco-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-RBeI9zmISgNYfV_NtCVKAq8eLH4XsYl81AXc1GjWJqITy7Ml4ZEvYWJU55uXeXDuE7hTB236K4BrAZ3UgmADCISunK2tzNbO_WKOwI3TSewlopoyIxQ0WDK7I4PkzL-SmLSs_uwrNvuw0tNHtOUVlH5ACCFZUrqO3qG4sPUR5fXCaOxlcO6WVI4PvqNj21ZDhpu7JxeGztzxN6GjbIBiXOZckjoEpgL69sMBHgTlUrCIPzZbFbfO8BDxY34H5pPREMtcKbhnuFwY"/>
+<div>
+<div class="font-sans font-bold text-white group-hover:text-eco-accent transition-colors">Lisa Wong</div>
+<span class="text-[10px] bg-slate-500/20 text-slate-400 px-1.5 py-0.5 rounded border border-slate-500/30 uppercase">Junior</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-center text-slate-300">67</td>
+<td class="py-4 px-6 text-center font-bold text-white">62</td>
+<td class="py-4 px-6 text-right text-eco-accent font-bold">2.9h</td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 bg-eco-dark/30 text-center">
+<button class="text-xs uppercase font-bold tracking-widest text-slate-500 hover:text-white transition-colors">Load Full Records</button>
+</div>
+</div>
+</section>
+<!-- END: Ranking Table Section -->
+</div>
+<!-- BEGIN: Footer Metrics -->
+<footer class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-eco-surface border border-eco-border p-5 rounded-lg flex items-center justify-between">
+<div>
+<p class="text-xs text-slate-500 uppercase font-bold mb-1">Fleet Avg Efficiency</p>
+<p class="text-2xl font-black font-mono">87.4%</p>
+</div>
+<div class="w-12 h-12 rounded bg-eco-accent/10 flex items-center justify-center text-eco-accent">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" fill-rule="evenodd"></path></svg>
+</div>
+</div>
+<div class="bg-eco-surface border border-eco-border p-5 rounded-lg flex items-center justify-between">
+<div>
+<p class="text-xs text-slate-500 uppercase font-bold mb-1">Critical Violations</p>
+<p class="text-2xl font-black font-mono">14</p>
+</div>
+<div class="w-12 h-12 rounded bg-red-500/10 flex items-center justify-center text-red-500">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path></svg>
+</div>
+</div>
+<div class="bg-eco-surface border border-eco-border p-5 rounded-lg flex items-center justify-between">
+<div>
+<p class="text-xs text-slate-500 uppercase font-bold mb-1">Global AI Accuracy</p>
+<p class="text-2xl font-black font-mono">99.2%</p>
+</div>
+<div class="w-12 h-12 rounded bg-blue-500/10 flex items-center justify-center text-blue-400">
+<svg class="w-6 h-6" fill="currentColor" viewbox="0 0 20 20"><path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 100-2h-1a1 1 0 100 2h1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 10-2 0h1a1 1 0 100-2H5zM8 16v-1a1 1 0 10-2 0v1a1 1 0 102 0zM12 16v-1a1 1 0 10-2 0v1a1 1 0 102 0zM16 16v-1a1 1 0 10-2 0v1a1 1 0 102 0z"></path></svg>
+</div>
+</div>
+</footer>
+<!-- END: Footer Metrics -->
+</main>
+<!-- END: Main Content -->
+</body></html>
